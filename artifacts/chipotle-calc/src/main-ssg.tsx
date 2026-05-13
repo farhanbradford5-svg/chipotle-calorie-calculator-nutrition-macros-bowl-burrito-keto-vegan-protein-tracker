@@ -1,16 +1,11 @@
 import { ViteReactSSG } from "vite-react-ssg";
 import { useLocation } from "react-router-dom";
-import { HelmetProvider } from "react-helmet-async";
 import App from "./App";
 import "./index.css";
 
 function AppSSR() {
   const { pathname } = useLocation();
-  return (
-    <HelmetProvider>
-      <App ssrPath={pathname} />
-    </HelmetProvider>
-  );
+  return <App ssrPath={pathname} />;
 }
 
 const routes = [

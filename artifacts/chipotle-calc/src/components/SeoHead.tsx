@@ -1,54 +1,24 @@
-import { Helmet } from "react-helmet-async";
-
-interface SeoHeadProps {
-  title: string;
-  description: string;
-  canonicalPath?: string;
-  schema?: object | object[];
-  ogImage?: string;
-  noIndex?: boolean;
-}
-
-export default function SeoHead({
-  title,
-  description,
-  canonicalPath,
-  schema,
-  ogImage,
-  noIndex,
-}: SeoHeadProps) {
-  const canonical = canonicalPath
-    ? `https://chipotlecalc.com${canonicalPath}`
-    : undefined;
-
-  const schemaArray = schema
-    ? Array.isArray(schema)
-      ? schema
-      : [schema]
-    : [];
-
-  return (
-    <Helmet>
-      <title>{title}</title>
-      <meta name="description" content={description} />
-      {noIndex && <meta name="robots" content="noindex, nofollow" />}
-      {canonical && <link rel="canonical" href={canonical} />}
-      <meta property="og:title" content={title} />
-      <meta property="og:description" content={description} />
-      <meta property="og:type" content="website" />
-      {canonical && <meta property="og:url" content={canonical} />}
-      <meta
-        property="og:image"
-        content={ogImage || "https://chipotlecalc.com/opengraph.jpg"}
-      />
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content={title} />
-      <meta name="twitter:description" content={description} />
-      {schemaArray.map((s, i) => (
-        <script key={i} type="application/ld+json">
-          {JSON.stringify(s)}
-        </script>
-      ))}
-    </Helmet>
-  );
+import { useHead } from "vite-react-ssg";
+interface SeoHeadProps { title: string; description: string; canonicalPath?: string; schema?: object | object[]; ogImage?: string; noIndex?: boolean; }
+export default function SeoHead({ title, description, canonicalPath, schema, ogImage, noIndex }: SeoHeadProps) {
+  const canonical = canonicalPath ? `https://chipotlecalc.com${canonicalPath}` : undefined;
+  const schemaArray = schema ? (Array.isArray(schema) ? schema : [schema]) : [];
+  useHead({
+    title,
+    meta: [
+      { name: "description", content: description },
+      ...(noIndex ? [{ name: "robots", content: "noindex, nofollow" }] : []),
+      { property: "og:title", content: title },
+      { property: "og:description", content: description },
+      { property: "og:type", content: "website" },
+      ...(canonical ? [{ property: "og:url", content: canonical }] : []),
+      { property: "og:image", content: ogImage || "https://chipotlecalc.com/opengraph.jpg" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: title },
+      { name: "twitter:description", content: description },
+    ],
+    link: [...(canonical ? [{ rel: "canonical", href: canonical }] : [])],
+    script: schemaArray.map((s) => ({ type: "application/ld+json", children: JSON.stringify(s) })),
+  });
+  return null;
 }
