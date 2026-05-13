@@ -1,0 +1,23 @@
+{
+  "name": "ChipotleCalc — Chipotle Calorie Calculator",
+  "short_name": "ChipotleCalc",
+  "description": "Free Chipotle calorie and nutrition calculator. Build any bowl, burrito, or salad and see macros instantly.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#E5522B",
+  "lang": "en-US",
+  "scope": "/",
+  "categories": ["food", "health", "fitness", "utilities"],
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "type": "image/svg+xml",
+      "sizes": "any",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [],
+  "related_applications": [],
+  "prefer_related_applications": false
+}

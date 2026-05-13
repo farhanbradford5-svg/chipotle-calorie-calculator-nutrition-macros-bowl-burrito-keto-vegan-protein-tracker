@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "Chipotle Calc"
+version = "1.0.0"
+id = "artifacts/chipotle-calc"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 18410
+
+[services.development]
+run = "pnpm --filter @workspace/chipotle-calc run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/chipotle-calc", "run", "build" ]
+publicDir = "artifacts/chipotle-calc/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "18410"
+BASE_PATH = "/"

@@ -1,0 +1,6 @@
+# ads.txt — ChipotleCalc
+# This file will be populated with authorized digital sellers after AdSense approval.
+# Format: <SSP/Exchange domain>, <publisher account ID>, DIRECT|RESELLER, <certification authority ID>
+#
+# Example (replace with your real AdSense publisher ID after approval):
+# google.com, pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0
