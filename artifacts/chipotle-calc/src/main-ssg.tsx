@@ -87,4 +87,4 @@ const routes = [
   { path: "/dmca", element: <AppSSR /> },
 ];
 
-export const createApp = ViteReactSSG({ routes });
+export const createRoot = ViteReactSSG({ routes });
