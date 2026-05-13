@@ -1,11 +1,11 @@
-import { Link } from "wouter";
+﻿import { Link } from "wouter";
 
 export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-orange-100 bg-white/95 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
         <Link href="/" className="flex items-center gap-2">
-          <span className="text-xl font-bold text-orange-600">ChipotleCalc</span>
+          <span className="text-xl font-bold text-orange-600">ChipotleMacros</span>
         </Link>
         <nav className="hidden items-center gap-6 text-sm md:flex">
           <Link href="/menu" className="text-gray-600 hover:text-orange-600 transition-colors">

@@ -1,4 +1,4 @@
-import Layout from "@/components/Layout";
+﻿import Layout from "@/components/Layout";
 import SeoHead from "@/components/SeoHead";
 import FaqSection from "@/components/sections/FaqSection";
 
@@ -6,14 +6,14 @@ const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "name": "Chipotle Nutrition FAQ",
-  "url": "https://chipotlecalc.com/faq",
+  "url": "https://chipotlemacros.com/faq",
 };
 
 export default function FaqPage() {
   return (
     <Layout>
       <SeoHead
-        title="Chipotle Nutrition FAQ — Common Questions Answered | ChipotleCalc"
+        title="Chipotle Nutrition FAQ — Common Questions Answered | ChipotleMacros"
         description="Answers to the most common questions about Chipotle calories, protein, keto ordering, sodium, and nutrition. Updated May 2026."
         canonicalPath="/faq"
         schema={faqSchema}

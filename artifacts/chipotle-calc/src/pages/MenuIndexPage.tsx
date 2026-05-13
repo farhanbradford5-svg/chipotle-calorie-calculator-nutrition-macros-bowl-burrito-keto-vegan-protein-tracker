@@ -1,4 +1,4 @@
-import { Link } from "wouter";
+﻿import { Link } from "wouter";
 import Layout from "@/components/Layout";
 import SeoHead from "@/components/SeoHead";
 
@@ -17,7 +17,7 @@ export default function MenuIndexPage() {
   return (
     <Layout>
       <SeoHead
-        title="Chipotle Menu Nutrition — All Categories | ChipotleCalc"
+        title="Chipotle Menu Nutrition — All Categories | ChipotleMacros"
         description="Browse Chipotle nutrition by menu category. Full calorie and macro data for burritos, bowls, salads, tacos, quesadillas, chips, and more."
         canonicalPath="/menu"
       />

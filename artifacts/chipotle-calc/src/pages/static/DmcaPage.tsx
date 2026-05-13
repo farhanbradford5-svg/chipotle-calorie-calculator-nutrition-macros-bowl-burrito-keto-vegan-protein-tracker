@@ -1,12 +1,12 @@
-import Layout from "@/components/Layout";
+﻿import Layout from "@/components/Layout";
 import SeoHead from "@/components/SeoHead";
 
 export default function DmcaPage() {
   return (
     <Layout>
       <SeoHead
-        title="DMCA Policy — ChipotleCalc"
-        description="DMCA copyright policy for ChipotleCalc. How to submit a takedown notice or counter-notification."
+        title="DMCA Policy — ChipotleMacros"
+        description="DMCA copyright policy for ChipotleMacros. How to submit a takedown notice or counter-notification."
         canonicalPath="/dmca"
       />
       <article className="mx-auto max-w-3xl px-4 py-10 prose prose-gray">
@@ -14,7 +14,7 @@ export default function DmcaPage() {
         <p className="text-sm text-gray-500">Effective: May 2026</p>
 
         <p>
-          ChipotleCalc respects the intellectual property rights of others and complies with
+          ChipotleMacros respects the intellectual property rights of others and complies with
           the Digital Millennium Copyright Act (DMCA). If you believe any content on this
           Site infringes your copyright, you may submit a DMCA takedown notice as described
           below. We take all legitimate notices seriously and will respond promptly.
@@ -23,8 +23,8 @@ export default function DmcaPage() {
         <h2>How to Submit a Takedown Notice</h2>
         <p>
           Send your DMCA notice to:{" "}
-          <a href="mailto:contact@chipotlecalc.com" className="text-orange-600">
-            contact@chipotlecalc.com
+          <a href="mailto:contact@chipotlemacros.com" className="text-orange-600">
+            contact@chipotlemacros.com
           </a>
         </p>
         <p>
@@ -39,7 +39,7 @@ export default function DmcaPage() {
           </li>
           <li>
             <strong>Identification of the infringing material:</strong> A description of the
-            material on ChipotleCalc that you claim is infringing, with sufficient detail
+            material on ChipotleMacros that you claim is infringing, with sufficient detail
             for us to locate it — for example, the URL of the specific page.
           </li>
           <li>
@@ -76,7 +76,7 @@ export default function DmcaPage() {
           <li>Your name, address, telephone number, and a statement that you consent to the jurisdiction of the Federal District Court for the judicial district in which your address is located.</li>
         </ol>
         <p>
-          Send counter-notifications to the same address: contact@chipotlecalc.com. Upon
+          Send counter-notifications to the same address: contact@chipotlemacros.com. Upon
           receipt of a valid counter-notification, we will transmit it to the original
           complainant and may restore the removed content within 10–14 business days unless
           the complainant files a court action.
@@ -84,7 +84,7 @@ export default function DmcaPage() {
 
         <h2>Note on Nutrition Data</h2>
         <p>
-          Nutrition data displayed on ChipotleCalc is reproduced from publicly available
+          Nutrition data displayed on ChipotleMacros is reproduced from publicly available
           information published by Chipotle Mexican Grill, Inc. We do not claim ownership
           of that data. If you represent Chipotle Mexican Grill and have concerns about
           data usage, please contact us directly.
@@ -92,15 +92,15 @@ export default function DmcaPage() {
 
         <h2>Repeat Infringer Policy</h2>
         <p>
-          ChipotleCalc will terminate access for users who are repeat infringers of
+          ChipotleMacros will terminate access for users who are repeat infringers of
           intellectual property rights in appropriate circumstances.
         </p>
 
         <h2>Contact</h2>
         <p>
           DMCA notices and questions:{" "}
-          <a href="mailto:contact@chipotlecalc.com" className="text-orange-600">
-            contact@chipotlecalc.com
+          <a href="mailto:contact@chipotlemacros.com" className="text-orange-600">
+            contact@chipotlemacros.com
           </a>
         </p>
       </article>

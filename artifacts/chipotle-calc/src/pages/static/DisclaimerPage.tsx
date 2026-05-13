@@ -1,12 +1,12 @@
-import Layout from "@/components/Layout";
+﻿import Layout from "@/components/Layout";
 import SeoHead from "@/components/SeoHead";
 
 export default function DisclaimerPage() {
   return (
     <Layout>
       <SeoHead
-        title="Disclaimer — ChipotleCalc"
-        description="Disclaimer for ChipotleCalc. Not affiliated with Chipotle. Nutrition values are estimates for informational purposes only."
+        title="Disclaimer — ChipotleMacros"
+        description="Disclaimer for ChipotleMacros. Not affiliated with Chipotle. Nutrition values are estimates for informational purposes only."
         canonicalPath="/disclaimer"
       />
       <article className="mx-auto max-w-3xl px-4 py-10 prose prose-gray">
@@ -14,14 +14,14 @@ export default function DisclaimerPage() {
         <p className="text-sm text-gray-500">Effective: May 2026</p>
 
         <p>
-          ChipotleCalc is an independent, third-party nutrition calculator. All information
+          ChipotleMacros is an independent, third-party nutrition calculator. All information
           provided on this website is for general informational purposes only. Please read
           this disclaimer carefully before using the Site.
         </p>
 
         <h2>Not Affiliated with Chipotle Mexican Grill</h2>
         <p>
-          ChipotleCalc is not affiliated with, sponsored by, endorsed by, or in any way
+          ChipotleMacros is not affiliated with, sponsored by, endorsed by, or in any way
           officially connected to Chipotle Mexican Grill, Inc. or any of its subsidiaries
           or affiliates. "Chipotle," the Chipotle logo, and all related names, marks, and
           trade dress are registered trademarks of Chipotle Mexican Grill, Inc. Their use
@@ -44,7 +44,7 @@ export default function DisclaimerPage() {
 
         <h2>Nutrition Data Accuracy</h2>
         <p>
-          The nutrition values displayed in ChipotleCalc are based on publicly available
+          The nutrition values displayed in ChipotleMacros are based on publicly available
           information published by Chipotle Mexican Grill, Inc. We review this data
           periodically and update it in good faith. However, we make no warranty —
           express or implied — that the data is complete, accurate, or current at
@@ -68,7 +68,7 @@ export default function DisclaimerPage() {
 
         <h2>Not Medical or Dietary Advice</h2>
         <p>
-          Nothing on ChipotleCalc constitutes medical, dietary, clinical, or health advice
+          Nothing on ChipotleMacros constitutes medical, dietary, clinical, or health advice
           of any kind. The calculator is a general-purpose tool to help users understand
           the approximate nutritional profile of Chipotle menu items.
         </p>
@@ -78,13 +78,13 @@ export default function DisclaimerPage() {
           any condition requiring a medically supervised diet — you must consult a
           qualified registered dietitian, physician, or other licensed healthcare
           professional before making dietary decisions based on this Site's content.
-          ChipotleCalc is not a substitute for professional medical advice, diagnosis,
+          ChipotleMacros is not a substitute for professional medical advice, diagnosis,
           or treatment.
         </p>
 
         <h2>Limitation of Liability</h2>
         <p>
-          To the fullest extent permitted by applicable law, ChipotleCalc and its
+          To the fullest extent permitted by applicable law, ChipotleMacros and its
           operators disclaim all liability for any loss, harm, or damage of any kind
           arising from your use of this website, reliance on nutrition data presented
           here, or any decisions made based on information from this Site. This includes
@@ -94,8 +94,8 @@ export default function DisclaimerPage() {
         <h2>Contact</h2>
         <p>
           Disclaimer questions:{" "}
-          <a href="mailto:contact@chipotlecalc.com" className="text-orange-600">
-            contact@chipotlecalc.com
+          <a href="mailto:contact@chipotlemacros.com" className="text-orange-600">
+            contact@chipotlemacros.com
           </a>
         </p>
       </article>

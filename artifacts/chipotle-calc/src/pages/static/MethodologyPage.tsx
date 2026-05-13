@@ -1,4 +1,4 @@
-import { Link } from "wouter";
+﻿import { Link } from "wouter";
 import Layout from "@/components/Layout";
 import SeoHead from "@/components/SeoHead";
 
@@ -6,8 +6,8 @@ export default function MethodologyPage() {
   return (
     <Layout>
       <SeoHead
-        title="Methodology — How ChipotleCalc Calculates Nutrition"
-        description="How ChipotleCalc calculates Chipotle nutrition values. Data sources, quantity modifiers, dietary badge criteria, and update schedule."
+        title="Methodology — How ChipotleMacros Calculates Nutrition"
+        description="How ChipotleMacros calculates Chipotle nutrition values. Data sources, quantity modifiers, dietary badge criteria, and update schedule."
         canonicalPath="/methodology"
       />
       <article className="mx-auto max-w-3xl px-4 py-10 prose prose-gray">
@@ -16,7 +16,7 @@ export default function MethodologyPage() {
 
         <h2>Where the Nutrition Data Comes From</h2>
         <p>
-          Every calorie, protein, carbohydrate, fat, fiber, and sodium value in ChipotleCalc comes from
+          Every calorie, protein, carbohydrate, fat, fiber, and sodium value in ChipotleMacros comes from
           Chipotle's officially published nutrition information. We do not estimate, extrapolate, or
           interpolate values from other sources.
         </p>
@@ -52,7 +52,7 @@ export default function MethodologyPage() {
           count does not change — only the standard serving value exists in their published data.
         </p>
         <p>
-          To handle this, ChipotleCalc applies the following multipliers to the standard serving
+          To handle this, ChipotleMacros applies the following multipliers to the standard serving
           nutritional values:
         </p>
         <ul>
@@ -76,7 +76,7 @@ export default function MethodologyPage() {
 
         <h2>Dietary Badge Criteria</h2>
         <p>
-          ChipotleCalc automatically displays dietary badges when your build meets the following criteria:
+          ChipotleMacros automatically displays dietary badges when your build meets the following criteria:
         </p>
         <ul>
           <li>
@@ -86,7 +86,7 @@ export default function MethodologyPage() {
           <li>
             <strong>Gluten-Free:</strong> All selected ingredients are free of gluten-containing ingredients.
             Flour tortillas are excluded. Note: cross-contact with gluten-containing ingredients is possible
-            at Chipotle preparation surfaces, which ChipotleCalc cannot account for. The badge reflects
+            at Chipotle preparation surfaces, which ChipotleMacros cannot account for. The badge reflects
             ingredient composition only, not preparation safety.
           </li>
           <li>
@@ -108,7 +108,7 @@ export default function MethodologyPage() {
 
         <h2>Sodium Warning</h2>
         <p>
-          ChipotleCalc displays a sodium warning when the build's total sodium exceeds 1,500mg. This
+          ChipotleMacros displays a sodium warning when the build's total sodium exceeds 1,500mg. This
           threshold is based on the American Heart Association's recommendation of no more than
           1,500mg of sodium per day for people with high blood pressure, and is stricter than the
           FDA's general 2,300mg daily limit. We use the stricter threshold because sodium is the
@@ -142,7 +142,7 @@ export default function MethodologyPage() {
 
         <h2>Update Schedule</h2>
         <p>
-          ChipotleCalc verifies nutrition data at minimum quarterly. We also check values after:
+          ChipotleMacros verifies nutrition data at minimum quarterly. We also check values after:
         </p>
         <ul>
           <li>Any Chipotle public announcement of a menu change or new item</li>

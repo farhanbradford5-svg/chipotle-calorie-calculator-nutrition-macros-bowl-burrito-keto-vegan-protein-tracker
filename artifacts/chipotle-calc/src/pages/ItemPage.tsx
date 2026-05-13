@@ -1,4 +1,4 @@
-import { useParams, Link } from "wouter";
+﻿import { useParams, Link } from "wouter";
 import Layout from "@/components/Layout";
 import SeoHead from "@/components/SeoHead";
 import Calculator from "@/components/Calculator";
@@ -20,7 +20,7 @@ export default function ItemPage() {
   return (
     <Layout>
       <SeoHead
-        title={`${title} — ChipotleCalc`}
+        title={`${title} — ChipotleMacros`}
         description={`${title}: calories, protein, carbs, fat, fiber, and sodium. Full Chipotle nutrition data.`}
         canonicalPath={`/item/${slug}`}
       />

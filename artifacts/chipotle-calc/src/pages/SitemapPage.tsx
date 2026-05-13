@@ -1,4 +1,4 @@
-import { Link } from "wouter";
+﻿import { Link } from "wouter";
 import Layout from "@/components/Layout";
 import SeoHead from "@/components/SeoHead";
 
@@ -57,7 +57,7 @@ const SECTIONS = [
   {
     heading: "About & Trust",
     links: [
-      { href: "/about", label: "About ChipotleCalc" },
+      { href: "/about", label: "About ChipotleMacros" },
       { href: "/methodology", label: "Methodology" },
       { href: "/editorial-policy", label: "Editorial Policy" },
       { href: "/sources", label: "Sources" },
@@ -83,8 +83,8 @@ export default function SitemapPage() {
   return (
     <Layout>
       <SeoHead
-        title="Sitemap — ChipotleCalc"
-        description="Complete sitemap for ChipotleCalc — all pages and tools."
+        title="Sitemap — ChipotleMacros"
+        description="Complete sitemap for ChipotleMacros — all pages and tools."
         canonicalPath="/sitemap"
       />
       <div className="mx-auto max-w-4xl px-4 py-10">

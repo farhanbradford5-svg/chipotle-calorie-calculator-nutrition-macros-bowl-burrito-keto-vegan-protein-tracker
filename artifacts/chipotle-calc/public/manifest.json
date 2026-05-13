@@ -1,6 +1,6 @@
-{
-  "name": "ChipotleCalc — Chipotle Calorie Calculator",
-  "short_name": "ChipotleCalc",
+﻿{
+  "name": "ChipotleMacros — Chipotle Calorie Calculator",
+  "short_name": "ChipotleMacros",
   "description": "Free Chipotle calorie and nutrition calculator. Build any bowl, burrito, or salad and see macros instantly.",
   "start_url": "/",
   "display": "standalone",

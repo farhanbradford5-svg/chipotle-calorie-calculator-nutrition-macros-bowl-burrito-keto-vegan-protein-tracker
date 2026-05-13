@@ -1,56 +1,56 @@
-import { useParams, Link } from "wouter";
+﻿import { useParams, Link } from "wouter";
 import Layout from "@/components/Layout";
 import SeoHead from "@/components/SeoHead";
 import Calculator from "@/components/Calculator";
 
 const GUIDE_META: Record<string, { title: string; description: string; h1: string }> = {
   "chipotle-macros-guide": {
-    title: "Chipotle Macros Guide — Complete Nutrition Breakdown | ChipotleCalc",
+    title: "Chipotle Macros Guide — Complete Nutrition Breakdown | ChipotleMacros",
     description: "Everything you need to know about Chipotle macros. Protein, carbs, fat, and fiber for every ingredient.",
     h1: "Chipotle Macros Guide",
   },
   "chipotle-weight-loss-guide": {
-    title: "Chipotle Weight Loss Guide — How to Order in a Calorie Deficit | ChipotleCalc",
+    title: "Chipotle Weight Loss Guide — How to Order in a Calorie Deficit | ChipotleMacros",
     description: "How to order at Chipotle for weight loss. Best low-calorie builds and what to avoid.",
     h1: "Chipotle Weight Loss Guide",
   },
   "chipotle-muscle-gain-guide": {
-    title: "Chipotle Muscle Gain Guide — Max Protein Builds | ChipotleCalc",
+    title: "Chipotle Muscle Gain Guide — Max Protein Builds | ChipotleMacros",
     description: "How to order Chipotle for muscle gain. High protein builds and post-workout meal options.",
     h1: "Chipotle Muscle Gain Guide",
   },
   "chipotle-allergens-guide": {
-    title: "Chipotle Allergen Guide — What Contains What | ChipotleCalc",
+    title: "Chipotle Allergen Guide — What Contains What | ChipotleMacros",
     description: "Complete Chipotle allergen guide. Which items contain gluten, dairy, nuts, soy, and other common allergens.",
     h1: "Chipotle Allergen Guide",
   },
   "chipotle-sodium-guide": {
-    title: "Chipotle Sodium Guide — High and Low Sodium Options | ChipotleCalc",
+    title: "Chipotle Sodium Guide — High and Low Sodium Options | ChipotleMacros",
     description: "Full Chipotle sodium guide. How much sodium is in each ingredient and how to keep your total low.",
     h1: "Chipotle Sodium Guide",
   },
   "chipotle-secret-menu": {
-    title: "Chipotle Secret Menu — What You Can Actually Order | ChipotleCalc",
+    title: "Chipotle Secret Menu — What You Can Actually Order | ChipotleMacros",
     description: "Chipotle secret menu items and hacks. Quesarito, double protein, free extras, and more.",
     h1: "Chipotle Secret Menu",
   },
   "chipotle-vs-other-fast-food": {
-    title: "Chipotle vs Other Fast Food — Nutrition Comparison | ChipotleCalc",
+    title: "Chipotle vs Other Fast Food — Nutrition Comparison | ChipotleMacros",
     description: "How does Chipotle compare nutritionally to McDonald's, Taco Bell, Subway, and Panera?",
     h1: "Chipotle vs Other Fast Food",
   },
   "chipotle-cheap-meals": {
-    title: "Cheapest Chipotle Orders — Most Value for Your Money | ChipotleCalc",
+    title: "Cheapest Chipotle Orders — Most Value for Your Money | ChipotleMacros",
     description: "How to order Chipotle on a budget. The cheapest builds and how to maximize value without compromising nutrition.",
     h1: "Cheapest Chipotle Orders",
   },
   "chipotle-fiber-guide": {
-    title: "Chipotle Fiber Guide — Highest Fiber Builds | ChipotleCalc",
+    title: "Chipotle Fiber Guide — Highest Fiber Builds | ChipotleMacros",
     description: "How to maximize fiber in your Chipotle order. Which ingredients have the most fiber.",
     h1: "Chipotle Fiber Guide",
   },
   "chipotle-meal-prep": {
-    title: "Chipotle Meal Prep — Tracking and Planning | ChipotleCalc",
+    title: "Chipotle Meal Prep — Tracking and Planning | ChipotleMacros",
     description: "How to use Chipotle for meal prep and consistent macro tracking.",
     h1: "Chipotle Meal Prep Guide",
   },
@@ -165,7 +165,7 @@ const GUIDE_CONTENT: Record<string, { sections: { heading: string; body: string 
       },
       {
         heading: "Who Should Watch Sodium at Chipotle",
-        body: "People with hypertension, kidney disease, or heart conditions are often advised to limit sodium to 1,500-2,000mg per day. A single fully-loaded Chipotle bowl can exceed that limit. The sodium guide built into ChipotleCalc's calculator shows your total sodium as you build — use it to keep your build within your daily target. A carefully ordered bowl can stay under 1,000mg sodium with the right choices."
+        body: "People with hypertension, kidney disease, or heart conditions are often advised to limit sodium to 1,500-2,000mg per day. A single fully-loaded Chipotle bowl can exceed that limit. The sodium guide built into ChipotleMacros's calculator shows your total sodium as you build — use it to keep your build within your daily target. A carefully ordered bowl can stay under 1,000mg sodium with the right choices."
       }
     ],
     tips: [
@@ -275,7 +275,7 @@ const GUIDE_CONTENT: Record<string, { sections: { heading: string; body: string 
       },
       {
         heading: "How to Track Chipotle in MyFitnessPal",
-        body: "The most accurate way to track Chipotle in MyFitnessPal is to add each ingredient individually rather than using pre-built Chipotle menu entries (which often reflect inaccurate or outdated values). Use the values from ChipotleCalc — they match Chipotle's official published data. Build your bowl in ChipotleCalc first, note the totals, then log each ingredient separately in MyFitnessPal for the most accurate tracking."
+        body: "The most accurate way to track Chipotle in MyFitnessPal is to add each ingredient individually rather than using pre-built Chipotle menu entries (which often reflect inaccurate or outdated values). Use the values from ChipotleMacros — they match Chipotle's official published data. Build your bowl in ChipotleMacros first, note the totals, then log each ingredient separately in MyFitnessPal for the most accurate tracking."
       },
       {
         heading: "Chipotle for Meal Prep Days",
@@ -284,9 +284,9 @@ const GUIDE_CONTENT: Record<string, { sections: { heading: string; body: string 
     ],
     tips: [
       "Order the same build each visit for consistent, predictable macros",
-      "Use ChipotleCalc to get accurate values before logging in MyFitnessPal",
+      "Use ChipotleMacros to get accurate values before logging in MyFitnessPal",
       "A large double protein bowl split in two becomes two well-balanced meals",
-      "Save your favourite build in ChipotleCalc for quick reference on future visits"
+      "Save your favourite build in ChipotleMacros for quick reference on future visits"
     ]
   },
 };
@@ -294,7 +294,7 @@ const GUIDE_CONTENT: Record<string, { sections: { heading: string; body: string 
 export default function GuidePage() {
   const { slug } = useParams<{ slug: string }>();
   const meta = GUIDE_META[slug ?? ""] ?? {
-    title: `${slug} | ChipotleCalc`,
+    title: `${slug} | ChipotleMacros`,
     description: `Chipotle guide: ${slug}`,
     h1: slug ?? "Guide",
   };

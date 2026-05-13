@@ -1,12 +1,12 @@
-import Layout from "@/components/Layout";
+﻿import Layout from "@/components/Layout";
 import SeoHead from "@/components/SeoHead";
 
 export default function SourcesPage() {
   return (
     <Layout>
       <SeoHead
-        title="Sources — ChipotleCalc Nutrition Data References"
-        description="All data sources used by ChipotleCalc. Chipotle's official nutrition calculator, USDA FoodData Central, FDA guidelines, and American Heart Association sodium recommendations."
+        title="Sources — ChipotleMacros Nutrition Data References"
+        description="All data sources used by ChipotleMacros. Chipotle's official nutrition calculator, USDA FoodData Central, FDA guidelines, and American Heart Association sodium recommendations."
         canonicalPath="/sources"
       />
       <article className="mx-auto max-w-3xl px-4 py-10 prose prose-gray">
@@ -14,7 +14,7 @@ export default function SourcesPage() {
         <p className="text-sm text-gray-500">Last updated: May 2026</p>
 
         <p>
-          ChipotleCalc uses a small set of authoritative sources for all nutrition data. We do not
+          ChipotleMacros uses a small set of authoritative sources for all nutrition data. We do not
           estimate values, combine sources without clear attribution, or use crowd-sourced calorie
           databases. Every number traces to a verifiable published source.
         </p>
@@ -27,13 +27,13 @@ export default function SourcesPage() {
         </p>
         <p>
           This is the primary source for all per-ingredient calorie, protein, carbohydrate, fat, fiber,
-          and sodium values in ChipotleCalc. Chipotle's nutrition calculator publishes the values their
+          and sodium values in ChipotleMacros. Chipotle's nutrition calculator publishes the values their
           nutritionists and food science team have verified. These are the numbers Chipotle stands behind
           as accurate representations of their ingredients as served.
         </p>
         <p>
           The nutrition calculator is updated by Chipotle when menu items change or when ingredient
-          formulations are updated. ChipotleCalc verifies against this source quarterly and after any
+          formulations are updated. ChipotleMacros verifies against this source quarterly and after any
           Chipotle menu announcement.
         </p>
 
@@ -77,7 +77,7 @@ export default function SourcesPage() {
           <strong>Source:</strong> U.S. Food and Drug Administration (fda.gov)
         </p>
         <p>
-          The percentage Daily Values shown in ChipotleCalc (where displayed) are calculated using the
+          The percentage Daily Values shown in ChipotleMacros (where displayed) are calculated using the
           FDA's standard Daily Values established for nutrition labeling purposes. The key daily reference
           values we use:
         </p>
@@ -100,7 +100,7 @@ export default function SourcesPage() {
           <strong>Source:</strong> American Heart Association (heart.org)
         </p>
         <p>
-          The sodium warning threshold in ChipotleCalc (1,500mg per meal) is based on the American
+          The sodium warning threshold in ChipotleMacros (1,500mg per meal) is based on the American
           Heart Association's recommendation that people with high blood pressure should consume no
           more than 1,500mg of sodium per day. This is a stricter guideline than the FDA's 2,300mg
           general recommendation and is appropriate for the warning context — many Chipotle builds
@@ -115,18 +115,18 @@ export default function SourcesPage() {
 
         <h2>What We Don't Use</h2>
         <p>
-          ChipotleCalc does not use crowd-sourced calorie databases (such as Open Food Facts or
+          ChipotleMacros does not use crowd-sourced calorie databases (such as Open Food Facts or
           community-submitted entries on calorie tracking apps) as primary data sources. These
           databases contain many inaccurate Chipotle entries with inconsistent serving sizes,
           outdated values, and community-entered numbers that may not reflect Chipotle's actual
-          formulations. All values in ChipotleCalc trace to Chipotle's own published data.
+          formulations. All values in ChipotleMacros trace to Chipotle's own published data.
         </p>
 
         <h2>Reporting Errors</h2>
         <p>
-          If you believe a nutrition value in ChipotleCalc is incorrect, please contact us at{" "}
-          <a href="mailto:contact@chipotlecalc.com" className="text-orange-600">
-            contact@chipotlecalc.com
+          If you believe a nutrition value in ChipotleMacros is incorrect, please contact us at{" "}
+          <a href="mailto:contact@chipotlemacros.com" className="text-orange-600">
+            contact@chipotlemacros.com
           </a>. Include the ingredient name, the value you believe is incorrect, the value you believe
           is correct, and the source you're referencing. We verify all correction requests against
           Chipotle's official published sources and update promptly when errors are confirmed.

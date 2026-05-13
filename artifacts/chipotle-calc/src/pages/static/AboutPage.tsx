@@ -1,4 +1,4 @@
-import { Link } from "wouter";
+﻿import { Link } from "wouter";
 import Layout from "@/components/Layout";
 import SeoHead from "@/components/SeoHead";
 
@@ -6,16 +6,16 @@ export default function AboutPage() {
   return (
     <Layout>
       <SeoHead
-        title="About ChipotleCalc — Independent Chipotle Nutrition Calculator"
-        description="About ChipotleCalc. Why we built an independent Chipotle calorie calculator, how it works, and what makes it different from Chipotle's own tool."
+        title="About ChipotleMacros — Independent Chipotle Nutrition Calculator"
+        description="About ChipotleMacros. Why we built an independent Chipotle calorie calculator, how it works, and what makes it different from Chipotle's own tool."
         canonicalPath="/about"
       />
       <article className="mx-auto max-w-3xl px-4 py-10 prose prose-gray">
-        <h1>About ChipotleCalc</h1>
+        <h1>About ChipotleMacros</h1>
 
         <h2>Why We Built This</h2>
         <p>
-          The idea for ChipotleCalc came from a simple frustration: Chipotle's own nutrition calculator
+          The idea for ChipotleMacros came from a simple frustration: Chipotle's own nutrition calculator
           is nearly unusable on a phone. It requires a desktop browser to work properly, takes multiple
           clicks to select each ingredient, doesn't remember your previous orders, and resets if you
           accidentally navigate away. If you're standing in line at Chipotle trying to figure out
@@ -28,15 +28,15 @@ export default function AboutPage() {
           account. We wanted something that just works, instantly, the moment you open it.
         </p>
 
-        <h2>What Makes ChipotleCalc Different</h2>
+        <h2>What Makes ChipotleMacros Different</h2>
         <p>
-          <strong>Mobile-first design.</strong> ChipotleCalc was built for the phone experience from
+          <strong>Mobile-first design.</strong> ChipotleMacros was built for the phone experience from
           the start. The interface is designed to be usable one-handed while you're in line. Ingredient
           categories are easy to tap, quantities update with a single press, and the calorie total is
           always visible without scrolling.
         </p>
         <p>
-          <strong>Works offline.</strong> Once ChipotleCalc has loaded, it stores the ingredient data
+          <strong>Works offline.</strong> Once ChipotleMacros has loaded, it stores the ingredient data
           locally. If your phone signal drops inside the restaurant (which happens), the calculator
           keeps working. You can build and calculate your meal without a live connection.
         </p>
@@ -72,7 +72,7 @@ export default function AboutPage() {
 
         <h2>Our Data</h2>
         <p>
-          All nutrition values in ChipotleCalc come from Chipotle's officially published nutrition data.
+          All nutrition values in ChipotleMacros come from Chipotle's officially published nutrition data.
           We cross-reference against both Chipotle's online nutrition calculator (available at
           chipotle.com) and their published nutrition PDF, which Chipotle updates when menu items or
           ingredient formulations change. We verify values at minimum quarterly and update the
@@ -83,7 +83,7 @@ export default function AboutPage() {
 
         <h2>Independence</h2>
         <p>
-          ChipotleCalc is an independent tool. We are not affiliated with, sponsored by, or endorsed
+          ChipotleMacros is an independent tool. We are not affiliated with, sponsored by, or endorsed
           by Chipotle Mexican Grill, Inc. in any way. "Chipotle" is a registered trademark of Chipotle
           Mexican Grill, Inc. All trademarks referenced on this site belong to their respective owners.
         </p>
@@ -95,7 +95,7 @@ export default function AboutPage() {
         <h2>Contact</h2>
         <p>
           For corrections, feedback, or questions about the data, reach us at{" "}
-          <a href="mailto:contact@chipotlecalc.com" className="text-orange-600">contact@chipotlecalc.com</a>.
+          <a href="mailto:contact@chipotlemacros.com" className="text-orange-600">contact@chipotlemacros.com</a>.
           For data correction requests, include the ingredient name and the value you believe is incorrect,
           along with a link to the source you're referencing. We take accuracy seriously and respond to
           correction requests within a few business days.

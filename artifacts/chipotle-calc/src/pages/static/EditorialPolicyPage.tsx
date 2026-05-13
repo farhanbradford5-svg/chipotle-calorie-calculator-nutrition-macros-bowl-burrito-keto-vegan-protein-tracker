@@ -1,4 +1,4 @@
-import { Link } from "wouter";
+﻿import { Link } from "wouter";
 import Layout from "@/components/Layout";
 import SeoHead from "@/components/SeoHead";
 
@@ -6,8 +6,8 @@ export default function EditorialPolicyPage() {
   return (
     <Layout>
       <SeoHead
-        title="Editorial Policy — ChipotleCalc"
-        description="ChipotleCalc's editorial policy for nutrition data accuracy, update schedule, corrections, and independence from Chipotle Mexican Grill, Inc."
+        title="Editorial Policy — ChipotleMacros"
+        description="ChipotleMacros's editorial policy for nutrition data accuracy, update schedule, corrections, and independence from Chipotle Mexican Grill, Inc."
         canonicalPath="/editorial-policy"
       />
       <article className="mx-auto max-w-3xl px-4 py-10 prose prose-gray">
@@ -16,7 +16,7 @@ export default function EditorialPolicyPage() {
 
         <h2>Our Commitment to Accuracy</h2>
         <p>
-          Every nutrition value in ChipotleCalc comes from Chipotle's officially published data.
+          Every nutrition value in ChipotleMacros comes from Chipotle's officially published data.
           We do not estimate values, we do not use crowd-sourced databases, and we do not publish
           ranges or approximations when an exact figure is available from Chipotle's own sources.
           Our primary sources are Chipotle's interactive online nutrition calculator and Chipotle's
@@ -57,8 +57,8 @@ export default function EditorialPolicyPage() {
         </p>
         <p>
           To report a nutrition data error, email{" "}
-          <a href="mailto:contact@chipotlecalc.com" className="text-orange-600">
-            contact@chipotlecalc.com
+          <a href="mailto:contact@chipotlemacros.com" className="text-orange-600">
+            contact@chipotlemacros.com
           </a>{" "}
           with a link to Chipotle's official source showing the correct value. We will respond within
           two business days.
@@ -66,7 +66,7 @@ export default function EditorialPolicyPage() {
 
         <h2>Independence</h2>
         <p>
-          ChipotleCalc has no commercial relationship with Chipotle Mexican Grill, Inc. We have not
+          ChipotleMacros has no commercial relationship with Chipotle Mexican Grill, Inc. We have not
           received payment, sponsorship, data feeds, or products from Chipotle or any of its
           affiliates. Our content is not reviewed or approved by Chipotle before publication.
           All editorial decisions — which items to include, how to label dietary categories, what
@@ -80,7 +80,7 @@ export default function EditorialPolicyPage() {
 
         <h2>Health Claims</h2>
         <p>
-          ChipotleCalc does not make medical or health claims. When we describe a build as
+          ChipotleMacros does not make medical or health claims. When we describe a build as
           "keto-friendly," "high protein," or "low calorie," we are describing it in terms of widely
           accepted nutritional definitions (detailed on the{" "}
           <Link href="/methodology" className="text-orange-600">methodology page</Link>), not making
@@ -102,8 +102,8 @@ export default function EditorialPolicyPage() {
         <h2>Contact</h2>
         <p>
           Editorial questions, correction requests, or policy inquiries:{" "}
-          <a href="mailto:contact@chipotlecalc.com" className="text-orange-600">
-            contact@chipotlecalc.com
+          <a href="mailto:contact@chipotlemacros.com" className="text-orange-600">
+            contact@chipotlemacros.com
           </a>
         </p>
       </article>

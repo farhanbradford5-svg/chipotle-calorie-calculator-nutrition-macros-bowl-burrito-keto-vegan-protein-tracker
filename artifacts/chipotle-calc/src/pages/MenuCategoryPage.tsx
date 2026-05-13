@@ -1,46 +1,46 @@
-import { useParams, Link } from "wouter";
+﻿import { useParams, Link } from "wouter";
 import Layout from "@/components/Layout";
 import SeoHead from "@/components/SeoHead";
 import Calculator from "@/components/Calculator";
 
 const CATEGORY_META: Record<string, { title: string; description: string; h1: string }> = {
   burrito: {
-    title: "Chipotle Burrito Calories — Full Nutrition Breakdown | ChipotleCalc",
+    title: "Chipotle Burrito Calories — Full Nutrition Breakdown | ChipotleMacros",
     description: "How many calories is a Chipotle burrito? Build any burrito and see exact calories, protein, carbs and fat.",
     h1: "Chipotle Burrito Calories",
   },
   "burrito-bowl": {
-    title: "Chipotle Burrito Bowl Calories — Full Nutrition | ChipotleCalc",
+    title: "Chipotle Burrito Bowl Calories — Full Nutrition | ChipotleMacros",
     description: "Build any Chipotle burrito bowl and see exact calorie and macro counts in real time.",
     h1: "Chipotle Burrito Bowl Calories",
   },
   salad: {
-    title: "Chipotle Salad Calories — Full Nutrition Breakdown | ChipotleCalc",
+    title: "Chipotle Salad Calories — Full Nutrition Breakdown | ChipotleMacros",
     description: "Chipotle salad nutrition calculator. Build any salad and see calories, protein, carbs and fat.",
     h1: "Chipotle Salad Calories",
   },
   tacos: {
-    title: "Chipotle Taco Calories — Full Nutrition | ChipotleCalc",
+    title: "Chipotle Taco Calories — Full Nutrition | ChipotleMacros",
     description: "Chipotle taco nutrition. See calories for soft corn, crispy corn, and flour taco builds.",
     h1: "Chipotle Taco Calories",
   },
   quesadilla: {
-    title: "Chipotle Quesadilla Calories — Full Nutrition | ChipotleCalc",
+    title: "Chipotle Quesadilla Calories — Full Nutrition | ChipotleMacros",
     description: "Chipotle quesadilla calorie and nutrition breakdown.",
     h1: "Chipotle Quesadilla Calories",
   },
   "chips-sides": {
-    title: "Chipotle Chips & Sides Nutrition | ChipotleCalc",
+    title: "Chipotle Chips & Sides Nutrition | ChipotleMacros",
     description: "Chipotle chips, guacamole, and queso nutrition data.",
     h1: "Chipotle Chips & Sides Nutrition",
   },
   drinks: {
-    title: "Chipotle Drinks Calories | ChipotleCalc",
+    title: "Chipotle Drinks Calories | ChipotleMacros",
     description: "Calories for Chipotle drinks and beverages.",
     h1: "Chipotle Drinks Calories",
   },
   "kids-meal": {
-    title: "Chipotle Kid's Meal Nutrition | ChipotleCalc",
+    title: "Chipotle Kid's Meal Nutrition | ChipotleMacros",
     description: "Chipotle kid's menu calorie and nutrition information.",
     h1: "Chipotle Kid's Meal Nutrition",
   },
@@ -49,7 +49,7 @@ const CATEGORY_META: Record<string, { title: string; description: string; h1: st
 export default function MenuCategoryPage() {
   const { category } = useParams<{ category: string }>();
   const meta = CATEGORY_META[category ?? ""] ?? {
-    title: `Chipotle ${category} Nutrition | ChipotleCalc`,
+    title: `Chipotle ${category} Nutrition | ChipotleMacros`,
     description: `Chipotle ${category} calorie and nutrition breakdown.`,
     h1: `Chipotle ${category}`,
   };

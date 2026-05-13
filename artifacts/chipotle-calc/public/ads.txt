@@ -1,4 +1,4 @@
-# ads.txt — ChipotleCalc
+﻿# ads.txt — ChipotleMacros
 # This file will be populated with authorized digital sellers after AdSense approval.
 # Format: <SSP/Exchange domain>, <publisher account ID>, DIRECT|RESELLER, <certification authority ID>
 #

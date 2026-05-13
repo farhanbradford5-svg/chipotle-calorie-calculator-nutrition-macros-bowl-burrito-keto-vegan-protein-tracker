@@ -1,89 +1,89 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
   <!-- Core pages -->
-  <url><loc>https://chipotlecalc.com/</loc><changefreq>weekly</changefreq><priority>1.0</priority><lastmod>2026-05-09</lastmod></url>
-  <url><loc>https://chipotlecalc.com/faq</loc><changefreq>monthly</changefreq><priority>0.9</priority><lastmod>2026-05-09</lastmod></url>
-  <url><loc>https://chipotlecalc.com/menu</loc><changefreq>monthly</changefreq><priority>0.8</priority><lastmod>2026-05-09</lastmod></url>
-  <url><loc>https://chipotlecalc.com/sitemap</loc><changefreq>monthly</changefreq><priority>0.5</priority><lastmod>2026-05-09</lastmod></url>
+  <url><loc>https://chipotlemacros.com/</loc><changefreq>weekly</changefreq><priority>1.0</priority><lastmod>2026-05-09</lastmod></url>
+  <url><loc>https://chipotlemacros.com/faq</loc><changefreq>monthly</changefreq><priority>0.9</priority><lastmod>2026-05-09</lastmod></url>
+  <url><loc>https://chipotlemacros.com/menu</loc><changefreq>monthly</changefreq><priority>0.8</priority><lastmod>2026-05-09</lastmod></url>
+  <url><loc>https://chipotlemacros.com/sitemap</loc><changefreq>monthly</changefreq><priority>0.5</priority><lastmod>2026-05-09</lastmod></url>
 
   <!-- Menu category pages -->
-  <url><loc>https://chipotlecalc.com/menu/burrito</loc><changefreq>monthly</changefreq><priority>0.9</priority><lastmod>2026-05-09</lastmod></url>
-  <url><loc>https://chipotlecalc.com/menu/burrito-bowl</loc><changefreq>monthly</changefreq><priority>0.9</priority><lastmod>2026-05-09</lastmod></url>
-  <url><loc>https://chipotlecalc.com/menu/salad</loc><changefreq>monthly</changefreq><priority>0.8</priority><lastmod>2026-05-09</lastmod></url>
-  <url><loc>https://chipotlecalc.com/menu/tacos</loc><changefreq>monthly</changefreq><priority>0.8</priority><lastmod>2026-05-09</lastmod></url>
-  <url><loc>https://chipotlecalc.com/menu/quesadilla</loc><changefreq>monthly</changefreq><priority>0.7</priority><lastmod>2026-05-09</lastmod></url>
-  <url><loc>https://chipotlecalc.com/menu/chips-sides</loc><changefreq>monthly</changefreq><priority>0.7</priority><lastmod>2026-05-09</lastmod></url>
-  <url><loc>https://chipotlecalc.com/menu/drinks</loc><changefreq>monthly</changefreq><priority>0.6</priority><lastmod>2026-05-09</lastmod></url>
-  <url><loc>https://chipotlecalc.com/menu/kids-meal</loc><changefreq>monthly</changefreq><priority>0.6</priority><lastmod>2026-05-09</lastmod></url>
+  <url><loc>https://chipotlemacros.com/menu/burrito</loc><changefreq>monthly</changefreq><priority>0.9</priority><lastmod>2026-05-09</lastmod></url>
+  <url><loc>https://chipotlemacros.com/menu/burrito-bowl</loc><changefreq>monthly</changefreq><priority>0.9</priority><lastmod>2026-05-09</lastmod></url>
+  <url><loc>https://chipotlemacros.com/menu/salad</loc><changefreq>monthly</changefreq><priority>0.8</priority><lastmod>2026-05-09</lastmod></url>
+  <url><loc>https://chipotlemacros.com/menu/tacos</loc><changefreq>monthly</changefreq><priority>0.8</priority><lastmod>2026-05-09</lastmod></url>
+  <url><loc>https://chipotlemacros.com/menu/quesadilla</loc><changefreq>monthly</changefreq><priority>0.7</priority><lastmod>2026-05-09</lastmod></url>
+  <url><loc>https://chipotlemacros.com/menu/chips-sides</loc><changefreq>monthly</changefreq><priority>0.7</priority><lastmod>2026-05-09</lastmod></url>
+  <url><loc>https://chipotlemacros.com/menu/drinks</loc><changefreq>monthly</changefreq><priority>0.6</priority><lastmod>2026-05-09</lastmod></url>
+  <url><loc>https://chipotlemacros.com/menu/kids-meal</loc><changefreq>monthly</changefreq><priority>0.6</priority><lastmod>2026-05-09</lastmod></url>
 
   <!-- Individual item pages -->
-  <url><loc>https://chipotlecalc.com/item/chicken-bowl-calories</loc><changefreq>monthly</changefreq><priority>0.9</priority><lastmod>2026-05-09</lastmod></url>
-  <url><loc>https://chipotlecalc.com/item/steak-bowl-calories</loc><changefreq>monthly</changefreq><priority>0.9</priority><lastmod>2026-05-09</lastmod></url>
-  <url><loc>https://chipotlecalc.com/item/barbacoa-bowl-calories</loc><changefreq>monthly</changefreq><priority>0.8</priority><lastmod>2026-05-09</lastmod></url>
-  <url><loc>https://chipotlecalc.com/item/carnitas-bowl-calories</loc><changefreq>monthly</changefreq><priority>0.8</priority><lastmod>2026-05-09</lastmod></url>
-  <url><loc>https://chipotlecalc.com/item/sofritas-bowl-calories</loc><changefreq>monthly</changefreq><priority>0.8</priority><lastmod>2026-05-09</lastmod></url>
-  <url><loc>https://chipotlecalc.com/item/double-chicken-bowl-calories</loc><changefreq>monthly</changefreq><priority>0.8</priority><lastmod>2026-05-09</lastmod></url>
-  <url><loc>https://chipotlecalc.com/item/chicken-burrito-calories</loc><changefreq>monthly</changefreq><priority>0.9</priority><lastmod>2026-05-09</lastmod></url>
-  <url><loc>https://chipotlecalc.com/item/steak-burrito-calories</loc><changefreq>monthly</changefreq><priority>0.8</priority><lastmod>2026-05-09</lastmod></url>
-  <url><loc>https://chipotlecalc.com/item/chicken-salad-calories</loc><changefreq>monthly</changefreq><priority>0.8</priority><lastmod>2026-05-09</lastmod></url>
-  <url><loc>https://chipotlecalc.com/item/chicken-tacos-calories</loc><changefreq>monthly</changefreq><priority>0.8</priority><lastmod>2026-05-09</lastmod></url>
-  <url><loc>https://chipotlecalc.com/item/chicken-quesadilla-calories</loc><changefreq>monthly</changefreq><priority>0.7</priority><lastmod>2026-05-09</lastmod></url>
-  <url><loc>https://chipotlecalc.com/item/chipotle-white-rice-nutrition</loc><changefreq>monthly</changefreq><priority>0.8</priority><lastmod>2026-05-09</lastmod></url>
-  <url><loc>https://chipotlecalc.com/item/chipotle-brown-rice-nutrition</loc><changefreq>monthly</changefreq><priority>0.7</priority><lastmod>2026-05-09</lastmod></url>
-  <url><loc>https://chipotlecalc.com/item/chipotle-black-beans-nutrition</loc><changefreq>monthly</changefreq><priority>0.8</priority><lastmod>2026-05-09</lastmod></url>
-  <url><loc>https://chipotlecalc.com/item/chipotle-pinto-beans-nutrition</loc><changefreq>monthly</changefreq><priority>0.7</priority><lastmod>2026-05-09</lastmod></url>
-  <url><loc>https://chipotlecalc.com/item/chipotle-guacamole-nutrition</loc><changefreq>monthly</changefreq><priority>0.9</priority><lastmod>2026-05-09</lastmod></url>
-  <url><loc>https://chipotlecalc.com/item/chipotle-queso-nutrition</loc><changefreq>monthly</changefreq><priority>0.7</priority><lastmod>2026-05-09</lastmod></url>
-  <url><loc>https://chipotlecalc.com/item/chipotle-chips-nutrition</loc><changefreq>monthly</changefreq><priority>0.8</priority><lastmod>2026-05-09</lastmod></url>
-  <url><loc>https://chipotlecalc.com/item/chipotle-sour-cream-nutrition</loc><changefreq>monthly</changefreq><priority>0.7</priority><lastmod>2026-05-09</lastmod></url>
-  <url><loc>https://chipotlecalc.com/item/chipotle-cheese-nutrition</loc><changefreq>monthly</changefreq><priority>0.7</priority><lastmod>2026-05-09</lastmod></url>
-  <url><loc>https://chipotlecalc.com/item/chipotle-lettuce-nutrition</loc><changefreq>monthly</changefreq><priority>0.6</priority><lastmod>2026-05-09</lastmod></url>
-  <url><loc>https://chipotlecalc.com/item/chipotle-fajita-veggies-nutrition</loc><changefreq>monthly</changefreq><priority>0.7</priority><lastmod>2026-05-09</lastmod></url>
-  <url><loc>https://chipotlecalc.com/item/chipotle-fresh-tomato-salsa-nutrition</loc><changefreq>monthly</changefreq><priority>0.7</priority><lastmod>2026-05-09</lastmod></url>
-  <url><loc>https://chipotlecalc.com/item/chipotle-roasted-chili-corn-salsa-nutrition</loc><changefreq>monthly</changefreq><priority>0.7</priority><lastmod>2026-05-09</lastmod></url>
-  <url><loc>https://chipotlecalc.com/item/chipotle-salsa-verde-nutrition</loc><changefreq>monthly</changefreq><priority>0.7</priority><lastmod>2026-05-09</lastmod></url>
-  <url><loc>https://chipotlecalc.com/item/chipotle-hot-salsa-nutrition</loc><changefreq>monthly</changefreq><priority>0.7</priority><lastmod>2026-05-09</lastmod></url>
+  <url><loc>https://chipotlemacros.com/item/chicken-bowl-calories</loc><changefreq>monthly</changefreq><priority>0.9</priority><lastmod>2026-05-09</lastmod></url>
+  <url><loc>https://chipotlemacros.com/item/steak-bowl-calories</loc><changefreq>monthly</changefreq><priority>0.9</priority><lastmod>2026-05-09</lastmod></url>
+  <url><loc>https://chipotlemacros.com/item/barbacoa-bowl-calories</loc><changefreq>monthly</changefreq><priority>0.8</priority><lastmod>2026-05-09</lastmod></url>
+  <url><loc>https://chipotlemacros.com/item/carnitas-bowl-calories</loc><changefreq>monthly</changefreq><priority>0.8</priority><lastmod>2026-05-09</lastmod></url>
+  <url><loc>https://chipotlemacros.com/item/sofritas-bowl-calories</loc><changefreq>monthly</changefreq><priority>0.8</priority><lastmod>2026-05-09</lastmod></url>
+  <url><loc>https://chipotlemacros.com/item/double-chicken-bowl-calories</loc><changefreq>monthly</changefreq><priority>0.8</priority><lastmod>2026-05-09</lastmod></url>
+  <url><loc>https://chipotlemacros.com/item/chicken-burrito-calories</loc><changefreq>monthly</changefreq><priority>0.9</priority><lastmod>2026-05-09</lastmod></url>
+  <url><loc>https://chipotlemacros.com/item/steak-burrito-calories</loc><changefreq>monthly</changefreq><priority>0.8</priority><lastmod>2026-05-09</lastmod></url>
+  <url><loc>https://chipotlemacros.com/item/chicken-salad-calories</loc><changefreq>monthly</changefreq><priority>0.8</priority><lastmod>2026-05-09</lastmod></url>
+  <url><loc>https://chipotlemacros.com/item/chicken-tacos-calories</loc><changefreq>monthly</changefreq><priority>0.8</priority><lastmod>2026-05-09</lastmod></url>
+  <url><loc>https://chipotlemacros.com/item/chicken-quesadilla-calories</loc><changefreq>monthly</changefreq><priority>0.7</priority><lastmod>2026-05-09</lastmod></url>
+  <url><loc>https://chipotlemacros.com/item/chipotle-white-rice-nutrition</loc><changefreq>monthly</changefreq><priority>0.8</priority><lastmod>2026-05-09</lastmod></url>
+  <url><loc>https://chipotlemacros.com/item/chipotle-brown-rice-nutrition</loc><changefreq>monthly</changefreq><priority>0.7</priority><lastmod>2026-05-09</lastmod></url>
+  <url><loc>https://chipotlemacros.com/item/chipotle-black-beans-nutrition</loc><changefreq>monthly</changefreq><priority>0.8</priority><lastmod>2026-05-09</lastmod></url>
+  <url><loc>https://chipotlemacros.com/item/chipotle-pinto-beans-nutrition</loc><changefreq>monthly</changefreq><priority>0.7</priority><lastmod>2026-05-09</lastmod></url>
+  <url><loc>https://chipotlemacros.com/item/chipotle-guacamole-nutrition</loc><changefreq>monthly</changefreq><priority>0.9</priority><lastmod>2026-05-09</lastmod></url>
+  <url><loc>https://chipotlemacros.com/item/chipotle-queso-nutrition</loc><changefreq>monthly</changefreq><priority>0.7</priority><lastmod>2026-05-09</lastmod></url>
+  <url><loc>https://chipotlemacros.com/item/chipotle-chips-nutrition</loc><changefreq>monthly</changefreq><priority>0.8</priority><lastmod>2026-05-09</lastmod></url>
+  <url><loc>https://chipotlemacros.com/item/chipotle-sour-cream-nutrition</loc><changefreq>monthly</changefreq><priority>0.7</priority><lastmod>2026-05-09</lastmod></url>
+  <url><loc>https://chipotlemacros.com/item/chipotle-cheese-nutrition</loc><changefreq>monthly</changefreq><priority>0.7</priority><lastmod>2026-05-09</lastmod></url>
+  <url><loc>https://chipotlemacros.com/item/chipotle-lettuce-nutrition</loc><changefreq>monthly</changefreq><priority>0.6</priority><lastmod>2026-05-09</lastmod></url>
+  <url><loc>https://chipotlemacros.com/item/chipotle-fajita-veggies-nutrition</loc><changefreq>monthly</changefreq><priority>0.7</priority><lastmod>2026-05-09</lastmod></url>
+  <url><loc>https://chipotlemacros.com/item/chipotle-fresh-tomato-salsa-nutrition</loc><changefreq>monthly</changefreq><priority>0.7</priority><lastmod>2026-05-09</lastmod></url>
+  <url><loc>https://chipotlemacros.com/item/chipotle-roasted-chili-corn-salsa-nutrition</loc><changefreq>monthly</changefreq><priority>0.7</priority><lastmod>2026-05-09</lastmod></url>
+  <url><loc>https://chipotlemacros.com/item/chipotle-salsa-verde-nutrition</loc><changefreq>monthly</changefreq><priority>0.7</priority><lastmod>2026-05-09</lastmod></url>
+  <url><loc>https://chipotlemacros.com/item/chipotle-hot-salsa-nutrition</loc><changefreq>monthly</changefreq><priority>0.7</priority><lastmod>2026-05-09</lastmod></url>
 
   <!-- Diet pages -->
-  <url><loc>https://chipotlecalc.com/diet/keto-chipotle</loc><changefreq>monthly</changefreq><priority>0.9</priority><lastmod>2026-05-09</lastmod></url>
-  <url><loc>https://chipotlecalc.com/diet/vegan-chipotle</loc><changefreq>monthly</changefreq><priority>0.9</priority><lastmod>2026-05-09</lastmod></url>
-  <url><loc>https://chipotlecalc.com/diet/high-protein-chipotle</loc><changefreq>monthly</changefreq><priority>0.9</priority><lastmod>2026-05-09</lastmod></url>
-  <url><loc>https://chipotlecalc.com/diet/low-calorie-chipotle</loc><changefreq>monthly</changefreq><priority>0.9</priority><lastmod>2026-05-09</lastmod></url>
-  <url><loc>https://chipotlecalc.com/diet/whole30-chipotle</loc><changefreq>monthly</changefreq><priority>0.8</priority><lastmod>2026-05-09</lastmod></url>
-  <url><loc>https://chipotlecalc.com/diet/gluten-free-chipotle</loc><changefreq>monthly</changefreq><priority>0.8</priority><lastmod>2026-05-09</lastmod></url>
-  <url><loc>https://chipotlecalc.com/diet/vegetarian-chipotle</loc><changefreq>monthly</changefreq><priority>0.8</priority><lastmod>2026-05-09</lastmod></url>
-  <url><loc>https://chipotlecalc.com/diet/dairy-free-chipotle</loc><changefreq>monthly</changefreq><priority>0.7</priority><lastmod>2026-05-09</lastmod></url>
-  <url><loc>https://chipotlecalc.com/diet/paleo-chipotle</loc><changefreq>monthly</changefreq><priority>0.7</priority><lastmod>2026-05-09</lastmod></url>
-  <url><loc>https://chipotlecalc.com/diet/low-sodium-chipotle</loc><changefreq>monthly</changefreq><priority>0.7</priority><lastmod>2026-05-09</lastmod></url>
-  <url><loc>https://chipotlecalc.com/diet/low-carb-chipotle</loc><changefreq>monthly</changefreq><priority>0.8</priority><lastmod>2026-05-09</lastmod></url>
+  <url><loc>https://chipotlemacros.com/diet/keto-chipotle</loc><changefreq>monthly</changefreq><priority>0.9</priority><lastmod>2026-05-09</lastmod></url>
+  <url><loc>https://chipotlemacros.com/diet/vegan-chipotle</loc><changefreq>monthly</changefreq><priority>0.9</priority><lastmod>2026-05-09</lastmod></url>
+  <url><loc>https://chipotlemacros.com/diet/high-protein-chipotle</loc><changefreq>monthly</changefreq><priority>0.9</priority><lastmod>2026-05-09</lastmod></url>
+  <url><loc>https://chipotlemacros.com/diet/low-calorie-chipotle</loc><changefreq>monthly</changefreq><priority>0.9</priority><lastmod>2026-05-09</lastmod></url>
+  <url><loc>https://chipotlemacros.com/diet/whole30-chipotle</loc><changefreq>monthly</changefreq><priority>0.8</priority><lastmod>2026-05-09</lastmod></url>
+  <url><loc>https://chipotlemacros.com/diet/gluten-free-chipotle</loc><changefreq>monthly</changefreq><priority>0.8</priority><lastmod>2026-05-09</lastmod></url>
+  <url><loc>https://chipotlemacros.com/diet/vegetarian-chipotle</loc><changefreq>monthly</changefreq><priority>0.8</priority><lastmod>2026-05-09</lastmod></url>
+  <url><loc>https://chipotlemacros.com/diet/dairy-free-chipotle</loc><changefreq>monthly</changefreq><priority>0.7</priority><lastmod>2026-05-09</lastmod></url>
+  <url><loc>https://chipotlemacros.com/diet/paleo-chipotle</loc><changefreq>monthly</changefreq><priority>0.7</priority><lastmod>2026-05-09</lastmod></url>
+  <url><loc>https://chipotlemacros.com/diet/low-sodium-chipotle</loc><changefreq>monthly</changefreq><priority>0.7</priority><lastmod>2026-05-09</lastmod></url>
+  <url><loc>https://chipotlemacros.com/diet/low-carb-chipotle</loc><changefreq>monthly</changefreq><priority>0.8</priority><lastmod>2026-05-09</lastmod></url>
 
   <!-- Guide pages -->
-  <url><loc>https://chipotlecalc.com/guides/chipotle-macros-guide</loc><changefreq>monthly</changefreq><priority>0.8</priority><lastmod>2026-05-09</lastmod></url>
-  <url><loc>https://chipotlecalc.com/guides/chipotle-weight-loss-guide</loc><changefreq>monthly</changefreq><priority>0.8</priority><lastmod>2026-05-09</lastmod></url>
-  <url><loc>https://chipotlecalc.com/guides/chipotle-muscle-gain-guide</loc><changefreq>monthly</changefreq><priority>0.8</priority><lastmod>2026-05-09</lastmod></url>
-  <url><loc>https://chipotlecalc.com/guides/chipotle-allergens-guide</loc><changefreq>monthly</changefreq><priority>0.7</priority><lastmod>2026-05-09</lastmod></url>
-  <url><loc>https://chipotlecalc.com/guides/chipotle-sodium-guide</loc><changefreq>monthly</changefreq><priority>0.7</priority><lastmod>2026-05-09</lastmod></url>
-  <url><loc>https://chipotlecalc.com/guides/chipotle-secret-menu</loc><changefreq>monthly</changefreq><priority>0.7</priority><lastmod>2026-05-09</lastmod></url>
-  <url><loc>https://chipotlecalc.com/guides/chipotle-vs-other-fast-food</loc><changefreq>monthly</changefreq><priority>0.7</priority><lastmod>2026-05-09</lastmod></url>
-  <url><loc>https://chipotlecalc.com/guides/chipotle-cheap-meals</loc><changefreq>monthly</changefreq><priority>0.7</priority><lastmod>2026-05-09</lastmod></url>
-  <url><loc>https://chipotlecalc.com/guides/chipotle-fiber-guide</loc><changefreq>monthly</changefreq><priority>0.7</priority><lastmod>2026-05-09</lastmod></url>
-  <url><loc>https://chipotlecalc.com/guides/chipotle-meal-prep</loc><changefreq>monthly</changefreq><priority>0.6</priority><lastmod>2026-05-09</lastmod></url>
+  <url><loc>https://chipotlemacros.com/guides/chipotle-macros-guide</loc><changefreq>monthly</changefreq><priority>0.8</priority><lastmod>2026-05-09</lastmod></url>
+  <url><loc>https://chipotlemacros.com/guides/chipotle-weight-loss-guide</loc><changefreq>monthly</changefreq><priority>0.8</priority><lastmod>2026-05-09</lastmod></url>
+  <url><loc>https://chipotlemacros.com/guides/chipotle-muscle-gain-guide</loc><changefreq>monthly</changefreq><priority>0.8</priority><lastmod>2026-05-09</lastmod></url>
+  <url><loc>https://chipotlemacros.com/guides/chipotle-allergens-guide</loc><changefreq>monthly</changefreq><priority>0.7</priority><lastmod>2026-05-09</lastmod></url>
+  <url><loc>https://chipotlemacros.com/guides/chipotle-sodium-guide</loc><changefreq>monthly</changefreq><priority>0.7</priority><lastmod>2026-05-09</lastmod></url>
+  <url><loc>https://chipotlemacros.com/guides/chipotle-secret-menu</loc><changefreq>monthly</changefreq><priority>0.7</priority><lastmod>2026-05-09</lastmod></url>
+  <url><loc>https://chipotlemacros.com/guides/chipotle-vs-other-fast-food</loc><changefreq>monthly</changefreq><priority>0.7</priority><lastmod>2026-05-09</lastmod></url>
+  <url><loc>https://chipotlemacros.com/guides/chipotle-cheap-meals</loc><changefreq>monthly</changefreq><priority>0.7</priority><lastmod>2026-05-09</lastmod></url>
+  <url><loc>https://chipotlemacros.com/guides/chipotle-fiber-guide</loc><changefreq>monthly</changefreq><priority>0.7</priority><lastmod>2026-05-09</lastmod></url>
+  <url><loc>https://chipotlemacros.com/guides/chipotle-meal-prep</loc><changefreq>monthly</changefreq><priority>0.6</priority><lastmod>2026-05-09</lastmod></url>
 
   <!-- E-E-A-T / Trust pages -->
-  <url><loc>https://chipotlecalc.com/about</loc><changefreq>yearly</changefreq><priority>0.6</priority><lastmod>2026-05-09</lastmod></url>
-  <url><loc>https://chipotlecalc.com/methodology</loc><changefreq>yearly</changefreq><priority>0.6</priority><lastmod>2026-05-09</lastmod></url>
-  <url><loc>https://chipotlecalc.com/editorial-policy</loc><changefreq>yearly</changefreq><priority>0.5</priority><lastmod>2026-05-09</lastmod></url>
-  <url><loc>https://chipotlecalc.com/sources</loc><changefreq>yearly</changefreq><priority>0.5</priority><lastmod>2026-05-09</lastmod></url>
-  <url><loc>https://chipotlecalc.com/contact</loc><changefreq>yearly</changefreq><priority>0.5</priority><lastmod>2026-05-09</lastmod></url>
-  <url><loc>https://chipotlecalc.com/changelog</loc><changefreq>monthly</changefreq><priority>0.5</priority><lastmod>2026-05-09</lastmod></url>
-  <url><loc>https://chipotlecalc.com/disclaimer</loc><changefreq>yearly</changefreq><priority>0.4</priority><lastmod>2026-05-09</lastmod></url>
+  <url><loc>https://chipotlemacros.com/about</loc><changefreq>yearly</changefreq><priority>0.6</priority><lastmod>2026-05-09</lastmod></url>
+  <url><loc>https://chipotlemacros.com/methodology</loc><changefreq>yearly</changefreq><priority>0.6</priority><lastmod>2026-05-09</lastmod></url>
+  <url><loc>https://chipotlemacros.com/editorial-policy</loc><changefreq>yearly</changefreq><priority>0.5</priority><lastmod>2026-05-09</lastmod></url>
+  <url><loc>https://chipotlemacros.com/sources</loc><changefreq>yearly</changefreq><priority>0.5</priority><lastmod>2026-05-09</lastmod></url>
+  <url><loc>https://chipotlemacros.com/contact</loc><changefreq>yearly</changefreq><priority>0.5</priority><lastmod>2026-05-09</lastmod></url>
+  <url><loc>https://chipotlemacros.com/changelog</loc><changefreq>monthly</changefreq><priority>0.5</priority><lastmod>2026-05-09</lastmod></url>
+  <url><loc>https://chipotlemacros.com/disclaimer</loc><changefreq>yearly</changefreq><priority>0.4</priority><lastmod>2026-05-09</lastmod></url>
 
   <!-- Legal pages -->
-  <url><loc>https://chipotlecalc.com/privacy-policy</loc><changefreq>yearly</changefreq><priority>0.4</priority><lastmod>2026-05-09</lastmod></url>
-  <url><loc>https://chipotlecalc.com/terms-of-service</loc><changefreq>yearly</changefreq><priority>0.4</priority><lastmod>2026-05-09</lastmod></url>
-  <url><loc>https://chipotlecalc.com/cookie-policy</loc><changefreq>yearly</changefreq><priority>0.4</priority><lastmod>2026-05-09</lastmod></url>
-  <url><loc>https://chipotlecalc.com/accessibility</loc><changefreq>yearly</changefreq><priority>0.4</priority><lastmod>2026-05-09</lastmod></url>
-  <url><loc>https://chipotlecalc.com/dmca</loc><changefreq>yearly</changefreq><priority>0.3</priority><lastmod>2026-05-09</lastmod></url>
+  <url><loc>https://chipotlemacros.com/privacy-policy</loc><changefreq>yearly</changefreq><priority>0.4</priority><lastmod>2026-05-09</lastmod></url>
+  <url><loc>https://chipotlemacros.com/terms-of-service</loc><changefreq>yearly</changefreq><priority>0.4</priority><lastmod>2026-05-09</lastmod></url>
+  <url><loc>https://chipotlemacros.com/cookie-policy</loc><changefreq>yearly</changefreq><priority>0.4</priority><lastmod>2026-05-09</lastmod></url>
+  <url><loc>https://chipotlemacros.com/accessibility</loc><changefreq>yearly</changefreq><priority>0.4</priority><lastmod>2026-05-09</lastmod></url>
+  <url><loc>https://chipotlemacros.com/dmca</loc><changefreq>yearly</changefreq><priority>0.3</priority><lastmod>2026-05-09</lastmod></url>
 
 </urlset>

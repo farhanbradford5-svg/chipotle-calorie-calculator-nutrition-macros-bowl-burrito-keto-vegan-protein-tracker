@@ -1,4 +1,4 @@
-import { Link } from "wouter";
+﻿import { Link } from "wouter";
 import SeoHead from "@/components/SeoHead";
 import Layout from "@/components/Layout";
 import Calculator from "@/components/Calculator";
@@ -9,11 +9,11 @@ const homeSchema = {
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Chipotle Calorie Calculator",
-  "url": "https://chipotlecalc.com/",
+  "url": "https://chipotlemacros.com/",
   "description": "Free Chipotle calorie calculator with full macro breakdown for any bowl, burrito, salad or tacos.",
   "breadcrumb": {
     "@type": "BreadcrumbList",
-    "itemListElement": [{ "@type": "ListItem", "position": 1, "name": "Home", "item": "https://chipotlecalc.com/" }]
+    "itemListElement": [{ "@type": "ListItem", "position": 1, "name": "Home", "item": "https://chipotlemacros.com/" }]
   }
 };
 
@@ -397,10 +397,10 @@ export default function HomePage() {
 
         {/* Section 5 */}
         <section id="chipotle-nutrition-data" className="mb-12">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">How We Calculate Chipotle Nutrition at ChipotleCalc</h2>
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">How We Calculate Chipotle Nutrition at ChipotleMacros</h2>
 
           <p>
-            All nutrition values on ChipotleCalc come from Chipotle's publicly published nutrition
+            All nutrition values on ChipotleMacros come from Chipotle's publicly published nutrition
             information, cross-referenced against their official online nutrition calculator. We don't
             estimate or approximate — every number in this calculator traces back to a number Chipotle
             has published.
@@ -452,7 +452,7 @@ export default function HomePage() {
           </p>
 
           <p>
-            ChipotleCalc is an independent tool. We are not affiliated with or endorsed by
+            ChipotleMacros is an independent tool. We are not affiliated with or endorsed by
             Chipotle Mexican Grill, Inc. All trademarks belong to their respective owners.
             For the full methodology, see the{" "}
             <Link href="/methodology" className="text-orange-600 hover:underline">

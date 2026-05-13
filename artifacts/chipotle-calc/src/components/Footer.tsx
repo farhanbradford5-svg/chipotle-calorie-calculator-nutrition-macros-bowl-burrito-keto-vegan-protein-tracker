@@ -1,4 +1,4 @@
-import { Link } from "wouter";
+﻿import { Link } from "wouter";
 
 export default function Footer() {
   return (
@@ -44,7 +44,7 @@ export default function Footer() {
         </div>
         <div className="flex flex-col gap-3 border-t border-gray-200 pt-6 md:flex-row md:justify-between">
           <p>
-            ChipotleCalc is an independent tool. Not affiliated with or endorsed by Chipotle Mexican Grill, Inc.
+            ChipotleMacros is an independent tool. Not affiliated with or endorsed by Chipotle Mexican Grill, Inc.
           </p>
           <div className="flex flex-wrap gap-4">
             <Link href="/privacy-policy" className="hover:text-orange-600">Privacy</Link>

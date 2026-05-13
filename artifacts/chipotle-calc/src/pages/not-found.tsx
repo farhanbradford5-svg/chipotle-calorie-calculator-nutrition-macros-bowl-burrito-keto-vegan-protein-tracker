@@ -1,11 +1,11 @@
-import { Link } from "wouter";
+﻿import { Link } from "wouter";
 import Layout from "@/components/Layout";
 import SeoHead from "@/components/SeoHead";
 
 export default function NotFound() {
   return (
     <Layout>
-      <SeoHead title="Page Not Found — ChipotleCalc" description="This page does not exist." noIndex />
+      <SeoHead title="Page Not Found — ChipotleMacros" description="This page does not exist." noIndex />
       <div className="flex flex-col items-center justify-center py-32 text-center">
         <p className="text-6xl font-bold text-orange-200">404</p>
         <h1 className="mt-4 text-2xl font-bold text-gray-800">Page not found</h1>

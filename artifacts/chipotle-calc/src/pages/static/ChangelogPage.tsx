@@ -1,11 +1,11 @@
-import Layout from "@/components/Layout";
+﻿import Layout from "@/components/Layout";
 import SeoHead from "@/components/SeoHead";
 
 const CHANGELOG = [
   {
     date: "May 2026",
     entries: [
-      "Initial public launch of ChipotleCalc.",
+      "Initial public launch of ChipotleMacros.",
       "79 ingredients mapped with full macro data.",
       "Quantity modifiers (Light, Regular, Extra, Double) added.",
       "Dietary badge system implemented (Vegan, GF, Dairy-Free, Keto, High Protein, Low Cal).",
@@ -21,8 +21,8 @@ export default function ChangelogPage() {
   return (
     <Layout>
       <SeoHead
-        title="Changelog — ChipotleCalc Data and Feature Updates"
-        description="A log of all nutrition data updates and feature changes on ChipotleCalc."
+        title="Changelog — ChipotleMacros Data and Feature Updates"
+        description="A log of all nutrition data updates and feature changes on ChipotleMacros."
         canonicalPath="/changelog"
       />
       <div className="mx-auto max-w-3xl px-4 py-10">

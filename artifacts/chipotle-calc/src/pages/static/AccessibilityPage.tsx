@@ -1,12 +1,12 @@
-import Layout from "@/components/Layout";
+﻿import Layout from "@/components/Layout";
 import SeoHead from "@/components/SeoHead";
 
 export default function AccessibilityPage() {
   return (
     <Layout>
       <SeoHead
-        title="Accessibility Statement — ChipotleCalc"
-        description="ChipotleCalc accessibility commitment. WCAG 2.1 AA compliance, keyboard navigation, screen reader support, and how to report issues."
+        title="Accessibility Statement — ChipotleMacros"
+        description="ChipotleMacros accessibility commitment. WCAG 2.1 AA compliance, keyboard navigation, screen reader support, and how to report issues."
         canonicalPath="/accessibility"
       />
       <article className="mx-auto max-w-3xl px-4 py-10 prose prose-gray">
@@ -14,7 +14,7 @@ export default function AccessibilityPage() {
         <p className="text-sm text-gray-500">Effective: May 2026</p>
 
         <p>
-          ChipotleCalc is committed to making its nutrition calculator and all associated
+          ChipotleMacros is committed to making its nutrition calculator and all associated
           content accessible to everyone, including people who use assistive technologies
           such as screen readers, switch access, or keyboard-only navigation. We believe
           that nutritional information should be usable by all.
@@ -29,7 +29,7 @@ export default function AccessibilityPage() {
         </p>
 
         <h2>Implemented Accessibility Features</h2>
-        <p>The following accessibility features are implemented in ChipotleCalc:</p>
+        <p>The following accessibility features are implemented in ChipotleMacros:</p>
         <ul>
           <li>
             <strong>Semantic HTML:</strong> Pages use proper heading hierarchy (h1, h2, h3),
@@ -95,12 +95,12 @@ export default function AccessibilityPage() {
 
         <h2>How to Report an Issue</h2>
         <p>
-          If you encounter an accessibility barrier on ChipotleCalc, or if you need
+          If you encounter an accessibility barrier on ChipotleMacros, or if you need
           content in an alternative format, please contact us:
         </p>
         <p>
-          <a href="mailto:contact@chipotlecalc.com" className="text-orange-600">
-            contact@chipotlecalc.com
+          <a href="mailto:contact@chipotlemacros.com" className="text-orange-600">
+            contact@chipotlemacros.com
           </a>
         </p>
         <p>
@@ -110,7 +110,7 @@ export default function AccessibilityPage() {
 
         <h2>Not Affiliated with Chipotle</h2>
         <p>
-          ChipotleCalc is not affiliated with, sponsored by, or endorsed by Chipotle Mexican
+          ChipotleMacros is not affiliated with, sponsored by, or endorsed by Chipotle Mexican
           Grill, Inc. "Chipotle" is a registered trademark of Chipotle Mexican Grill, Inc.
         </p>
       </article>

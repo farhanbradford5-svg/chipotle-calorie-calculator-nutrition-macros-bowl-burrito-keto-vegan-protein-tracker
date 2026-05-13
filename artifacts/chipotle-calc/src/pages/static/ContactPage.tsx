@@ -1,12 +1,12 @@
-import Layout from "@/components/Layout";
+﻿import Layout from "@/components/Layout";
 import SeoHead from "@/components/SeoHead";
 
 export default function ContactPage() {
   return (
     <Layout>
       <SeoHead
-        title="Contact ChipotleCalc"
-        description="Contact ChipotleCalc for data corrections, feedback, or questions about the calculator."
+        title="Contact ChipotleMacros"
+        description="Contact ChipotleMacros for data corrections, feedback, or questions about the calculator."
         canonicalPath="/contact"
       />
       <div className="mx-auto max-w-2xl px-4 py-10">
@@ -15,8 +15,8 @@ export default function ContactPage() {
           For data corrections, feedback, or any questions about the calculator:
         </p>
         <p className="mb-4">
-          <a href="mailto:contact@chipotlecalc.com" className="text-orange-600 hover:underline font-medium">
-            contact@chipotlecalc.com
+          <a href="mailto:contact@chipotlemacros.com" className="text-orange-600 hover:underline font-medium">
+            contact@chipotlemacros.com
           </a>
         </p>
         <div className="rounded-xl border border-gray-100 bg-gray-50 p-5 text-sm text-gray-600 space-y-3">

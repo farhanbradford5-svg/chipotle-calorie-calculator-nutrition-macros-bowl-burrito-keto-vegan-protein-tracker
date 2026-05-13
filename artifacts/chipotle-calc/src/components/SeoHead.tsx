@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+﻿import { useEffect } from "react";
 
 interface SeoHeadProps {
   title: string;
@@ -18,7 +18,7 @@ export default function SeoHead({
   noIndex,
 }: SeoHeadProps) {
   const canonical = canonicalPath
-    ? `https://chipotlecalc.com${canonicalPath}`
+    ? `https://chipotlemacros.com${canonicalPath}`
     : undefined;
 
   useEffect(() => {
@@ -58,7 +58,7 @@ export default function SeoHead({
     if (canonical) setMeta("og:url", canonical, true);
     setMeta(
       "og:image",
-      ogImage || "https://chipotlecalc.com/opengraph.jpg",
+      ogImage || "https://chipotlemacros.com/opengraph.jpg",
       true
     );
     setMeta("twitter:card", "summary_large_image");
