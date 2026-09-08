@@ -1,17 +1,18 @@
 import { defineConfig } from 'astro/config';
-import sitemap from '@astrojs/sitemap';
 
-// Pages held back from indexing. Kept in one place so the sitemap filter, the
-// llms.txt generator and the page's own robots meta tag cannot disagree.
+// Pages held back from indexing. Kept in one place so the sitemap generator,
+// the llms.txt generator and the page's own robots meta tag cannot disagree.
 export const NOINDEX = ['/guides/vs-fast-food'];
 
 export default defineConfig({
   site: 'https://chipotlemacros.com',
   output: 'static',
 
-  // D6: set explicitly, never left to default. Every internal href, every
-  // canonical tag and every sitemap entry uses the no-trailing-slash form.
-  trailingSlash: 'never',
+  // D6: set explicitly, never left to default. Cloudflare Pages serves
+  // directory-style output canonically WITH a trailing slash and 308-redirects
+  // the bare form, so every internal href, canonical tag, sitemap entry and
+  // redirect destination uses the trailing-slash form to match.
+  trailingSlash: 'always',
 
   // 'auto' left two stylesheets external, costing two blocking round-trips
   // before first paint. Inlining removes them; total page weight stays well
@@ -31,12 +32,4 @@ export default defineConfig({
   // src/data/redirects.js by scripts/gen-crawl-files.mjs. With no stub files
   // present, Cloudflare finds no asset at those paths and applies the rule.
 
-  integrations: [
-    sitemap({
-      filter: (page) =>
-        !NOINDEX.some(
-          (p) => page.replace('https://chipotlemacros.com', '').replace(/\/$/, '') === p
-        ),
-    }),
-  ],
 });

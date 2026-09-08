@@ -9,25 +9,25 @@ export const TRUST = [
     path: '/about',
     title: 'About ChipotleMacros — Who Builds This and Why',
     description:
-      'ChipotleMacros is an independent nutrition reference for Chipotle menu items, built and maintained by one person. No affiliation with Chipotle Mexican Grill.',
+      'ChipotleMacros is an independent nutrition reference for Chipotle menu items, built and maintained by one person. No affiliation with the chain itself.',
     h1: 'About this site',
     opening: `ChipotleMacros is an independent nutrition reference for Chipotle Mexican Grill's menu. It exists because the numbers people need are published but awkward to work with: you can look up a scoop of chicken easily enough, and adding six of them together to see what your actual order comes to is another matter.`,
     sections: [
       {
         heading: 'What this site is',
-        body: `A calculator and a reference. The <a href="/">meal builder</a> totals eight values for any combination you select. The <a href="/menu">menu table</a> lists every ingredient at standard serving. Everything else on the site is a specific question answered with the same figures — what a keto order looks like, where the sodium accumulates, which protein returns the most per calorie.`,
+        body: `A calculator and a reference. The <a href="/">meal builder</a> totals eight values for any combination you select. The <a href="/menu/">menu table</a> lists every ingredient at standard serving. Everything else on the site is a specific question answered with the same figures — what a keto order looks like, where the sodium accumulates, which protein returns the most per calorie.`,
       },
       {
         heading: 'Who maintains it',
-        body: `One person, working from Chipotle's published nutrition data rather than from lab testing or user submissions. There is no editorial team, and this page would be dishonest if it implied otherwise. Corrections are welcome and get applied quickly — <a href="/contact">how to reach us</a>.`,
+        body: `One person, working from Chipotle's published nutrition data rather than from lab testing or user submissions. There is no editorial team, and this page would be dishonest if it implied otherwise. Corrections are welcome and get applied quickly — <a href="/contact/">how to reach us</a>.`,
       },
       {
         heading: 'Independence',
-        body: `This site is not affiliated with, endorsed by, or sponsored by Chipotle Mexican Grill, Inc. It carries no sponsorship from Chipotle or from any competitor, and no figure on it has been adjusted to make any menu item look better or worse than the published data says it is. <a href="/terms-of-service">The terms</a> cover trademark use and reuse of these tables.`,
+        body: `This site is not affiliated with, endorsed by, or sponsored by Chipotle Mexican Grill, Inc. It carries no sponsorship from Chipotle or from any competitor, and no figure on it has been adjusted to make any menu item look better or worse than the published data says it is. <a href="/terms-of-service/">The terms</a> cover trademark use and reuse of these tables.`,
       },
       {
         heading: 'What it is not',
-        body: `It is not medical advice, and it is not precise enough to be. Portions are scooped by hand and vary between locations, servers and days — two identical orders can differ by 50 to 100 calories. If you have an allergy or a medical reason to need exact figures, Chipotle's own published information is the authority. <a href="/methodology">Our method and its limits</a> sets out exactly where the estimates come from.`,
+        body: `It is not medical advice, and it is not precise enough to be. Portions are scooped by hand and vary between locations, servers and days — two identical orders can differ by 50 to 100 calories. If you have an allergy or a medical reason to need exact figures, Chipotle's own published information is the authority. <a href="/methodology/">Our method and its limits</a> sets out exactly where the estimates come from.`,
       },
     ],
   },
@@ -40,11 +40,11 @@ export const TRUST = [
     description:
       'How we calculate Chipotle nutrition — the data source, portion multipliers, rounding rules, update cadence and the limits of every figure on this site.',
     h1: 'How We Calculate Chipotle Nutrition',
-    opening: `This page sets out how we calculate Chipotle nutrition figures across the site: where the per-ingredient values come from, how portion sizes scale them, how rounding is handled, and how often the whole set is re-checked. Every number on every page runs through the same arithmetic described here, which is why a chicken bowl reads ${fmt(N.bowl('chicken').cal)} calories on the calculator, on <a href="/menu">the menu table</a> and on its own item page.`,
+    opening: `This page sets out how we calculate Chipotle nutrition figures across the site: where the per-ingredient values come from, how portion sizes scale them, how rounding is handled, and how often the whole set is re-checked. Every number on every page runs through the same arithmetic described here, which is why a chicken bowl reads ${fmt(N.bowl('chicken').cal)} calories on the calculator, on <a href="/menu/">the menu table</a> and on its own item page.`,
     sections: [
       {
         heading: 'The data source',
-        body: `Per-ingredient values are transcribed from Chipotle Mexican Grill's published nutrition information for United States locations at standard serving sizes. Nothing here comes from user submissions or third-party aggregators, both of which introduce errors that are difficult to trace back to a source. <a href="/about">Who maintains this site</a> explains who does the transcribing.`,
+        body: `Per-ingredient values are transcribed from Chipotle Mexican Grill's published nutrition information for United States locations at standard serving sizes. Nothing here comes from user submissions or third-party aggregators, both of which introduce errors that are difficult to trace back to a source. <a href="/about/">Who maintains this site</a> explains who does the transcribing.`,
       },
       {
         heading: 'How a total is built',
@@ -106,7 +106,7 @@ export const TRUST = [
       },
       {
         heading: 'What is deliberately excluded',
-        body: `User-submitted data, third-party nutrition aggregators, and figures copied from other websites covering the same menu. All three propagate errors that cannot be traced back to an origin, and a single wrong value repeated across a site undermines every other number on it. Reuse of these tables is covered in <a href="/terms-of-service">the terms</a>.`,
+        body: `User-submitted data, third-party nutrition aggregators, and figures copied from other websites covering the same menu. All three propagate errors that cannot be traced back to an origin, and a single wrong value repeated across a site undermines every other number on it. Reuse of these tables is covered in <a href="/terms-of-service/">the terms</a>.`,
       },
       {
         heading: 'Verification cadence',
@@ -125,7 +125,7 @@ export const TRUST = [
       },
       {
         heading: 'Known limitations',
-        body: `Hand-scooped portions vary by location and server. Sodium varies most. Values reflect standard servings, and any order that deviates from those — a heavy hand with the rice, a light one with the salsa — will differ from what this site reports. <a href="/methodology">The methodology page</a> covers the arithmetic and its error bars.`,
+        body: `Hand-scooped portions vary by location and server. Sodium varies most. Values reflect standard servings, and any order that deviates from those — a heavy hand with the rice, a light one with the salsa — will differ from what this site reports. <a href="/methodology/">The methodology page</a> covers the arithmetic and its error bars.`,
       },
     ],
   },
@@ -141,19 +141,31 @@ export const TRUST = [
     sections: [
       {
         heading: 'Reporting a wrong number',
-        body: `Include the page, the figure you saw, and what Chipotle publishes instead. Corrections that cite the published source get applied within three working days; ones that cite another website take longer, because they have to be checked against the primary source first.`,
+        body: `Include the page, the figure you saw, and what Chipotle publishes instead. Corrections that cite the published source get applied within three working days; ones that cite another website take longer, because they have to be checked against the primary source first. Every number on this site is derived from one data file, so a single correction propagates to the calculator, <a href="/menu/">the menu table</a> and every page that quotes the item. That is deliberate: it means a fix cannot land in one place and be missed in another, and it means a report about one page is worth sending even if you have seen the same figure elsewhere on the site.`,
+      },
+      {
+        heading: 'When a difference is not an error',
+        body: `Two figures can disagree without either being wrong. Portions are served by hand, so a scoop of rice or a spoon of salsa varies from one visit to the next, and the published figures are averages of an intended serving rather than a measurement of the container in front of you. Regional and limited-time items also come and go faster than any reference can track. If your bowl felt heavier than the number here suggests, the likeliest explanation is portion size rather than bad arithmetic, and <a href="/methodology/">the portion assumptions behind every total</a> are set out in full.`,
       },
       {
         heading: 'Suggesting a menu item',
-        body: `We add pages for items people actually search for, not for everything on the menu — a page that repeats what <a href="/menu">the menu table</a> already answers is not worth publishing. If an item you want is missing, say what question you were trying to answer and it helps us judge whether a page is warranted.`,
+        body: `We add pages for items people actually search for, not for everything on the menu — a page that repeats what <a href="/menu/">the menu table</a> already answers is not worth publishing. If an item you want is missing, say what question you were trying to answer and it helps us judge whether a page is warranted.`,
       },
       {
         heading: 'What we cannot help with',
-        body: `We cannot answer questions about a specific restaurant, an order, a refund or an allergic reaction. This is an <a href="/about">independent reference</a> with no connection to Chipotle Mexican Grill, Inc. — for anything involving an actual visit, contact the restaurant directly.`,
+        body: `We cannot answer questions about a specific restaurant, an order, a refund or an allergic reaction. This is an <a href="/about/">independent reference</a> with no connection to Chipotle Mexican Grill, Inc. — for anything involving an actual visit, contact the restaurant directly.`,
+      },
+      {
+        heading: 'What is outside our coverage',
+        body: `This site covers the United States menu. Canadian, UK and European Chipotle menus differ in both items and portions, and we do not publish figures for them, because we cannot verify them against a primary source. We also do not publish comparisons against other chains unless the competitor figure comes from that company's own current nutrition data. If you have written in about a menu item that does not appear anywhere on the site, it is usually one of these, and saying which country you ordered in saves a round trip.`,
+      },
+      {
+        heading: 'Using these figures elsewhere',
+        body: `You are welcome to cite the numbers here in a blog post, a coaching plan or a class handout. A link back to the page you took the figure from is appreciated, and it also gives your reader somewhere to check the date it was last verified. Please do not republish the tables wholesale as though they were your own data, and please do not present any figure here as official: it is our reading of published information, not a statement from the company.`,
       },
       {
         heading: 'How to reach us',
-        body: `Email <a href="mailto:hello@chipotlemacros.com">hello@chipotlemacros.com</a>. Replies come from one person rather than a support queue, so allow three working days. An email address sent here is used to reply and nothing else, as set out in <a href="/privacy-policy">the privacy policy</a>.`,
+        body: `Email <a href="mailto:hello@chipotlemacros.com">hello@chipotlemacros.com</a>. Replies come from one person rather than a support queue, so allow three working days. An email address sent here is used to reply and nothing else, as set out in <a href="/privacy-policy/">the privacy policy</a>.`,
       },
     ],
   },
@@ -189,7 +201,7 @@ export const TRUST = [
       },
       {
         heading: 'Changes and contact',
-        body: `If this policy changes materially, the change is noted on <a href="/methodology">the methodology and change log page</a>. Questions go to <a href="/contact">the contact page</a>.`,
+        body: `If this policy changes materially, the change is noted on <a href="/methodology/">the methodology and change log page</a>. Questions go to <a href="/contact/">the contact page</a>.`,
       },
     ],
   },
@@ -213,7 +225,7 @@ export const TRUST = [
       },
       {
         heading: 'Use of our content',
-        body: `Quoting a figure with a link back is fine and welcome. Republishing the tables wholesale is not — they represent real work to compile and verify, and a copy that is never updated becomes wrong within a quarter. What we collect from visitors is covered separately in <a href="/privacy-policy">the privacy policy</a>.`,
+        body: `Quoting a figure with a link back is fine and welcome. Republishing the tables wholesale is not — they represent real work to compile and verify, and a copy that is never updated becomes wrong within a quarter. What we collect from visitors is covered separately in <a href="/privacy-policy/">the privacy policy</a>.`,
       },
       {
         heading: 'Copyright complaints',
@@ -221,7 +233,7 @@ export const TRUST = [
       },
       {
         heading: 'Changes to these terms',
-        body: `Material changes are recorded in the change log on <a href="/methodology">the methodology page</a>.`,
+        body: `Material changes are recorded in the change log on <a href="/methodology/">the methodology page</a>.`,
       },
     ],
   },

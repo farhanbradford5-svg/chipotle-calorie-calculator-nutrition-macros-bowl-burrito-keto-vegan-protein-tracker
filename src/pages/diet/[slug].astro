@@ -21,8 +21,8 @@ const schema = [
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Chipotle Nutrition Calculator', item: 'https://chipotlemacros.com/' },
-      { '@type': 'ListItem', position: 2, name: 'Diet guides', item: 'https://chipotlemacros.com/menu' },
-      { '@type': 'ListItem', position: 3, name: h1, item: `https://chipotlemacros.com${path}` },
+      { '@type': 'ListItem', position: 2, name: 'Diet guides', item: 'https://chipotlemacros.com/menu/' },
+      { '@type': 'ListItem', position: 3, name: h1, item: `https://chipotlemacros.com${path}/` },
     ],
   },
   {
@@ -41,7 +41,7 @@ const schema = [
   <div class="wrap page">
     <nav class="crumb" aria-label="Breadcrumb">
       <a href="/">Calculator</a> <span aria-hidden="true">›</span>
-      <a href="/menu">Menu nutrition</a> <span aria-hidden="true">›</span>
+      <a href="/menu/">Menu nutrition</a> <span aria-hidden="true">›</span>
       <span>{h1}</span>
     </nav>
 
@@ -115,8 +115,8 @@ const schema = [
     </section>
 
     <p class="back">
-      Per-ingredient figures sit on <a href="/menu">{anchor('/menu', pid)}</a>, and
-      <a href="/methodology">{anchor('/methodology', pid)}</a> explains how portion sizes are handled.
+      Per-ingredient figures sit on <a href="/menu/">{anchor('/menu', pid)}</a>, and
+      <a href="/methodology/">{anchor('/methodology', pid)}</a> explains how portion sizes are handled.
     </p>
   </div>
 </Base>

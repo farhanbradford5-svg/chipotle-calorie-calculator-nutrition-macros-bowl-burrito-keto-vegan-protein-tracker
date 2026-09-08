@@ -4,6 +4,8 @@
 import { writeFileSync, mkdirSync } from 'node:fs';
 import { REDIRECTS, REDIRECT_COUNT } from '../src/data/redirects.js';
 import { DIETS } from '../src/content/diets.js';
+import { ITEMS } from '../src/content/items.js';
+import { TRUST } from '../src/content/trust.js';
 import { GUIDES } from '../src/content/guides.js';
 import { NOINDEX } from '../astro.config.mjs';
 
@@ -44,21 +46,48 @@ writeFileSync(
   `User-agent: *
 Allow: /
 
-Sitemap: ${SITE}/sitemap-index.xml
+Sitemap: ${SITE}/sitemap.xml
 `
 );
 console.log('wrote public/robots.txt');
 
+// --- sitemap.xml
+//
+// One flat <urlset>, not an index plus shards. Sitemap indexes exist for sites
+// approaching the 50,000-URL limit; at 55 pages the extra indirection bought
+// nothing and left /sitemap.xml itself resolving to the catch-all HTML page.
+// URLs use the trailing-slash form, which is what Cloudflare Pages serves.
+const routes = [
+  '/',
+  '/menu/',
+  ...ITEMS.map((i) => `/menu/${i.slug}/`),
+  ...DIETS.map((d) => `/diet/${d.slug}/`),
+  ...GUIDES.map((g) => `/guides/${g.slug}/`),
+  ...TRUST.map((t) => `${t.path.replace(/\/$/, '')}/`),
+].filter((r) => !held.has(r.replace(/\/$/, '')));
+
+const today = new Date().toISOString().slice(0, 10);
+writeFileSync(
+  'public/sitemap.xml',
+  `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${routes.map((r) => `  <url>\n    <loc>${SITE}${r}</loc>\n    <lastmod>${today}</lastmod>\n  </url>`).join('\n')}
+</urlset>
+`
+);
+console.log(`wrote public/sitemap.xml (${routes.length} URLs, ${held.size} held back)`);
+
 // --- llms.txt
 const link = (label, path) => `[${label}](${path})`;
-const dietLinks = DIETS.map((d) => link(d.slug.replace(/(^|-)(\w)/g, (m, a, b) => (a ? ' ' : '') + b.toUpperCase()).trim(), `/diet/${d.slug}`));
+const dietLinks = DIETS.map((d) => link(d.slug.replace(/(^|-)(\w)/g, (m, a, b) => (a ? ' ' : '') + b.toUpperCase()).trim(), `/diet/${d.slug}/`));
 const guideLabels = {
   sodium: 'Sodium', allergens: 'Allergens', 'muscle-gain': 'Muscle gain', fiber: 'Fiber',
   'cheap-meals': 'Cheap meals', 'macro-targeting': 'Macro targeting', 'weight-loss': 'Weight loss',
   'meal-prep': 'Meal prep', 'secret-menu': 'Secret menu', 'vs-fast-food': 'Vs fast food',
 };
+// NOINDEX entries are stored without a trailing slash; links are emitted with one.
 const guideLinks = GUIDES.filter((g) => !held.has(`/guides/${g.slug}`)).map((g) =>
-  link(guideLabels[g.slug] || g.slug, `/guides/${g.slug}`)
+  link(guideLabels[g.slug] || g.slug, `/guides/${g.slug}/`)
 );
 
 writeFileSync(
@@ -73,9 +102,9 @@ writeFileSync(
 - [Chipotle Nutrition Calculator](/): interactive calculator covering every bowl, burrito, salad, taco, and quesadilla combination, with calories, protein, carbs, fat, fiber, sodium, sugar, and saturated fat per build.
 
 ## Reference
-- [Full menu nutrition index](/menu): every ingredient and item in one table.
-- [How we calculate](/methodology): data source, portion-multiplier logic, rounding rules, update cadence, and stated limitations.
-- [Data sources](/sources): provenance and last-verified dates.
+- [Full menu nutrition index](/menu/): every ingredient and item in one table.
+- [How we calculate](/methodology/): data source, portion-multiplier logic, rounding rules, update cadence, and stated limitations.
+- [Data sources](/sources/): provenance and last-verified dates.
 
 ## Dietary guidance
 - ${dietLinks.join(', ')}
@@ -84,8 +113,8 @@ writeFileSync(
 - ${guideLinks.join(', ')}
 
 ## About
-- [About this site](/about): who maintains it and the independence statement.
-- [Contact](/contact): how to report a wrong figure.
+- [About this site](/about/): who maintains it and the independence statement.
+- [Contact](/contact/): how to report a wrong figure.
 `
 );
 console.log(`wrote public/llms.txt (${dietLinks.length} diet + ${guideLinks.length} guide links; ${held.size} held back)`);

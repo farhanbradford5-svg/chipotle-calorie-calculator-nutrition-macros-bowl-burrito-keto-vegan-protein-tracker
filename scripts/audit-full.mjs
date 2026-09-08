@@ -307,8 +307,10 @@ hit('D2 every page owns a unique primary keyword', kwDup);
 
 const titleLong = pages.filter((p) => decode(p.title).length > 60).map((p) => `${p.url} (${decode(p.title).length}) ${decode(p.title)}`);
 hit('D5 every title is 60 characters or fewer', titleLong);
-const descBad = pages.filter((p) => p.desc.length < 150 || p.desc.length > 160).map((p) => `${p.url} (${p.desc.length} chars)`);
-hit('D5 every meta description is 150-160 characters', descBad);
+// 140-155, not the brief's 140-160: crawlers (Screaming Frog among them) report
+// anything over 155 as truncated, so the tighter ceiling satisfies both.
+const descBad = pages.filter((p) => p.desc.length < 140 || p.desc.length > 155).map((p) => `${p.url} (${p.desc.length} chars)`);
+hit('D5 every meta description is 140-155 characters', descBad);
 const kwFront = pages.filter((p) => {
   const kw = KEYWORDS.get(p.url);
   if (!kw) return false;
@@ -325,20 +327,28 @@ const dup = (key) => {
 hit('D5/D10 no duplicate titles', dup('title'));
 hit('D5/D10 no duplicate descriptions', dup('desc'));
 hit('D5/D10 no duplicate H1s', dup('h1'));
+const slashed = (u) => (u === '/' ? '/' : u.replace(/\/$/, '') + '/');
 hit('D5 canonical present and self-referencing on all 55',
-  pages.filter((p) => p.canonical !== 'https://chipotlemacros.com' + (p.url === '/' ? '/' : p.url)).map((p) => `${p.url} → ${p.canonical}`));
+  pages.filter((p) => p.canonical !== 'https://chipotlemacros.com' + slashed(p.url)).map((p) => `${p.url} → ${p.canonical}`));
 
-// D6 trailing slash: internal hrefs must carry no trailing slash
-const slashHrefs = [];
+// D6 trailing slash. Cloudflare Pages serves directory output canonically WITH
+// a trailing slash and 308-redirects the bare form, so every internal href and
+// sitemap entry must carry one. Anything bare is a guaranteed redirect hop.
+const bareHrefs = [];
 for (const p of pages) {
-  for (const m of p.html.matchAll(/href="(\/[^"#?]*\/)"/g)) {
-    if (m[1] !== '/') slashHrefs.push(`${p.url}: ${m[1]}`);
+  for (const m of p.html.matchAll(/href="(\/[^"#?]*)"/g)) {
+    const h = m[1];
+    if (h === '/' || h.endsWith('/')) continue;
+    if (h.split('/').pop().includes('.')) continue; // /favicon.svg, /sitemap.xml
+    bareHrefs.push(`${p.url}: ${h}`);
   }
 }
-hit('D6 no internal href uses a trailing slash', [...new Set(slashHrefs)]);
-const sm = existsSync(join(DIST, 'sitemap-0.xml')) ? readFileSync(join(DIST, 'sitemap-0.xml'), 'utf8') : '';
-const smSlash = [...sm.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]).filter((u) => u !== 'https://chipotlemacros.com/' && u.endsWith('/'));
-hit('D6 no sitemap entry uses a trailing slash', smSlash);
+hit('D6 every internal href carries a trailing slash', [...new Set(bareHrefs)]);
+const sm = existsSync(join(DIST, 'sitemap.xml')) ? readFileSync(join(DIST, 'sitemap.xml'), 'utf8') : '';
+const smBare = [...sm.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]).filter((u) => !u.endsWith('/'));
+hit('D6 every sitemap entry carries a trailing slash', smBare);
+ok('D8 sitemap is a single flat urlset, not an index',
+  /<urlset/.test(sm) && !/<sitemapindex/.test(sm) && !existsSync(join(DIST, 'sitemap-index.xml')));
 
 // D3 no web fonts
 const fontHits = [];

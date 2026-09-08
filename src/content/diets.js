@@ -17,7 +17,7 @@ export const DIETS = [
     verdict: 'Yes — Chipotle is one of the easier chains to eat keto at.',
     opening: `A keto Chipotle order works, and the whole trick is dropping two things rather than avoiding the restaurant. Rice is ${ing('white-rice').c} g of carbohydrate a scoop and black beans are ${ing('black-beans').c} g; leave both out and the rest of the line is close to carb-free. A steak build with cauliflower rice, cheese and guacamole lands at ${total(['steak', 'cauli-rice', 'green-salsa', 'cheese', 'guac']).c} g of total carbohydrate, of which ${total(['steak', 'cauli-rice', 'green-salsa', 'cheese', 'guac']).fib} g is fiber.`,
     order: {
-      heading: 'What to order',
+      heading: 'The carb-free half of the line',
       body: `Every protein on the line is effectively carb-free except sofritas (${ing('sofritas').c} g) and plant-based chorizo (${ing('chorizo').c} g). Fats are unrestricted: guacamole, cheese, queso and sour cream all fit comfortably.`,
       bullets: [
         `A salad or bowl base — supergreens at ${ing('supergreens').c} g of carbohydrate, or cauliflower rice at ${ing('cauli-rice').c} g if you want the texture of a grain base back`,
@@ -55,7 +55,7 @@ export const DIETS = [
       },
       {
         q: 'Can I have sofritas on keto?',
-        a: `No, sofritas works against a keto order. It is the one protein with a carb count worth tracking, at ${ing('sofritas').c} g of carbohydrate and ${ing('sofritas').sug} g of sugar from the adobo braise. Every other protein on the line sits between ${ing('chicken').c} and ${ing('steak').c} g. <a href="/menu/sofritas-bowl">The sofritas breakdown</a> carries the full figures.`,
+        a: `No, sofritas works against a keto order. It is the one protein with a carb count worth tracking, at ${ing('sofritas').c} g of carbohydrate and ${ing('sofritas').sug} g of sugar from the adobo braise. Every other protein on the line sits between ${ing('chicken').c} and ${ing('steak').c} g. <a href="/menu/sofritas-bowl/">The sofritas breakdown</a> carries the full figures.`,
       },
     ],
   },
@@ -70,7 +70,7 @@ export const DIETS = [
     verdict: 'Yes — sofritas plus any base, minus the three dairy toppings.',
     opening: `Building a vegan Chipotle order takes one substitution and three refusals. Sofritas is the plant-based protein at ${ing('sofritas').cal} calories and ${ing('sofritas').p} g of protein; cheese, sour cream and queso blanco are the items to decline. The one people get wrong in both directions is guacamole, which contains no dairy at all — it is avocado, lime, cilantro, red onion, jalapeño and salt — while the chipotle-honey vinaigrette contains honey and does not qualify.`,
     order: {
-      heading: 'What to order',
+      heading: 'What passes on the line',
       body: `Everything on the line is plant-based except the three dairy toppings and the honey vinaigrette. That leaves a wide build.`,
       bullets: [
         `Sofritas (${ing('sofritas').p} g protein) or plant-based chorizo (${ing('chorizo').p} g protein), the stronger of the two on protein`,
@@ -98,7 +98,7 @@ export const DIETS = [
     faq: [
       {
         q: 'Is Chipotle guacamole vegan?',
-        a: `Yes, Chipotle guacamole is vegan. It contains avocado, lime, cilantro, red onion, jalapeño and salt, with no dairy or animal product at any stage. It is also the main fat source in a plant-based build, at ${ing('guac').cal} calories and ${ing('guac').fib} g of fiber a serving. <a href="/menu/guacamole">The guacamole breakdown</a> carries the full figures.`,
+        a: `Yes, Chipotle guacamole is vegan. It contains avocado, lime, cilantro, red onion, jalapeño and salt, with no dairy or animal product at any stage. It is also the main fat source in a plant-based build, at ${ing('guac').cal} calories and ${ing('guac').fib} g of fiber a serving. <a href="/menu/guacamole/">The guacamole breakdown</a> carries the full figures.`,
       },
       {
         q: 'How much protein can a vegan Chipotle order have?',
@@ -147,7 +147,7 @@ export const DIETS = [
     faq: [
       {
         q: 'Is Chipotle cheese vegetarian?',
-        a: `Yes, Chipotle cheese is vegetarian. It is made with microbial rennet rather than animal rennet, which is what disqualifies many cheeses. It contributes ${ing('cheese').p} g of protein and ${ing('cheese').cal} calories per ${ing('cheese').serving} serving, which counts for more in a meat-free build than in a meat one. <a href="/menu/cheese">The cheese page</a> has the full macros.`,
+        a: `Yes, Chipotle cheese is vegetarian. It is made with microbial rennet rather than animal rennet, which is what disqualifies many cheeses. It contributes ${ing('cheese').p} g of protein and ${ing('cheese').cal} calories per ${ing('cheese').serving} serving, which counts for more in a meat-free build than in a meat one. <a href="/menu/cheese/">The cheese page</a> has the full macros.`,
       },
       {
         q: 'Which vegetarian option has more protein, sofritas or double beans?',
@@ -206,7 +206,7 @@ export const DIETS = [
       },
       {
         q: 'Is a high-protein order the same as a bulking order?',
-        a: `No, a high-protein order and a bulking order solve different problems. This page covers the protein ceiling in one bowl, which sits near ${N.doubleBowl('chicken').p} g. A bulking order also needs total calories, which turns rice and a second bean scoop into assets rather than things to minimise. <a href="/guides/muscle-gain">The muscle-gain guide</a> covers that version.`,
+        a: `No, a high-protein order and a bulking order solve different problems. This page covers the protein ceiling in one bowl, which sits near ${N.doubleBowl('chicken').p} g. A bulking order also needs total calories, which turns rice and a second bean scoop into assets rather than things to minimise. <a href="/guides/muscle-gain/">The muscle-gain guide</a> covers that version.`,
       },
     ],
   },
@@ -258,7 +258,7 @@ export const DIETS = [
       },
       {
         q: 'Is a low-calorie order enough food?',
-        a: `Yes by volume, a low-calorie order fills the same container a bowl uses. Supergreens cost ${ing('supergreens').cal} calories and fajita vegetables ${ing('fajita').cal}, so the container can be full at well under 300 calories. Whether it satisfies you across a week is a separate question, covered in <a href="/guides/weight-loss">the weight-loss guide</a>.`,
+        a: `Yes by volume, a low-calorie order fills the same container a bowl uses. Supergreens cost ${ing('supergreens').cal} calories and fajita vegetables ${ing('fajita').cal}, so the container can be full at well under 300 calories. Whether it satisfies you across a week is a separate question, covered in <a href="/guides/weight-loss/">the weight-loss guide</a>.`,
       },
     ],
   },
@@ -302,7 +302,7 @@ export const DIETS = [
     faq: [
       {
         q: 'How is low carb different from keto at Chipotle?',
-        a: `Low carb and keto part company at Chipotle over the beans. Keto drops rice and beans together; low carb usually keeps beans, because ${ing('black-beans').c} g of carbohydrate returns ${ing('black-beans').fib} g of fiber and ${ing('black-beans').p} g of protein. Rice returns ${ing('white-rice').fib} g of fiber for ${ing('white-rice').c} g of carbohydrate, the worse trade of the two. <a href="/diet/keto">The keto guide</a> covers the stricter build.`,
+        a: `Low carb and keto part company at Chipotle over the beans. Keto drops rice and beans together; low carb usually keeps beans, because ${ing('black-beans').c} g of carbohydrate returns ${ing('black-beans').fib} g of fiber and ${ing('black-beans').p} g of protein. Rice returns ${ing('white-rice').fib} g of fiber for ${ing('white-rice').c} g of carbohydrate, the worse trade of the two. <a href="/diet/keto/">The keto guide</a> covers the stricter build.`,
       },
       {
         q: 'Should I get light rice or no rice?',
@@ -314,7 +314,7 @@ export const DIETS = [
   {
     slug: 'low-sodium',
     keyword: 'low sodium chipotle order',
-    byline: `Sodium figures cross-checked against Chipotle's published nutrition data — last verified ${longDate(REVIEW.lastVerified)}. Part of the same ${REVIEW.cadence} review described in <a href="/methodology">our published methodology</a>.`,
+    byline: `Sodium figures cross-checked against Chipotle's published nutrition data — last verified ${longDate(REVIEW.lastVerified)}. Part of the same ${REVIEW.cadence} review described in <a href="/methodology/">our published methodology</a>.`,
     disclaimer: `This page is for general sodium awareness, not a clinical sodium-restricted diet plan. If you're managing sodium intake for a diagnosed condition such as hypertension or kidney disease, follow the specific limit your doctor or dietitian has given you rather than a general guideline like this one.`,
     linkLabel: 'Low sodium — building under 1,000 mg',
     title: 'Low Sodium Chipotle Order: Getting Under 1,000 mg',
@@ -362,7 +362,7 @@ export const DIETS = [
       },
       {
         q: 'Why is there so much sodium in the rice?',
-        a: `Cilantro-lime rice is salted during cooking and finished with lime, which puts ${ing('white-rice').na} mg of sodium in a scoop of white rice. That is more than a serving of chicken at ${ing('chicken').na} mg. Brown rice carries ${ing('brown-rice').na} mg for the same ${ing('brown-rice').cal} calories. <a href="/guides/sodium">The sodium guide</a> ranks every ingredient.`,
+        a: `Cilantro-lime rice is salted during cooking and finished with lime, which puts ${ing('white-rice').na} mg of sodium in a scoop of white rice. That is more than a serving of chicken at ${ing('chicken').na} mg. Brown rice carries ${ing('brown-rice').na} mg for the same ${ing('brown-rice').cal} calories. <a href="/guides/sodium/">The sodium guide</a> ranks every ingredient.`,
       },
     ],
   },
@@ -411,7 +411,7 @@ export const DIETS = [
       },
       {
         q: 'Are Chipotle beans allowed on Whole30?',
-        a: `No, Chipotle beans are not allowed on Whole30. Legumes are excluded, which removes ${ing('black-beans').p} g of protein and ${ing('black-beans').fib} g of fiber from an otherwise straightforward bowl. <a href="/diet/paleo">The paleo guide</a> applies the same rule, and both leave guacamole as the main remaining source of fat and fiber.`,
+        a: `No, Chipotle beans are not allowed on Whole30. Legumes are excluded, which removes ${ing('black-beans').p} g of protein and ${ing('black-beans').fib} g of fiber from an otherwise straightforward bowl. <a href="/diet/paleo/">The paleo guide</a> applies the same rule, and both leave guacamole as the main remaining source of fat and fiber.`,
       },
     ],
   },
@@ -419,7 +419,7 @@ export const DIETS = [
   {
     slug: 'gluten-free',
     keyword: 'gluten free chipotle order',
-    byline: `Cross-checked against Chipotle's published allergen and nutrition data — last verified ${longDate(REVIEW.allergensLastVerified)}. Part of the same ${REVIEW.cadence} review described in <a href="/methodology">the same documented method</a>.`,
+    byline: `Cross-checked against Chipotle's published allergen and nutrition data — last verified ${longDate(REVIEW.allergensLastVerified)}. Part of the same ${REVIEW.cadence} review described in <a href="/methodology/">the same documented method</a>.`,
     disclaimer: `This is general ordering guidance, not medical advice. Chipotle prepares food on shared surfaces and equipment, so cross-contact is possible even when every ingredient chosen is gluten-free. If you have celiac disease or a severe gluten sensitivity, confirm current practices with the restaurant directly.`,
     linkLabel: 'Gluten-free — ingredients versus cross-contact',
     title: 'Gluten Free Chipotle Order: Ingredients and Cross-Contact',
@@ -444,7 +444,7 @@ export const DIETS = [
         `Fresh gloves, requested at the start of the order`,
         `Ingredients taken from beneath the surface of each container`,
         `A bowl rather than a burrito, which keeps food away from the tortilla station entirely`,
-        `The per-ingredient table in <a href="/guides/allergens">the allergens guide</a>, which lists what contains wheat, dairy and soy`,
+        `The per-ingredient table in <a href="/guides/allergens/">the allergens guide</a>, which lists what contains wheat, dairy and soy`,
       ],
     },
     example: {
@@ -497,7 +497,7 @@ export const DIETS = [
         `Sour cream — ${ing('sour-cream').cal} calories`,
         `Queso blanco — ${ing('queso').cal} calories`,
         `Quesadillas, which are built on cheese and cannot be modified`,
-        `Anything unlabelled — <a href="/guides/allergens">the allergen table</a> lists dairy item by item`,
+        `Anything unlabelled — <a href="/guides/allergens/">the allergen table</a> lists dairy item by item`,
       ],
     },
     example: {
@@ -510,7 +510,7 @@ export const DIETS = [
     faq: [
       {
         q: 'What replaces cheese in a dairy-free bowl?',
-        a: `Guacamole replaces cheese in a dairy-free bowl. It contains no dairy at any stage — avocado, lime, cilantro, red onion, jalapeño and salt — and it brings ${ing('guac').fib} g of fiber that cheese does not. The trade is calories: guacamole is ${ing('guac').cal} against cheese's ${ing('cheese').cal}, so the swap adds ${ing('guac').cal - ing('cheese').cal} calories to the bowl. <a href="/menu/guacamole">Full macros here</a>.`,
+        a: `Guacamole replaces cheese in a dairy-free bowl. It contains no dairy at any stage — avocado, lime, cilantro, red onion, jalapeño and salt — and it brings ${ing('guac').fib} g of fiber that cheese does not. The trade is calories: guacamole is ${ing('guac').cal} against cheese's ${ing('cheese').cal}, so the swap adds ${ing('guac').cal - ing('cheese').cal} calories to the bowl. <a href="/menu/guacamole/">Full macros here</a>.`,
       },
       {
         q: 'Is a dairy-free order automatically lower in calories?',
@@ -518,7 +518,7 @@ export const DIETS = [
       },
       {
         q: 'Does the chipotle-honey vinaigrette contain dairy?',
-        a: `No, the chipotle-honey vinaigrette contains no dairy. It contains honey, which rules it out of a <a href="/diet/vegan">vegan order</a> but not a dairy-free one. What it does carry is ${ing('vinaigrette').na} mg of sodium and ${ing('vinaigrette').sug} g of sugar in one ${ing('vinaigrette').serving} serving, the highest figures of any item on the line.`,
+        a: `No, the chipotle-honey vinaigrette contains no dairy. It contains honey, which rules it out of a <a href="/diet/vegan/">vegan order</a> but not a dairy-free one. What it does carry is ${ing('vinaigrette').na} mg of sodium and ${ing('vinaigrette').sug} g of sugar in one ${ing('vinaigrette').serving} serving, the highest figures of any item on the line.`,
       },
     ],
   },
@@ -563,7 +563,7 @@ export const DIETS = [
     faq: [
       {
         q: 'Are beans paleo?',
-        a: `No, beans are not paleo. Beans are legumes, which strict paleo excludes alongside grains and dairy. That single rule removes ${ing('black-beans').p} g of protein and ${ing('black-beans').fib} g of fiber from what would otherwise be a straightforward bowl, and it is the difference between a paleo order and the no-rice bowl most people picture. <a href="/diet/whole30">Whole30</a> applies the same rule.`,
+        a: `No, beans are not paleo. Beans are legumes, which strict paleo excludes alongside grains and dairy. That single rule removes ${ing('black-beans').p} g of protein and ${ing('black-beans').fib} g of fiber from what would otherwise be a straightforward bowl, and it is the difference between a paleo order and the no-rice bowl most people picture. <a href="/diet/whole30/">Whole30</a> applies the same rule.`,
       },
       {
         q: 'Is Chipotle meat cooked in seed oils?',

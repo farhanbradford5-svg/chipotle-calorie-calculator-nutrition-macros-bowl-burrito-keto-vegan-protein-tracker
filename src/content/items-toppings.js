@@ -37,7 +37,7 @@ export const TOPPING_ITEMS = [
       },
       {
         q: 'Is Chipotle queso gluten-free?',
-        a: `Yes, Chipotle queso blanco is made without gluten-containing ingredients. It is dairy-based, which rules it out of any <a href="/diet/dairy-free">dairy-free order</a> but not a gluten-free one. Cross-contact on a shared line remains a separate question from the ingredient list, covered in <a href="/diet/gluten-free">the gluten-free guide</a> along with what to ask for at the counter.`,
+        a: `Yes, Chipotle queso blanco is made without gluten-containing ingredients. It is dairy-based, which rules it out of any <a href="/diet/dairy-free/">dairy-free order</a> but not a gluten-free one. Cross-contact on a shared line remains a separate question from the ingredient list, covered in <a href="/diet/gluten-free/">the gluten-free guide</a> along with what to ask for at the counter.`,
       },
     ],
   },
@@ -88,7 +88,7 @@ export const TOPPING_ITEMS = [
     keyword: 'chipotle sour cream calories',
     title: 'Chipotle Sour Cream Calories — 110 for 2 oz',
     description:
-      'Chipotle sour cream is 110 calories for 2 oz: the same total as cheese but spread over twice the volume, and with only 30 mg of sodium against cheese’s 190.',
+      'Chipotle sour cream is 110 calories for 2 oz: the same total as cheese spread over twice the volume, and 30 mg of sodium against cheese’s 190.',
     kind: 'ingredient',
     ingredientId: 'sour-cream',
     totals: ing('sour-cream'),
@@ -145,7 +145,7 @@ export const TOPPING_ITEMS = [
     faq: [
       {
         q: 'What kind of cheese does Chipotle use?',
-        a: `Chipotle uses a shredded Monterey Jack and white cheddar blend, made with microbial rennet rather than animal rennet. That makes the cheese suitable for a <a href="/diet/vegetarian">vegetarian order</a> but not a <a href="/diet/dairy-free">dairy-free</a> one. A ${ing('cheese').serving} serving carries ${ing('cheese').cal} calories, ${ing('cheese').p} g of protein and ${ing('cheese').sat} g of saturated fat.`,
+        a: `Chipotle uses a shredded Monterey Jack and white cheddar blend, made with microbial rennet rather than animal rennet. That makes the cheese suitable for a <a href="/diet/vegetarian/">vegetarian order</a> but not a <a href="/diet/dairy-free/">dairy-free</a> one. A ${ing('cheese').serving} serving carries ${ing('cheese').cal} calories, ${ing('cheese').p} g of protein and ${ing('cheese').sat} g of saturated fat.`,
       },
       {
         q: 'How much does skipping cheese save?',
@@ -160,7 +160,7 @@ export const TOPPING_ITEMS = [
     keyword: 'chipotle lettuce calories',
     title: 'Chipotle Lettuce Calories — 5 per Serving',
     description:
-      'Chipotle romaine lettuce is 5 calories with no sodium at all, which is why a Chipotle salad reads low-calorie even when the container arrives full to the top.',
+      'Chipotle romaine lettuce is 5 calories with no sodium at all, which is why a Chipotle salad reads low-calorie even when the container arrives full.',
     kind: 'ingredient',
     ingredientId: 'lettuce',
     totals: ing('lettuce'),
@@ -221,7 +221,7 @@ export const TOPPING_ITEMS = [
       },
       {
         q: 'Do fajita veggies count towards fiber?',
-        a: `Yes, fajita veggies contribute ${ing('fajita').fib} g of fiber a scoop. That is modest next to black beans at ${ing('black-beans').fib} g or guacamole at ${ing('guac').fib} g, but it stacks with them at a cost of only ${ing('fajita').cal} calories. <a href="/guides/fiber">The fiber guide</a> shows how far those combinations reach against a daily target.`,
+        a: `Yes, fajita veggies contribute ${ing('fajita').fib} g of fiber a scoop. That is modest next to black beans at ${ing('black-beans').fib} g or guacamole at ${ing('guac').fib} g, but it stacks with them at a cost of only ${ing('fajita').cal} calories. <a href="/guides/fiber/">The fiber guide</a> shows how far those combinations reach against a daily target.`,
       },
     ],
   },
@@ -325,7 +325,7 @@ export const TOPPING_ITEMS = [
     faq: [
       {
         q: 'Is corn salsa keto-friendly?',
-        a: `No, corn salsa is not keto-friendly. At ${ing('corn-salsa').c} g of carbohydrate a serving it carries four times what any other salsa does, since corn is a starch. That is more than a scoop of cauliflower rice at ${ing('cauli-rice').c} g. <a href="/diet/keto">The keto guide</a> recommends the two tomatillo salsas instead, at ${ing('green-salsa').c} g each.`,
+        a: `No, corn salsa is not keto-friendly. At ${ing('corn-salsa').c} g of carbohydrate a serving it carries four times what any other salsa does, since corn is a starch. That is more than a scoop of cauliflower rice at ${ing('cauli-rice').c} g. <a href="/diet/keto/">The keto guide</a> recommends the two tomatillo salsas instead, at ${ing('green-salsa').c} g each.`,
       },
       {
         q: 'How spicy is roasted chili-corn salsa?',

@@ -25,7 +25,7 @@ const CAL_HIGH = 300;
 
 const title = 'Chipotle Nutrition Calculator — Calories, Macros & Sodium';
 const description =
-  'Free nutrition calculator for Chipotle. Build your exact bowl or burrito and watch calories, protein, carbs and sodium update with every ingredient you pick.';
+  'Free nutrition calculator for Chipotle. Build your bowl or burrito and watch calories, protein, carbs and sodium update with every ingredient you pick.';
 
 const tableRows = CATEGORIES.flatMap((cat) =>
   cat.items.filter((it) => it.cal > 0).map((it) => ({ ...it, group: cat.label }))
@@ -201,7 +201,7 @@ const schema = [
       </div>
       <p class="small">
         Looking for a single item rather than the whole line? The
-        <a href="/menu">full menu nutrition index</a> lists each one on its own.
+        <a href="/menu/">full menu nutrition index</a> lists each one on its own.
       </p>
     </section>
 
@@ -256,7 +256,7 @@ const schema = [
           <p class="small">
             A double-chicken bowl with white rice, black beans and fresh tomato salsa reaches 76 g of
             protein at about 725 calories. Working from a target instead? The
-            <a href="/guides/macro-targeting">macro-targeting guide</a> works backwards from your numbers.
+            <a href="/guides/macro-targeting/">macro-targeting guide</a> works backwards from your numbers.
           </p>
         </div>
         <div class="col col-light">
@@ -275,7 +275,7 @@ const schema = [
           <p class="small">
             A salad with steak, green salsa and fajita veggies comes in near 195 calories with 23 g of
             protein. If sodium is the constraint rather than calories, start with
-            <a href="/guides/sodium">the low-sodium ordering guide</a>.
+            <a href="/guides/sodium/">the low-sodium ordering guide</a>.
           </p>
         </div>
       </div>
@@ -296,8 +296,8 @@ const schema = [
         The limit is the source data, not the arithmetic. Chipotle serves by hand, so two chicken
         bowls ordered the same way at the same store can differ by 50 to 100 calories. Sodium varies
         the most. Read
-        <a href="/methodology">how these numbers are calculated</a> for the portion multipliers, or
-        <a href="/sources">where the underlying data comes from</a> for the source list and the last
+        <a href="/methodology/">how these numbers are calculated</a> for the portion multipliers, or
+        <a href="/sources/">where the underlying data comes from</a> for the source list and the last
         verification date.
       </p>
     </section>
@@ -320,13 +320,13 @@ const schema = [
     <section aria-labelledby="more-h">
       <h2 id="more-h">Keep going</h2>
       <ul class="more-links">
-        <li><svg class="icon" aria-hidden="true"><use href="#i-grid" /></svg><span><a href="/menu">Browse nutrition facts for every menu item</a> — proteins, sides, drinks and kids items on one reference page.</span></li>
-        <li><svg class="icon" aria-hidden="true"><use href="#i-shield" /></svg><span><a href="/diet/keto">Ordering keto at Chipotle</a> — which bases and toppings keep net carbs under 15 g.</span></li>
-        <li><svg class="icon" aria-hidden="true"><use href="#i-na" /></svg><span><a href="/diet/low-sodium">Keeping a Chipotle order under 1,000 mg of sodium</a> — the three swaps that do most of the work.</span></li>
-        <li><svg class="icon" aria-hidden="true"><use href="#i-leaf" /></svg><span><a href="/diet/vegan">Vegan and vegetarian builds</a> — what sofritas and plant-based chorizo actually contain.</span></li>
-        <li><svg class="icon" aria-hidden="true"><use href="#i-shield" /></svg><span><a href="/diet/gluten-free">Gluten-free ordering</a> — including the shared-surface caveat for coeliac disease.</span></li>
-        <li><svg class="icon" aria-hidden="true"><use href="#i-gauge" /></svg><span><a href="/guides/macro-targeting">Hitting a macro target</a> — building to a set protein, carb and fat split.</span></li>
-        <li><svg class="icon" aria-hidden="true"><use href="#i-na" /></svg><span><a href="/guides/sodium">Why Chipotle sodium runs high</a> — and where it accumulates on the line.</span></li>
+        <li><svg class="icon" aria-hidden="true"><use href="#i-grid" /></svg><span><a href="/menu/">Browse nutrition facts for every menu item</a> — proteins, sides, drinks and kids items on one reference page.</span></li>
+        <li><svg class="icon" aria-hidden="true"><use href="#i-shield" /></svg><span><a href="/diet/keto/">Ordering keto at Chipotle</a> — which bases and toppings keep net carbs under 15 g.</span></li>
+        <li><svg class="icon" aria-hidden="true"><use href="#i-na" /></svg><span><a href="/diet/low-sodium/">Keeping a Chipotle order under 1,000 mg of sodium</a> — the three swaps that do most of the work.</span></li>
+        <li><svg class="icon" aria-hidden="true"><use href="#i-leaf" /></svg><span><a href="/diet/vegan/">Vegan and vegetarian builds</a> — what sofritas and plant-based chorizo actually contain.</span></li>
+        <li><svg class="icon" aria-hidden="true"><use href="#i-shield" /></svg><span><a href="/diet/gluten-free/">Gluten-free ordering</a> — including the shared-surface caveat for coeliac disease.</span></li>
+        <li><svg class="icon" aria-hidden="true"><use href="#i-gauge" /></svg><span><a href="/guides/macro-targeting/">Hitting a macro target</a> — building to a set protein, carb and fat split.</span></li>
+        <li><svg class="icon" aria-hidden="true"><use href="#i-na" /></svg><span><a href="/guides/sodium/">Why Chipotle sodium runs high</a> — and where it accumulates on the line.</span></li>
       </ul>
     </section>
   </div>

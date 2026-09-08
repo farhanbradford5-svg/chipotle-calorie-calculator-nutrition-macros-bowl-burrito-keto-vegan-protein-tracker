@@ -39,7 +39,7 @@ export const BASE_ITEMS = [
       },
       {
         q: 'Which base has the most fiber?',
-        a: `No base carries meaningful fiber — the beans do that work, at ${ing('black-beans').fib} g a scoop. Brown rice edges white rice by ${ing('brown-rice').fib - ing('white-rice').fib} g, supergreens contribute ${ing('supergreens').fib} g and cauliflower rice ${ing('cauli-rice').fib} g. Choosing a base for fiber is the wrong lever; <a href="/guides/fiber">the fiber guide</a> ranks every ingredient by what it actually adds.`,
+        a: `No base carries meaningful fiber — the beans do that work, at ${ing('black-beans').fib} g a scoop. Brown rice edges white rice by ${ing('brown-rice').fib - ing('white-rice').fib} g, supergreens contribute ${ing('supergreens').fib} g and cauliflower rice ${ing('cauli-rice').fib} g. Choosing a base for fiber is the wrong lever; <a href="/guides/fiber/">the fiber guide</a> ranks every ingredient by what it actually adds.`,
       },
     ],
   },
@@ -105,7 +105,7 @@ export const BASE_ITEMS = [
     faq: [
       {
         q: 'Does a quesadilla come with sides?',
-        a: `Yes, a quesadilla comes with salsa and sour cream in separate cups rather than inside it, so they only count if you use them. Sour cream adds ${ing('sour-cream').cal} calories and fresh tomato salsa ${ing('mild-salsa').cal}. The quesadilla itself is ${fmt(N.quesadilla('chicken').cal)} calories with chicken, before anything from those cups goes on it. The quesarito in <a href="/guides/secret-menu">the off-menu requests</a> builds on the same base.`,
+        a: `Yes, a quesadilla comes with salsa and sour cream in separate cups rather than inside it, so they only count if you use them. Sour cream adds ${ing('sour-cream').cal} calories and fresh tomato salsa ${ing('mild-salsa').cal}. The quesadilla itself is ${fmt(N.quesadilla('chicken').cal)} calories with chicken, before anything from those cups goes on it. The quesarito in <a href="/guides/secret-menu/">the off-menu requests</a> builds on the same base.`,
       },
       {
         q: 'Why is a quesadilla low in fiber?',
@@ -177,7 +177,7 @@ export const BASE_ITEMS = [
     faq: [
       {
         q: 'Is brown rice healthier than white rice at Chipotle?',
-        a: `Yes, marginally — brown rice is the better of the two, and not for the reason most people assume. Both are ${ing('brown-rice').cal} calories a scoop. Brown carries ${ing('white-rice').na - ing('brown-rice').na} mg less sodium, one more gram of fiber and ${ing('white-rice').c - ing('brown-rice').c} g fewer carbohydrates. The sodium saving is the argument worth ordering on — see <a href="/diet/low-sodium">the low-sodium guide</a>.`,
+        a: `Yes, marginally — brown rice is the better of the two, and not for the reason most people assume. Both are ${ing('brown-rice').cal} calories a scoop. Brown carries ${ing('white-rice').na - ing('brown-rice').na} mg less sodium, one more gram of fiber and ${ing('white-rice').c - ing('brown-rice').c} g fewer carbohydrates. The sodium saving is the argument worth ordering on — see <a href="/diet/low-sodium/">the low-sodium guide</a>.`,
       },
       {
         q: 'Does brown rice have more protein?',
@@ -213,7 +213,7 @@ export const BASE_ITEMS = [
     faq: [
       {
         q: 'Are black beans vegan at Chipotle?',
-        a: `Yes, black beans at Chipotle are vegan. Both bean varieties are prepared without animal products, which makes them a staple of any <a href="/diet/vegan">plant-based order</a> and the main protein source in one. A scoop carries ${ing('black-beans').p} g of protein and ${ing('black-beans').fib} g of fiber for ${ing('black-beans').cal} calories, the most efficient trade on the line.`,
+        a: `Yes, black beans at Chipotle are vegan. Both bean varieties are prepared without animal products, which makes them a staple of any <a href="/diet/vegan/">plant-based order</a> and the main protein source in one. A scoop carries ${ing('black-beans').p} g of protein and ${ing('black-beans').fib} g of fiber for ${ing('black-beans').cal} calories, the most efficient trade on the line.`,
       },
       {
         q: 'How much protein do black beans add?',
@@ -249,7 +249,7 @@ export const BASE_ITEMS = [
     faq: [
       {
         q: 'Are Chipotle pinto beans vegetarian?',
-        a: `Yes, Chipotle pinto beans are vegetarian. The current recipe is prepared without meat, which was not always true historically — pinto beans once contained bacon, and that is why the question keeps coming up. Both bean varieties now suit <a href="/diet/vegetarian">vegetarian</a> and vegan orders, at ${ing('pinto-beans').cal} calories and ${ing('pinto-beans').p} g of protein a scoop.`,
+        a: `Yes, Chipotle pinto beans are vegetarian. The current recipe is prepared without meat, which was not always true historically — pinto beans once contained bacon, and that is why the question keeps coming up. Both bean varieties now suit <a href="/diet/vegetarian/">vegetarian</a> and vegan orders, at ${ing('pinto-beans').cal} calories and ${ing('pinto-beans').p} g of protein a scoop.`,
       },
       {
         q: 'Can I get both pinto and black beans?',
@@ -289,7 +289,7 @@ export const BASE_ITEMS = [
       },
       {
         q: 'Is Chipotle guacamole dairy-free?',
-        a: `Yes, Chipotle guacamole is dairy-free. It contains avocado, lime, cilantro, red onion, jalapeño and salt, with no dairy at any stage of preparation. That makes it the standard fat source on a <a href="/diet/dairy-free">dairy-free order</a>, standing in for the cheese and sour cream that would otherwise go on the bowl at ${ing('cheese').cal} and ${ing('sour-cream').cal} calories.`,
+        a: `Yes, Chipotle guacamole is dairy-free. It contains avocado, lime, cilantro, red onion, jalapeño and salt, with no dairy at any stage of preparation. That makes it the standard fat source on a <a href="/diet/dairy-free/">dairy-free order</a>, standing in for the cheese and sour cream that would otherwise go on the bowl at ${ing('cheese').cal} and ${ing('sour-cream').cal} calories.`,
       },
       {
         q: 'How many calories is chips and guac together?',

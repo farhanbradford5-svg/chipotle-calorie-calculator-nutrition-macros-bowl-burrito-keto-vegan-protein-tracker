@@ -17,11 +17,11 @@ const { gaId } = Astro.props;
 
 <div id="consent" class="consent" role="dialog" aria-modal="false" aria-labelledby="consent-h" hidden>
   <div class="consent-body">
-    <h2 id="consent-h">Analytics cookies</h2>
+    <p id="consent-h" class="consent-h">Analytics cookies</p>
     <p>
       We use Google Analytics to count page views. It sets cookies that last up to two years.
       Decline and nothing on this site changes &mdash; the calculator and every page work the same.
-      <a href="/privacy-policy">What we collect</a>.
+      <a href="/privacy-policy/">What we collect</a>.
     </p>
   </div>
   <div class="consent-actions">
@@ -133,7 +133,10 @@ const { gaId } = Astro.props;
   }
   .consent[hidden] { display: none; }
   .consent-body { flex: 1 1 380px; min-width: 0; }
-  .consent h2 { font-size: 0.95rem; margin-bottom: 0.15rem; }
+  /* Was an h2; demoted to a p so a hidden dialog label does not appear in the
+     page heading outline. aria-labelledby still points at it. Declared after
+     .consent p and with matching specificity so it is not overridden. */
+  .consent .consent-h { font-size: 0.95rem; font-weight: 700; line-height: 1.2; margin: 0 0 0.15rem; color: var(--ink); max-width: none; }
   .consent p { font-size: 0.85rem; color: var(--ink-2); margin: 0; max-width: 78ch; }
   .consent-actions { display: flex; gap: 0.5rem; flex: 0 0 auto; }
   .c-accept, .c-decline {

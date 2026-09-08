@@ -101,7 +101,8 @@ const dupDescs = [...descs].filter(([, n]) => n > 1);
 ok('no two pages share a meta description', dupDescs.length === 0, dupDescs.map(([t]) => t.slice(0, 50)).join(' | '));
 
 const badCanon = pages.filter((p) => {
-  const expect = 'https://chipotlemacros.com' + (p.url === '/' ? '/' : p.url);
+  // Cloudflare serves the trailing-slash form, so the canonical must match it.
+  const expect = 'https://chipotlemacros.com' + (p.url === '/' ? '/' : p.url.replace(/\/$/, '') + '/');
   return p.canonical !== expect;
 });
 ok('every canonical is self-referencing', badCanon.length === 0,
@@ -109,7 +110,10 @@ ok('every canonical is self-referencing', badCanon.length === 0,
 
 // /menu must link to every item and diet page.
 const menu = pages.find((p) => p.url === '/menu');
-const menuLinks = new Set([...menu.html.matchAll(/href="(\/(?:menu|diet)\/[^"#]+)"/g)].map((m) => m[1]));
+// Hrefs carry a trailing slash (trailingSlash: 'always'); compare without one.
+const menuLinks = new Set(
+  [...menu.html.matchAll(/href="(\/(?:menu|diet)\/[^"#]+)"/g)].map((m) => m[1].replace(/\/$/, ''))
+);
 const missingItems = ITEMS.filter((i) => !menuLinks.has(`/menu/${i.slug}`));
 const missingDiets = DIETS.filter((d) => !menuLinks.has(`/diet/${d.slug}`));
 ok(`/menu links to all ${ITEMS.length} item pages`, missingItems.length === 0, missingItems.map((i) => i.slug).join(', '));
@@ -230,7 +234,7 @@ const read = (f) => { try { return readFileSync(join(DIST, f), 'utf8'); } catch 
 const robots = read('robots.txt');
 const llms = read('llms.txt');
 const redirectsFile = read('_redirects');
-const sitemap = read('sitemap-0.xml');
+const sitemap = read('sitemap.xml');
 ok('robots.txt, llms.txt, _redirects and sitemap all generated',
   !!robots && !!llms && !!redirectsFile && !!sitemap);
 const sitemapUrl = (robots.match(/Sitemap:\s*(\S+)/) || [])[1] || '';
@@ -247,7 +251,7 @@ for (const held of NOINDEX) {
     !sitemapLocs.includes(held) && !llms.includes(held) &&
     /content="noindex/.test(pages.find((p) => p.url === held)?.html || ''));
 }
-const stubsInSitemap = sitemapLocs.filter((u) => Object.keys(REDIRECTS).includes(u));
+const stubsInSitemap = sitemapLocs.filter((u) => Object.keys(REDIRECTS).some((k) => k.replace(/\/$/, '') === u));
 ok('no redirected (old) URL appears in the sitemap', stubsInSitemap.length === 0, stubsInSitemap.join(', '));
 
 const ruleLines = redirectsFile.split('\n').filter((l) => l.trim() && !l.startsWith('#'));
@@ -262,7 +266,8 @@ const shadowed = Object.keys(REDIRECTS).filter((from) => {
 });
 ok('no built file shadows a redirect source path', shadowed.length === 0, shadowed.slice(0, 8).join(', '));
 const liveUrls = new Set(pages.map((p) => p.url));
-const clashes = Object.entries(REDIRECTS).filter(([from, to]) => from === to || !liveUrls.has(to));
+const norm = (u) => (u === '/' ? '/' : u.replace(/\/$/, ''));
+const clashes = Object.entries(REDIRECTS).filter(([from, to]) => norm(from) === norm(to) || !liveUrls.has(norm(to)));
 ok('no rule is self-referencing and every destination is a real page',
   clashes.length === 0, clashes.map(([a, b]) => `${a} -> ${b}`).join(', '));
 

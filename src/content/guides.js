@@ -37,7 +37,7 @@ export const GUIDES = [
       },
       {
         heading: 'Ordering to a sodium target',
-        body: `This page is the reference. <a href="/diet/low-sodium">The low-sodium ordering guide</a> turns it into a swap ladder with worked builds under 1,000 mg.`,
+        body: `This page is the reference. <a href="/diet/low-sodium/">The low-sodium ordering guide</a> turns it into a swap ladder with worked builds under 1,000 mg.`,
       },
     ],
   },
@@ -45,12 +45,12 @@ export const GUIDES = [
   {
     slug: 'allergens',
     keyword: 'chipotle allergens guide',
-    byline: `Cross-checked against Chipotle's published allergen and nutrition data — last verified ${longDate(REVIEW.allergensLastVerified)}. Part of the same ${REVIEW.cadence} review described in <a href="/methodology">How We Calculate</a>.`,
+    byline: `Cross-checked against Chipotle's published allergen and nutrition data — last verified ${longDate(REVIEW.allergensLastVerified)}. Part of the same ${REVIEW.cadence} review described in <a href="/methodology/">How We Calculate</a>.`,
     officialSource: `<strong>Primary source:</strong> Chipotle's own <a href="${OFFICIAL.allergens}" rel="nofollow noopener" target="_blank">Allergens &amp; Special Diet statement</a>. Everything in the table below is transcribed from it. Where this page and Chipotle's statement disagree, theirs is correct.`,
-    disclaimer: `This page lists allergen and cross-contact information based on Chipotle's published data, transcribed and re-checked on <a href="/methodology">the review cadence we publish</a>. If you have a diagnosed food allergy, always verify current allergen information directly with Chipotle or your local restaurant before ordering — formulations and prep practices can change between our review cycles.`,
+    disclaimer: `This page lists allergen and cross-contact information based on Chipotle's published data, transcribed and re-checked on <a href="/methodology/">the review cadence we publish</a>. If you have a diagnosed food allergy, always verify current allergen information directly with Chipotle or your local restaurant before ordering — formulations and prep practices can change between our review cycles.`,
     title: 'Chipotle Allergens Guide: What Contains What',
     description:
-      'A Chipotle allergens guide covering wheat, dairy and soy across every menu ingredient, plus the cross-contact policy that the ingredient list does not capture.',
+      'A Chipotle allergens guide covering wheat, dairy and soy across every ingredient, plus the cross-contact policy the ingredient list does not capture.',
     opening: `This Chipotle allergens guide covers the three allergens that actually appear on the line — wheat, dairy and soy — because the menu is short enough that the compliance table fits on one screen. Only one item contains wheat, three contain dairy, and two contain soy. Everything else is clear on all three counts.`,
     sections: [
       {
@@ -81,7 +81,7 @@ export const GUIDES = [
       },
       {
         heading: 'Check the current statement before you rely on this',
-        body: `Recipes change. Chipotle publishes its own allergen information, and that is the authority for anything medical — this page is a summary of it, kept in step with the figures used across this site. <a href="/sources">Our sourcing notes</a> record when it was last checked.`,
+        body: `Recipes change. Chipotle publishes its own allergen information, and that is the authority for anything medical — this page is a summary of it, kept in step with the figures used across this site. <a href="/sources/">Our sourcing notes</a> record when it was last checked.`,
       },
     ],
   },
@@ -117,11 +117,11 @@ export const GUIDES = [
       },
       {
         heading: 'Where this differs from ordering high-protein',
-        body: `<a href="/diet/high-protein">The high-protein page</a> is about the ceiling in a single bowl. This one assumes you are eating at Chipotle repeatedly and need the calories to land somewhere useful. The practical difference is that rice and a second bean scoop become assets here rather than things to minimise.`,
+        body: `<a href="/diet/high-protein/">The high-protein page</a> is about the ceiling in a single bowl. This one assumes you are eating at Chipotle repeatedly and need the calories to land somewhere useful. The practical difference is that rice and a second bean scoop become assets here rather than things to minimise.`,
       },
       {
         heading: 'Sodium is the constraint that catches people',
-        body: `The build above carries ${fmt(total([['chicken', 2], 'white-rice', ['black-beans', 2], 'corn-salsa', 'cheese']).na)} mg of sodium. Eaten daily as a bulking staple that is worth managing — <a href="/guides/sodium">the sodium ranking</a> shows which swaps cost you nothing nutritionally. For splitting a surplus order across two days see <a href="/guides/meal-prep">the meal-prep notes</a>, and <a href="/guides/macro-targeting">the macro explainer</a> for how the three macros distribute.`,
+        body: `The build above carries ${fmt(total([['chicken', 2], 'white-rice', ['black-beans', 2], 'corn-salsa', 'cheese']).na)} mg of sodium. Eaten daily as a bulking staple that is worth managing — <a href="/guides/sodium/">the sodium ranking</a> shows which swaps cost you nothing nutritionally. For splitting a surplus order across two days see <a href="/guides/meal-prep/">the meal-prep notes</a>, and <a href="/guides/macro-targeting/">the macro explainer</a> for how the three macros distribute.`,
       },
     ],
   },
@@ -131,7 +131,7 @@ export const GUIDES = [
     keyword: 'chipotle fiber guide',
     title: 'Chipotle Fiber Guide: Where the Grams Actually Are',
     description:
-      'A Chipotle fiber guide ranking every ingredient. Beans do most of the work at 7–8 g; stacking them with guacamole and veg clears a daily target in one bowl.',
+      'A Chipotle fiber guide ranking every ingredient. Beans do most of the work at 7–8 g; stack them with guacamole and veg and one bowl clears a daily target.',
     opening: `Fiber at Chipotle comes from a very short list, and this Chipotle fiber guide exists mainly to show how short. Beans supply ${ing('black-beans').fib} to ${ing('pinto-beans').fib} g a scoop and guacamole another ${ing('guac').fib} g. Almost everything else on the line contributes one gram or none, including both rices.`,
     sections: [
       {
@@ -150,11 +150,11 @@ export const GUIDES = [
       },
       {
         heading: 'The brown rice myth, quantified',
-        body: `Brown rice carries ${ing('brown-rice').fib} g of fiber against white rice's ${ing('white-rice').fib} g. One gram. It is a reasonable swap for the ${ing('white-rice').na - ing('brown-rice').na} mg of sodium it saves, and a poor one if fiber is the reason you are making it. <a href="/menu/brown-rice">The brown rice page</a> covers the rest of the comparison.`,
+        body: `Brown rice carries ${ing('brown-rice').fib} g of fiber against white rice's ${ing('white-rice').fib} g. One gram. It is a reasonable swap for the ${ing('white-rice').na - ing('brown-rice').na} mg of sodium it saves, and a poor one if fiber is the reason you are making it. <a href="/menu/brown-rice/">The brown rice page</a> covers the rest of the comparison.`,
       },
       {
         heading: 'What a low-carb order costs you',
-        body: `Beans are simultaneously the main fiber source and the item that low-carb and keto orders remove. Dropping them takes a bowl from ${N.bowl('chicken').fib} g of fiber to ${total(['chicken', 'white-rice', 'mild-salsa', 'cheese']).fib} g. If you are cutting carbs, guacamole (${ing('guac').fib} g) and fajita vegetables (${ing('fajita').fib} g) are how you get 7 g of it back. Fiber is also what makes a lighter order filling, which <a href="/guides/weight-loss">the weight-loss guide</a> covers across repeat visits.`,
+        body: `Beans are simultaneously the main fiber source and the item that low-carb and keto orders remove. Dropping them takes a bowl from ${N.bowl('chicken').fib} g of fiber to ${total(['chicken', 'white-rice', 'mild-salsa', 'cheese']).fib} g. If you are cutting carbs, guacamole (${ing('guac').fib} g) and fajita vegetables (${ing('fajita').fib} g) are how you get 7 g of it back. Fiber is also what makes a lighter order filling, which <a href="/guides/weight-loss/">the weight-loss guide</a> covers across repeat visits.`,
       },
     ],
   },
@@ -178,7 +178,7 @@ export const GUIDES = [
       },
       {
         heading: 'How portion sizes scale the numbers',
-        body: `Every ingredient in the calculator can be set to light, normal, extra or double, and each setting multiplies that ingredient's full macro line — not just its calories. Light is a 0.5 multiplier, extra is 1.5, double is 2.0. Those are approximations of what a server actually adds rather than official measures; <a href="/methodology">the methodology page</a> explains the reasoning.`,
+        body: `Every ingredient in the calculator can be set to light, normal, extra or double, and each setting multiplies that ingredient's full macro line — not just its calories. Light is a 0.5 multiplier, extra is 1.5, double is 2.0. Those are approximations of what a server actually adds rather than official measures; <a href="/methodology/">the methodology page</a> explains the reasoning.`,
         table: {
           rows: [
             ['White rice — light', total([['white-rice', 'light']])],
@@ -193,10 +193,10 @@ export const GUIDES = [
         heading: 'Ordering to a target',
         body: `Once you know which macro is binding, the guidance splits by goal rather than by ingredient.`,
         bullets: [
-          `Protein target — <a href="/diet/high-protein">the high-protein build</a> reaches ${N.doubleBowl('chicken').p} g`,
-          `Carbohydrate ceiling — <a href="/diet/low-carb">low carb</a> keeps beans, <a href="/diet/keto">keto</a> drops them`,
-          `Calorie ceiling — <a href="/diet/low-calorie">the low-calorie build</a> lands near ${total(['salad-base', 'steak', 'green-salsa', 'fajita']).cal}`,
-          `Fat, if you are managing it upward — <a href="/guides/muscle-gain">the muscle-gain guide</a>`,
+          `Protein target — <a href="/diet/high-protein/">the high-protein build</a> reaches ${N.doubleBowl('chicken').p} g`,
+          `Carbohydrate ceiling — <a href="/diet/low-carb/">low carb</a> keeps beans, <a href="/diet/keto/">keto</a> drops them`,
+          `Calorie ceiling — <a href="/diet/low-calorie/">the low-calorie build</a> lands near ${total(['salad-base', 'steak', 'green-salsa', 'fajita']).cal}`,
+          `Fat, if you are managing it upward — <a href="/guides/muscle-gain/">the muscle-gain guide</a>`,
         ],
       },
       {
@@ -209,11 +209,11 @@ export const GUIDES = [
   {
     slug: 'weight-loss',
     keyword: 'chipotle weight loss guide',
-    byline: `Figures cross-checked against Chipotle's published nutrition data — last verified ${longDate(REVIEW.lastVerified)}. Part of the same ${REVIEW.cadence} review described in <a href="/methodology">the method we publish</a>.`,
+    byline: `Figures cross-checked against Chipotle's published nutrition data — last verified ${longDate(REVIEW.lastVerified)}. Part of the same ${REVIEW.cadence} review described in <a href="/methodology/">the method we publish</a>.`,
     disclaimer: `This is general information, not a weight-loss program or medical advice. If you have a health condition that affects your dietary needs, or you're pursuing significant weight change, talk to a doctor or registered dietitian before changing your diet.`,
     title: 'Chipotle Weight Loss Guide: Ordering on Repeat',
     description:
-      'A Chipotle weight loss guide about repeat visits rather than one clever order — default builds, the three habits that undo them, and what a week looks like.',
+      'A Chipotle weight loss guide about repeat visits rather than one clever order: default builds, the three habits that undo them, and a week of ordering.',
     opening: `A single low-calorie order is easy; eating at Chipotle twice a week for a year without drifting is the actual problem, and that is what this Chipotle weight loss guide is about. The difference between a ${fmt(total(['salad-base', 'steak', 'green-salsa', 'fajita']).cal)}-calorie salad and a ${fmt(N.bowl('chicken').cal + ing('chips').cal)}-calorie bowl-and-chips is not knowledge, it is what you order on autopilot.`,
     sections: [
       {
@@ -238,11 +238,11 @@ export const GUIDES = [
       },
       {
         heading: 'Volume is the lever, not restriction',
-        body: `Fajita vegetables (${ing('fajita').cal} cal), romaine (${ing('lettuce').cal} cal) and supergreens (${ing('supergreens').cal} cal) cost almost nothing and fill the same container. A salad built with all three plus a protein eats like a full meal at under ${total(['salad-base', 'chicken', 'fajita', 'lettuce', 'green-salsa']).cal} calories. All three are included at no extra charge, which <a href="/guides/cheap-meals">the value breakdown</a> covers in full. Hunger, not willpower, is what breaks a deficit.`,
+        body: `Fajita vegetables (${ing('fajita').cal} cal), romaine (${ing('lettuce').cal} cal) and supergreens (${ing('supergreens').cal} cal) cost almost nothing and fill the same container. A salad built with all three plus a protein eats like a full meal at under ${total(['salad-base', 'chicken', 'fajita', 'lettuce', 'green-salsa']).cal} calories. All three are included at no extra charge, which <a href="/guides/cheap-meals/">the value breakdown</a> covers in full. Hunger, not willpower, is what breaks a deficit.`,
       },
       {
         heading: 'If you want the single lowest-calorie order',
-        body: `That is a different question and <a href="/diet/low-calorie">the low-calorie page</a> answers it directly, with the floor worked out. This page assumes you are coming back next week.`,
+        body: `That is a different question and <a href="/diet/low-calorie/">the low-calorie page</a> answers it directly, with the floor worked out. This page assumes you are coming back next week.`,
       },
     ],
   },
@@ -263,7 +263,7 @@ export const GUIDES = [
           `Included with an entrée — rice, beans, all four salsas, fajita vegetables, romaine and supergreens`,
           `Premium — guacamole and queso blanco, on every format`,
           `Double protein — charged at roughly a second protein portion, and the only surcharge with a strong nutritional return`,
-          `Chips and sides — a separate purchase, and the weakest value per gram of protein on the menu at ${ing('chips').p} g for ${ing('chips').cal} calories (<a href="/menu/chips">the chips breakdown</a>)`,
+          `Chips and sides — a separate purchase, and the weakest value per gram of protein on the menu at ${ing('chips').p} g for ${ing('chips').cal} calories (<a href="/menu/chips/">the chips breakdown</a>)`,
         ],
       },
       {
@@ -287,7 +287,7 @@ export const GUIDES = [
       },
       {
         heading: 'Two entrées from one order',
-        body: `A burrito or bowl with double protein and double beans divides into two meals of roughly ${Math.round(total([['chicken', 2], 'white-rice', ['black-beans', 2], 'mild-salsa'].map((x) => x)).cal / 2)} calories each, both carrying around ${Math.round(total([['chicken', 2], 'white-rice', ['black-beans', 2], 'mild-salsa']).p / 2)} g of protein. <a href="/guides/meal-prep">The meal-prep guide</a> covers what survives a night in the fridge.`,
+        body: `A burrito or bowl with double protein and double beans divides into two meals of roughly ${Math.round(total([['chicken', 2], 'white-rice', ['black-beans', 2], 'mild-salsa'].map((x) => x)).cal / 2)} calories each, both carrying around ${Math.round(total([['chicken', 2], 'white-rice', ['black-beans', 2], 'mild-salsa']).p / 2)} g of protein. <a href="/guides/meal-prep/">The meal-prep guide</a> covers what survives a night in the fridge.`,
       },
     ],
   },
@@ -323,7 +323,7 @@ export const GUIDES = [
       },
       {
         heading: 'The fair comparison',
-        body: `Like for like on calories, Chipotle returns more protein and more fiber per calorie than any of the three. Like for like on sodium, it is at or above them. Which matters depends on what you are managing — <a href="/guides/sodium">the sodium ranking</a> if it is the latter.`,
+        body: `Like for like on calories, Chipotle returns more protein and more fiber per calorie than any of the three. Like for like on sodium, it is at or above them. Which matters depends on what you are managing — <a href="/guides/sodium/">the sodium ranking</a> if it is the latter.`,
       },
     ],
   },
@@ -334,7 +334,7 @@ export const GUIDES = [
     title: 'Chipotle Meal Prep Guide: What Keeps and What Does Not',
     h1: 'Chipotle Meal Prep Guide',
     description:
-      'A practical Chipotle meal prep guide: which ingredients survive two days in the fridge, what to order on the side, and how to reheat a bowl without ruining it.',
+      'A practical Chipotle meal prep guide: which ingredients survive two days in the fridge, what to order on the side, and how to reheat a bowl properly.',
     opening: `Ordering Chipotle for meal prep works, and the failure mode is textural rather than nutritional. This Chipotle meal prep guide covers which ingredients survive two days in a fridge and which turn a good bowl into a wet one — the answer is mostly about keeping the cold, wet items away from the warm, dry ones until you eat.`,
     sections: [
       {
@@ -359,7 +359,7 @@ export const GUIDES = [
       },
       {
         heading: 'Splitting one order into two meals',
-        body: `A double-protein, double-bean bowl divides cleanly. Each half carries roughly ${Math.round(total([['chicken', 2], 'white-rice', ['black-beans', 2], 'corn-salsa'].map((x) => x)).p / 2)} g of protein and ${Math.round(total([['chicken', 2], 'white-rice', ['black-beans', 2], 'corn-salsa']).cal / 2)} calories, which is a reasonable single meal rather than a token one. <a href="/guides/cheap-meals">The value guide</a> works through which additions are included at no extra charge.`,
+        body: `A double-protein, double-bean bowl divides cleanly. Each half carries roughly ${Math.round(total([['chicken', 2], 'white-rice', ['black-beans', 2], 'corn-salsa'].map((x) => x)).p / 2)} g of protein and ${Math.round(total([['chicken', 2], 'white-rice', ['black-beans', 2], 'corn-salsa']).cal / 2)} calories, which is a reasonable single meal rather than a token one. <a href="/guides/cheap-meals/">The value guide</a> works through which additions are included at no extra charge.`,
         table: {
           rows: [
             ['Whole order', total([['chicken', 2], 'white-rice', ['black-beans', 2], 'corn-salsa'])],

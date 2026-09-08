@@ -59,7 +59,7 @@ const schema = [
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Chipotle Nutrition Calculator', item: 'https://chipotlemacros.com/' },
-      { '@type': 'ListItem', position: 2, name: 'Menu nutrition', item: 'https://chipotlemacros.com/menu' },
+      { '@type': 'ListItem', position: 2, name: 'Menu nutrition', item: 'https://chipotlemacros.com/menu/' },
     ],
   },
 ];
@@ -83,7 +83,7 @@ const schema = [
       <h2 id="table-h">Every item, one row each</h2>
       <p class="note">
         Sortable by any column. Values are per standard serving —
-        <a href="/methodology">the note on how portions are read</a> explains the portion multipliers behind
+        <a href="/methodology/">the note on how portions are read</a> explains the portion multipliers behind
         light, extra and double.
       </p>
       <div class="scroller">
@@ -118,7 +118,7 @@ const schema = [
             {rows.map((r) => (
               <tr data-cat={catKey[r.group]} data-name={r.name} data-cal={r.cal} data-p={r.p} data-na={r.na}>
                 <th scope="row">
-                  <span class="row-name">{r.page ? <a href={`/menu/${r.page}`}>{r.name}</a> : r.name}</span>
+                  <span class="row-name">{r.page ? <a href={`/menu/${r.page}/`}>{r.name}</a> : r.name}</span>
                   <span class="row-group">{r.group}</span>
                 </th>
                 <td>{r.serving}</td>
@@ -158,7 +158,7 @@ const schema = [
           <h3>{g}</h3>
           <ul class="link-list">
             {inGroup(g).map((i) => (
-              <li><a href={`/menu/${i.slug}`}>{i.name}</a></li>
+              <li><a href={`/menu/${i.slug}/`}>{i.name}</a></li>
             ))}
           </ul>
         </div>
@@ -173,7 +173,7 @@ const schema = [
       </p>
       <ul class="link-list wide">
         {DIETS.map((d) => (
-          <li><a href={`/diet/${d.slug}`}>{d.linkLabel}</a></li>
+          <li><a href={`/diet/${d.slug}/`}>{d.linkLabel}</a></li>
         ))}
       </ul>
     </section>

@@ -22,8 +22,8 @@ const schema = [
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Chipotle Nutrition Calculator', item: 'https://chipotlemacros.com/' },
-      { '@type': 'ListItem', position: 2, name: 'Menu nutrition', item: 'https://chipotlemacros.com/menu' },
-      { '@type': 'ListItem', position: 3, name: item.name, item: `https://chipotlemacros.com${path}` },
+      { '@type': 'ListItem', position: 2, name: 'Menu nutrition', item: 'https://chipotlemacros.com/menu/' },
+      { '@type': 'ListItem', position: 3, name: item.name, item: `https://chipotlemacros.com${path}/` },
     ],
   },
   {
@@ -42,7 +42,7 @@ const schema = [
   <div class="wrap page">
     <nav class="crumb" aria-label="Breadcrumb">
       <a href="/">Calculator</a> <span aria-hidden="true">›</span>
-      <a href="/menu">Menu nutrition</a> <span aria-hidden="true">›</span>
+      <a href="/menu/">Menu nutrition</a> <span aria-hidden="true">›</span>
       <span>{item.name}</span>
     </nav>
 
@@ -95,7 +95,7 @@ const schema = [
       <ul class="rel-list">
         {siblings.map((sib) => (
           <li>
-            <a href={`/menu/${sib.slug}`}>{sib.name} calories</a> — {sib.totals.cal} cal, {sib.totals.p} g protein,
+            <a href={`/menu/${sib.slug}/`}>{sib.name} calories</a> — {sib.totals.cal} cal, {sib.totals.p} g protein,
             {' '}{sib.totals.na.toLocaleString('en-US')} mg sodium
           </li>
         ))}
@@ -103,8 +103,8 @@ const schema = [
     </section>
 
     <p class="back">
-      Every figure here follows <a href="/methodology">{anchor('/methodology', pid)}</a>. Browse
-      <a href="/menu">{anchor('/menu', pid)}</a>, or
+      Every figure here follows <a href="/methodology/">{anchor('/methodology', pid)}</a>. Browse
+      <a href="/menu/">{anchor('/menu', pid)}</a>, or
       <a href="/">{anchor('/', pid)}</a>.
     </p>
   </div>

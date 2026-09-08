@@ -12,7 +12,7 @@ export const FORMAT_ITEMS = [
     keyword: 'chicken bowl calories',
     title: 'Chicken Bowl Calories at Chipotle: 655 in a Standard Build',
     description:
-      'A Chipotle chicken bowl with white rice, black beans, fresh tomato salsa and cheese is 655 calories and 50 g of protein. Full macros and the swaps that matter.',
+      'A Chipotle chicken bowl with white rice, black beans, fresh tomato salsa and cheese is 655 calories and 50 g of protein, plus the swaps that matter.',
     totals: bowl('chicken'),
     buildLabel: BUILDS.bowl.label,
     openingType: 'direct',
@@ -40,7 +40,7 @@ export const FORMAT_ITEMS = [
       },
       {
         q: 'Does a chicken bowl work for a high-protein day?',
-        a: `Yes — a chicken bowl works comfortably for a high-protein day, at ${bowl('chicken').p} g of protein for ${fmt(bowl('chicken').cal)} calories. That clears most single-meal targets without any modification. Double chicken raises it to ${N.doubleBowl('chicken').p} g, and <a href="/diet/high-protein">the high-protein ordering guide</a> works through how far the ceiling goes when double protein stacks with a second scoop of beans.`,
+        a: `Yes — a chicken bowl works comfortably for a high-protein day, at ${bowl('chicken').p} g of protein for ${fmt(bowl('chicken').cal)} calories. That clears most single-meal targets without any modification. Double chicken raises it to ${N.doubleBowl('chicken').p} g, and <a href="/diet/high-protein/">the high-protein ordering guide</a> works through how far the ceiling goes when double protein stacks with a second scoop of beans.`,
       },
     ],
   },
@@ -79,7 +79,7 @@ export const FORMAT_ITEMS = [
       },
       {
         q: 'How much sodium is in a steak bowl?',
-        a: `A steak bowl carries about ${fmt(bowl('steak').na)} mg of sodium in the standard build, of which only ${item('steak').na} mg comes from the steak. Most of the rest is the fresh tomato salsa at ${item('mild-salsa').na} mg, the rice at ${item('white-rice').na} mg and the cheese at ${item('cheese').na} mg. <a href="/guides/sodium">The ingredient-level sodium breakdown</a> ranks all of them.`,
+        a: `A steak bowl carries about ${fmt(bowl('steak').na)} mg of sodium in the standard build, of which only ${item('steak').na} mg comes from the steak. Most of the rest is the fresh tomato salsa at ${item('mild-salsa').na} mg, the rice at ${item('white-rice').na} mg and the cheese at ${item('cheese').na} mg. <a href="/guides/sodium/">The ingredient-level sodium breakdown</a> ranks all of them.`,
       },
     ],
   },
@@ -153,7 +153,7 @@ export const FORMAT_ITEMS = [
       },
       {
         q: 'Does carnitas fit a keto order?',
-        a: `Yes, carnitas fits a keto order well. It contains ${item('carnitas').c} g of carbohydrate, and its ${item('carnitas').f} g of fat suits the macro split a keto build wants. The carbohydrate in a keto order comes from the rice and beans rather than the meat, so the protein choice is rarely the binding constraint. <a href="/diet/keto">The keto guide</a> works through the full build.`,
+        a: `Yes, carnitas fits a keto order well. It contains ${item('carnitas').c} g of carbohydrate, and its ${item('carnitas').f} g of fat suits the macro split a keto build wants. The carbohydrate in a keto order comes from the rice and beans rather than the meat, so the protein choice is rarely the binding constraint. <a href="/diet/keto/">The keto guide</a> works through the full build.`,
       },
     ],
   },
@@ -164,7 +164,7 @@ export const FORMAT_ITEMS = [
     keyword: 'sofritas bowl calories',
     title: 'Sofritas Bowl Calories and Macros at Chipotle',
     description:
-      'A sofritas bowl is 625 calories. What separates sofritas from every meat option is carbohydrate — 9 g in a scoop, where chicken and steak bring almost none.',
+      'A sofritas bowl is 625 calories. What separates sofritas from the meat options is carbohydrate — 9 g a scoop, where chicken and steak bring none.',
     totals: bowl('sofritas'),
     buildLabel: BUILDS.bowl.label,
     openingType: 'direct',
@@ -184,7 +184,7 @@ export const FORMAT_ITEMS = [
     faq: [
       {
         q: 'Is sofritas vegan?',
-        a: `Yes, sofritas itself is vegan — it is braised tofu in an adobo sauce, with no animal product. Whether the finished bowl stays vegan depends on what goes on top: cheese, sour cream and queso blanco each disqualify an order, and so does the chipotle-honey vinaigrette. <a href="/diet/vegan">The vegan ordering guide</a> lists everything that passes.`,
+        a: `Yes, sofritas itself is vegan — it is braised tofu in an adobo sauce, with no animal product. Whether the finished bowl stays vegan depends on what goes on top: cheese, sour cream and queso blanco each disqualify an order, and so does the chipotle-honey vinaigrette. <a href="/diet/vegan/">The vegan ordering guide</a> lists everything that passes.`,
       },
       {
         q: 'How much protein is in sofritas?',
@@ -231,7 +231,7 @@ export const FORMAT_ITEMS = [
       },
       {
         q: 'Can I get double protein in a burrito or salad too?',
-        a: `Yes, double protein works in every format, and the arithmetic does not change. A second scoop adds ${item('chicken').cal} calories and ${item('chicken').p} g of protein to whatever the base format already contains. A double-chicken burrito therefore reaches ${fmt(N.burrito('chicken').cal + item('chicken').cal)} calories. Build either version in <a href="/">the calculator</a> to see the full totals. Asking for the tortilla on the side, listed in <a href="/guides/secret-menu">the off-menu requests</a>, keeps the choice open until you eat.`,
+        a: `Yes, double protein works in every format, and the arithmetic does not change. A second scoop adds ${item('chicken').cal} calories and ${item('chicken').p} g of protein to whatever the base format already contains. A double-chicken burrito therefore reaches ${fmt(N.burrito('chicken').cal + item('chicken').cal)} calories. Build either version in <a href="/">the calculator</a> to see the full totals. Asking for the tortilla on the side, listed in <a href="/guides/secret-menu/">the off-menu requests</a>, keeps the choice open until you eat.`,
       },
     ],
   },
@@ -266,7 +266,7 @@ export const FORMAT_ITEMS = [
       },
       {
         q: 'Is a burrito or a bowl better if I am watching carbs?',
-        a: `A bowl is the better format for watching carbs, decisively. The tortilla alone is ${TORTILLA.c} g of carbohydrate, taking a bowl at ${bowl('chicken').c} g up to ${N.burrito('chicken').c} g as a burrito. Rice is the next ${item('white-rice').c} g after that. <a href="/diet/low-carb">The low-carb guide</a> covers which of the two to drop first.`,
+        a: `A bowl is the better format for watching carbs, decisively. The tortilla alone is ${TORTILLA.c} g of carbohydrate, taking a bowl at ${bowl('chicken').c} g up to ${N.burrito('chicken').c} g as a burrito. Rice is the next ${item('white-rice').c} g after that. <a href="/diet/low-carb/">The low-carb guide</a> covers which of the two to drop first.`,
       },
     ],
   },

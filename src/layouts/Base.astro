@@ -16,7 +16,8 @@ const { title, description, path, schema = [], noindex = false } = Astro.props;
 const GSC_TOKEN = 'mpxQ6kqhNKWPWfvFLaYubeKDVErU9yttAYfJkERt4Hg';
 const GA4_ID = 'G-0L2EFKL6PD';
 const site = 'https://chipotlemacros.com';
-const canonical = site + (path === '/' ? '/' : path);
+// Cloudflare serves the trailing-slash form; the canonical must match it.
+const canonical = site + (path === '/' ? '/' : path.replace(/\/$/, '') + '/');
 ---
 
 <!doctype html>
@@ -41,7 +42,26 @@ const canonical = site + (path === '/' ? '/' : path);
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:site_name" content="ChipotleMacros" />
-    <meta name="twitter:card" content="summary" />
+    <meta property="og:locale" content="en_US" />
+    <!-- Typographic brand card, generated once by scripts/make-og-card.mjs and
+         committed. Absolute URL: relative og:image values are not resolved by
+         most crawlers. -->
+    <meta property="og:image" content={site + '/og-card.png'} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/png" />
+    <meta
+      property="og:image:alt"
+      content="ChipotleMacros — Chipotle Nutrition Calculator, showing the calories, protein, carbs, fat, fiber and sodium it tracks"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={site + '/og-card.png'} />
+    <meta
+      name="twitter:image:alt"
+      content="ChipotleMacros — Chipotle Nutrition Calculator, showing the calories, protein, carbs, fat, fiber and sodium it tracks"
+    />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     {schema.map((block) => (
       <script type="application/ld+json" set:html={JSON.stringify(block)} />
@@ -50,7 +70,7 @@ const canonical = site + (path === '/' ? '/' : path);
   </head>
   <body>
     <Icons />
-    <a class="skip" href="#calculator">Skip to the calculator</a>
+    <a class="skip" href="#main">Skip to content</a>
     <header class="topbar">
       <div class="wrap topbar-inner">
         <a class="brand" href="/">
@@ -63,9 +83,9 @@ const canonical = site + (path === '/' ? '/' : path);
             <span id="head-chip-cal">0</span> cal
           </p>
           <nav aria-label="Primary">
-            <a href="/menu"><svg class="icon" aria-hidden="true"><use href="#i-grid" /></svg><span class="nav-label">Menu nutrition</span></a>
-            <a href="/guides/macro-targeting"><svg class="icon" aria-hidden="true"><use href="#i-gauge" /></svg><span class="nav-label">Macro guide</span></a>
-            <a href="/methodology"><svg class="icon" aria-hidden="true"><use href="#i-shield" /></svg><span class="nav-label">Methodology</span></a>
+            <a href="/menu/"><svg class="icon" aria-hidden="true"><use href="#i-grid" /></svg><span class="nav-label">Menu nutrition</span></a>
+            <a href="/guides/macro-targeting/"><svg class="icon" aria-hidden="true"><use href="#i-gauge" /></svg><span class="nav-label">Macro guide</span></a>
+            <a href="/methodology/"><svg class="icon" aria-hidden="true"><use href="#i-shield" /></svg><span class="nav-label">Methodology</span></a>
           </nav>
         </div>
       </div>
@@ -82,11 +102,11 @@ const canonical = site + (path === '/' ? '/' : path);
           ChipotleMacros
         </p>
         <p class="foot-links">
-          <a href="/menu">Full menu nutrition index</a>
-          <a href="/methodology">How we calculate</a>
-          <a href="/sources">Data sources</a>
-          <a href="/guides/sodium">Cutting sodium at Chipotle</a>
-          <a href="/privacy-policy" id="cookie-settings">Cookie settings</a>
+          <a href="/menu/">Full menu nutrition index</a>
+          <a href="/methodology/">How we calculate</a>
+          <a href="/sources/">Data sources</a>
+          <a href="/guides/sodium/">Cutting sodium at Chipotle</a>
+          <a href="/privacy-policy/" id="cookie-settings">Cookie settings</a>
         </p>
         <p class="disclaimer">
           ChipotleMacros is an independent project and is not affiliated with, endorsed by, or
