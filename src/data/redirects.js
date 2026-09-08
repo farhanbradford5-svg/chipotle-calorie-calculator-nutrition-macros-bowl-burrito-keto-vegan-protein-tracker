@@ -1,0 +1,77 @@
+// 63 rules: previous URL structure -> current. Single source for both
+// astro.config.mjs `redirects` and the host-level `_redirects` file, so the
+// two can never disagree.
+export const REDIRECTS = {
+  // --- Item pages (26) ---
+  '/item/chicken-bowl-calories': '/menu/chicken-bowl',
+  '/item/steak-bowl-calories': '/menu/steak-bowl',
+  '/item/barbacoa-bowl-calories': '/menu/barbacoa-bowl',
+  '/item/carnitas-bowl-calories': '/menu/carnitas-bowl',
+  '/item/sofritas-bowl-calories': '/menu/sofritas-bowl',
+  '/item/double-chicken-bowl-calories': '/menu/double-chicken-bowl',
+  '/item/chicken-burrito-calories': '/menu/chicken-burrito',
+  '/item/steak-burrito-calories': '/menu/steak-burrito',
+  '/item/chicken-salad-calories': '/menu/chicken-salad',
+  '/item/chicken-tacos-calories': '/menu/chicken-tacos',
+  '/item/chicken-quesadilla-calories': '/menu/chicken-quesadilla',
+  '/item/chipotle-white-rice-nutrition': '/menu/white-rice',
+  '/item/chipotle-brown-rice-nutrition': '/menu/brown-rice',
+  '/item/chipotle-black-beans-nutrition': '/menu/black-beans',
+  '/item/chipotle-pinto-beans-nutrition': '/menu/pinto-beans',
+  '/item/chipotle-guacamole-nutrition': '/menu/guacamole',
+  '/item/chipotle-queso-nutrition': '/menu/queso',
+  '/item/chipotle-chips-nutrition': '/menu/chips',
+  '/item/chipotle-sour-cream-nutrition': '/menu/sour-cream',
+  '/item/chipotle-cheese-nutrition': '/menu/cheese',
+  '/item/chipotle-lettuce-nutrition': '/menu/lettuce',
+  '/item/chipotle-fajita-veggies-nutrition': '/menu/fajita-veggies',
+  '/item/chipotle-salsa-verde-nutrition': '/menu/salsa-verde',
+  '/item/chipotle-fresh-tomato-salsa-nutrition': '/menu/fresh-tomato-salsa',
+  '/item/chipotle-roasted-chili-corn-salsa-nutrition': '/menu/roasted-chili-corn-salsa',
+  '/item/chipotle-hot-salsa-nutrition': '/menu/hot-salsa',
+
+  // --- Diet pages (11) ---
+  '/diet/keto-chipotle': '/diet/keto',
+  '/diet/vegan-chipotle': '/diet/vegan',
+  '/diet/vegetarian-chipotle': '/diet/vegetarian',
+  '/diet/high-protein-chipotle': '/diet/high-protein',
+  '/diet/low-calorie-chipotle': '/diet/low-calorie',
+  '/diet/low-carb-chipotle': '/diet/low-carb',
+  '/diet/low-sodium-chipotle': '/diet/low-sodium',
+  '/diet/whole30-chipotle': '/diet/whole30',
+  '/diet/gluten-free-chipotle': '/diet/gluten-free',
+  '/diet/dairy-free-chipotle': '/diet/dairy-free',
+  '/diet/paleo-chipotle': '/diet/paleo',
+
+  // --- Guide pages (10) ---
+  '/guides/chipotle-sodium-guide': '/guides/sodium',
+  '/guides/chipotle-allergens-guide': '/guides/allergens',
+  '/guides/chipotle-muscle-gain-guide': '/guides/muscle-gain',
+  '/guides/chipotle-fiber-guide': '/guides/fiber',
+  '/guides/chipotle-cheap-meals': '/guides/cheap-meals',
+  '/guides/chipotle-macros-guide': '/guides/macro-targeting',
+  '/guides/chipotle-weight-loss-guide': '/guides/weight-loss',
+  '/guides/chipotle-vs-other-fast-food': '/guides/vs-fast-food',
+  '/guides/chipotle-meal-prep': '/guides/meal-prep',
+  '/guides/chipotle-secret-menu': '/guides/secret-menu',
+
+  // --- Merged / dropped (16) ---
+  '/faq': '/',
+  '/menu/burrito': '/',
+  '/menu/burrito-bowl': '/',
+  '/menu/salad': '/',
+  '/menu/tacos': '/',
+  '/menu/quesadilla': '/',
+  '/menu/chips-sides': '/menu',
+  '/menu/drinks': '/menu',
+  '/menu/kids-meal': '/menu',
+  '/editorial-policy': '/sources',
+  '/changelog': '/methodology',
+  '/cookie-policy': '/privacy-policy',
+  '/accessibility': '/about',
+  '/dmca': '/terms-of-service',
+  '/disclaimer': '/methodology',
+  '/sitemap': '/',
+};
+
+export const REDIRECT_COUNT = Object.keys(REDIRECTS).length;

@@ -1,0 +1,587 @@
+---
+import { CATEGORIES, FORMATS, PORTIONS, PRESETS, METRICS, HEAT, presetTotals } from '../data/nutrition.js';
+
+const withTotals = PRESETS.map((p) => ({ ...p, totals: presetTotals(p) }));
+
+// Badges are derived from the computed totals, never hand-written, so a card
+// can only ever claim something the numbers actually support.
+const pick = (key, cmp) =>
+  withTotals.reduce((a, b) => (cmp(b.totals[key], a.totals[key]) ? b : a)).id;
+const badges = {
+  [pick('p', (x, y) => x > y)]: { label: 'Most protein', tone: 'protein' },
+  [pick('cal', (x, y) => x < y)]: { label: 'Fewest calories', tone: 'light' },
+  [pick('fib', (x, y) => x > y)]: { label: 'Most fiber', tone: 'fiber' },
+  [pick('na', (x, y) => x < y)]: { label: 'Least sodium', tone: 'sodium' },
+};
+const presets = withTotals.map((p) => ({ ...p, badge: badges[p.id] || null }));
+
+// Sodium is this site's sharpest signal, so flag the genuine outliers on the
+// line rather than colouring every number.
+const SODIUM_HIGH = 500;
+
+const catIcon = {
+  protein: 'i-protein', rice: 'i-rice', beans: 'i-beans',
+  salsa: 'i-salsa', toppings: 'i-toppings', sides: 'i-sides',
+};
+const fmtIcon = {
+  bowl: 'i-bowl', burrito: 'i-burrito', salad: 'i-salad',
+  tacos: 'i-tacos', quesadilla: 'i-quesadilla', kids: 'i-kids',
+};
+---
+
+<section id="calculator" class="calc" aria-label="Chipotle meal builder">
+  <div class="wrap">
+    <div class="calc-head">
+      <h1>Chipotle Nutrition Calculator</h1>
+      <p class="deck">
+        The free Chipotle nutrition calculator that adds up calories, protein, carbs, fat, fiber and
+        sodium for any bowl, burrito, salad, taco or quesadilla as you build it.
+      </p>
+    </div>
+
+    <div class="calc-grid">
+      <div class="builder">
+        <fieldset class="formats" data-cat="format">
+          <legend>Meal format</legend>
+          <div class="format-row" role="radiogroup" aria-label="Meal format">
+            {FORMATS.map((f, i) => (
+              <button
+                type="button"
+                class="fmt"
+                role="radio"
+                data-format={f.id}
+                aria-checked={i === 0 ? 'true' : 'false'}
+                tabindex={i === 0 ? 0 : -1}
+              >
+                <span class="fmt-name">
+                  <svg class="icon" aria-hidden="true"><use href={`#${fmtIcon[f.id]}`} /></svg>
+                  {f.label}
+                </span>
+                <span class="fmt-sub">{f.baseLabel}</span>
+              </button>
+            ))}
+          </div>
+          <p class="cat-note" id="format-note">{FORMATS[0].blurb}</p>
+        </fieldset>
+
+        <fieldset class="presets">
+          <legend>Start from a lifestyle bowl</legend>
+          <p class="cat-note">
+            Chipotle&rsquo;s own lifestyle bowl builds, with the totals they come to. Load one, then
+            change anything you like.
+          </p>
+          <div class="preset-row">
+            {presets.map((p) => (
+              <button type="button" class="preset" data-preset={p.id} title={p.desc}>
+                <span class="preset-name">{p.name}</span>
+                <span class="preset-top">
+                  <span class="preset-nums">{p.totals.cal} cal &middot; {p.totals.p} g protein</span>
+                  {p.badge && <span class={`badge badge-${p.badge.tone}`}>{p.badge.label}</span>}
+                </span>
+                <span class="preset-desc">{p.desc}</span>
+              </button>
+            ))}
+          </div>
+        </fieldset>
+
+        {CATEGORIES.map((cat) => (
+          <fieldset class="cat" data-cat={cat.id} data-mode={cat.mode} data-layout={cat.layout}>
+            <legend>
+              <svg class="icon cat-icon" aria-hidden="true"><use href={`#${catIcon[cat.id]}`} /></svg>
+              {cat.label}
+            </legend>
+            <p class="cat-note">{cat.note}</p>
+            <div class="items" role={cat.mode === 'single' ? 'radiogroup' : 'group'} aria-label={cat.label}>
+              {cat.items.map((it, i) => (
+                <div class="item" data-item={it.id}>
+                  <button
+                    type="button"
+                    class="pick"
+                    role={cat.mode === 'single' ? 'radio' : 'checkbox'}
+                    aria-checked="false"
+                    data-id={it.id}
+                    tabindex={cat.mode === 'single' && i !== 0 ? -1 : 0}
+                  >
+                    <span class="pick-name">
+                      {it.name}
+                      {it.heat && (
+                        <span class="heat" data-heat={it.heat}>
+                          <span class="heat-dots" aria-hidden="true">
+                            {[1, 2, 3].map((n) => (
+                              <span class={n <= it.heat ? 'dot on' : 'dot'} />
+                            ))}
+                          </span>
+                          <span class="heat-label">{HEAT[it.heat]}</span>
+                        </span>
+                      )}
+                    </span>
+                    {it.cal > 0 ? (
+                      <span class="pick-meta">
+                        <span class="stat">
+                          <svg class="icon" aria-hidden="true"><use href="#i-cal" /></svg>{it.cal} cal
+                        </span>
+                        <span class="stat">
+                          <svg class="icon" aria-hidden="true"><use href="#i-p" /></svg>{it.p} g protein
+                        </span>
+                        <span class={it.na >= SODIUM_HIGH ? 'stat stat-high' : 'stat'}>
+                          <svg class="icon" aria-hidden="true"><use href="#i-na" /></svg>{it.na} mg sodium
+                        </span>
+                        <span class="stat stat-serving">{it.serving}</span>
+                      </span>
+                    ) : (
+                      <span class="pick-meta">
+                        <span class="stat stat-serving">Adds nothing to your totals</span>
+                      </span>
+                    )}
+                  </button>
+                  {it.cal > 0 && (
+                    <div class="portions" role="radiogroup" aria-label={`${it.name} portion`} hidden>
+                      {PORTIONS.map((p) => (
+                        <button
+                          type="button"
+                          class="portion"
+                          data-portion={p.id}
+                          aria-pressed={p.id === 'normal' ? 'true' : 'false'}
+                        >{p.label}</button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </fieldset>
+        ))}
+      </div>
+
+      <aside class="results" aria-labelledby="totals-heading">
+        <div class="results-inner">
+          <div class="results-top">
+            <h2 id="totals-heading">Your order</h2>
+            <button type="button" id="reset" class="ghost">Reset</button>
+          </div>
+
+          <div class="totals" aria-live="polite" aria-atomic="true">
+            <p class="cal-big">
+              <span id="t-cal" class="cal-num">0</span>
+              <span class="cal-unit">calories</span>
+            </p>
+            <p class="cal-context" id="cal-context">Pick a protein and a base to start.</p>
+
+            <div class="macro-split">
+              <div class="split-bar" aria-hidden="true">
+                <span class="seg seg-p" id="seg-p" style="width:0%"></span>
+                <span class="seg seg-c" id="seg-c" style="width:0%"></span>
+                <span class="seg seg-f" id="seg-f" style="width:0%"></span>
+              </div>
+              <p class="split-key">
+                <span class="key key-p">Protein <b id="pct-p">0</b>%</span>
+                <span class="key key-c">Carbs <b id="pct-c">0</b>%</span>
+                <span class="key key-f">Fat <b id="pct-f">0</b>%</span>
+              </p>
+            </div>
+
+            <dl class="metric-grid">
+              {METRICS.filter((m) => m.key !== 'cal').map((m) => (
+                <div class="metric">
+                  <dt>
+                    <svg class="icon" aria-hidden="true"><use href={`#i-${m.key}`} /></svg>
+                    {m.label}
+                  </dt>
+                  <dd><span id={`t-${m.key}`}>0</span>{m.unit}</dd>
+                </div>
+              ))}
+            </dl>
+
+            <p class="dv-line">
+              Sodium is <strong><span id="t-na-dv">0</span>%</strong> of the 2,300 mg daily limit ·
+              fiber is <strong><span id="t-fib-dv">0</span>%</strong> of a 28 g target
+            </p>
+            <div class="dv-bars" aria-hidden="true">
+              <span class="dv-track"><span class="dv-fill dv-na" id="dv-bar-na" style="width:0%"></span></span>
+              <span class="dv-track"><span class="dv-fill dv-fib" id="dv-bar-fib" style="width:0%"></span></span>
+            </div>
+
+            <div class="build">
+              <h3>What&rsquo;s in it</h3>
+              <ul id="build-list" class="build-list">
+                <li class="build-empty">Nothing selected yet.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="results-actions">
+            <button type="button" id="copy-results" class="primary">
+              <svg class="icon" aria-hidden="true"><use href="#i-copy" /></svg>Copy results
+            </button>
+            <button type="button" id="share-meal" class="secondary">
+              <svg class="icon" aria-hidden="true"><use href="#i-share" /></svg>Share this meal
+            </button>
+          </div>
+          <p class="action-status" id="action-status" role="status"></p>
+        </div>
+      </aside>
+    </div>
+
+    <div class="compare" aria-label="Common Chipotle nutrition trade-offs">
+      <h2 class="compare-h">The five swaps that move the number most</h2>
+      <ul class="compare-grid">
+        <li data-dir="up">
+          <span class="cmp-label">Bowl &rarr; burrito</span>
+          <span class="cmp-delta"><svg class="icon" aria-hidden="true"><use href="#i-up" /></svg>+320 cal</span>
+          <span class="cmp-note">The 13-inch flour tortilla also brings 50 g of carbs and 600 mg of sodium.</span>
+        </li>
+        <li data-dir="up">
+          <span class="cmp-label">Normal &rarr; extra rice</span>
+          <span class="cmp-delta"><svg class="icon" aria-hidden="true"><use href="#i-up" /></svg>+105 cal</span>
+          <span class="cmp-note">A half-scoop more white rice, plus about 20 g of carbs.</span>
+        </li>
+        <li data-dir="up">
+          <span class="cmp-label">Adding a side of chips</span>
+          <span class="cmp-delta"><svg class="icon" aria-hidden="true"><use href="#i-up" /></svg>+540 cal</span>
+          <span class="cmp-note">25 g of fat. With guacamole the side reaches roughly 1,000 calories.</span>
+        </li>
+        <li data-dir="flat">
+          <span class="cmp-label">White &rarr; brown rice</span>
+          <span class="cmp-delta"><svg class="icon" aria-hidden="true"><use href="#i-flat" /></svg>0 cal</span>
+          <span class="cmp-note">Same calories. You gain a gram of fiber and cut 160 mg of sodium.</span>
+        </li>
+        <li data-dir="flat">
+          <span class="cmp-label">Chicken vs. steak vs. barbacoa</span>
+          <span class="cmp-delta"><svg class="icon" aria-hidden="true"><use href="#i-flat" /></svg>0.18 g/cal</span>
+          <span class="cmp-note">Chicken gives 32 g protein per 180 cal, beating steak (21/150) and barbacoa (24/170).</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="mobile-bar" id="mobile-bar" aria-hidden="true">
+    <div class="mb-cal"><strong id="m-cal">0</strong> cal</div>
+    <div class="mb-macros">
+      <span><span id="m-p">0</span>g P</span>
+      <span><span id="m-c">0</span>g C</span>
+      <span><span id="m-f">0</span>g F</span>
+      <span><span id="m-na">0</span>mg Na</span>
+    </div>
+    <a class="mb-jump" href="#totals-heading">Details</a>
+  </div>
+</section>
+
+<style>
+  .calc {
+    padding: 1.1rem 0 1.5rem;
+    background: linear-gradient(180deg, #f6f1e9 0%, var(--bg) 62%);
+    border-bottom: 1px solid var(--line);
+  }
+  .calc-head { margin-bottom: 1rem; max-width: 68ch; }
+  .calc-head h1 {
+    font-size: clamp(1.55rem, 1.15rem + 1.7vw, 2.3rem);
+    margin-bottom: 0.35rem;
+  }
+  .deck { color: var(--ink-2); margin: 0; font-size: 0.98rem; }
+
+  .calc-grid { display: grid; grid-template-columns: minmax(0, 1fr) 330px; gap: 1.25rem; align-items: start; }
+  @media (max-width: 900px) { .calc-grid { grid-template-columns: 1fr; } }
+
+  .builder { display: grid; gap: 0.85rem; min-width: 0; }
+  fieldset {
+    border: 1px solid var(--line); border-radius: var(--radius); background: var(--panel);
+    margin: 0; padding: 0.85rem 0.95rem 1rem; box-shadow: var(--shadow);
+    /* fieldsets default to min-content sizing, which lets the scrollers below
+       stretch the page instead of scrolling inside themselves */
+    min-width: 0;
+  }
+  legend {
+    display: flex; align-items: center; gap: 0.4rem;
+    font-weight: 700; font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.09em;
+    color: var(--ink-3); padding: 0 0.35rem; margin-left: -0.35rem;
+  }
+  .cat-icon { font-size: 1.15rem; }
+
+  /* Each ingredient category gets its own accent: a top bar on the section,
+     a coloured legend + icon, and a left rule on its cards. */
+  .cat { position: relative; overflow: hidden; }
+  .cat::before {
+    content: ''; position: absolute; inset: 0 0 auto 0; height: 3px;
+    background: var(--cat, var(--line-2));
+  }
+  .cat > legend { color: var(--cat-ink, var(--ink-3)); }
+  .cat[data-cat='protein']  { --cat: var(--cat-protein);  --cat-ink: var(--cat-protein-ink); }
+  .cat[data-cat='rice']     { --cat: var(--cat-rice);     --cat-ink: var(--cat-rice-ink); }
+  .cat[data-cat='beans']    { --cat: var(--cat-beans);    --cat-ink: var(--cat-beans-ink); }
+  .cat[data-cat='salsa']    { --cat: var(--cat-salsa);    --cat-ink: var(--cat-salsa-ink); }
+  .cat[data-cat='toppings'] { --cat: var(--cat-toppings); --cat-ink: var(--cat-toppings-ink); }
+  .cat[data-cat='sides']    { --cat: var(--cat-sides);    --cat-ink: var(--cat-sides-ink); }
+  .cat .pick { border-left: 3px solid var(--cat, var(--line-2)); }
+
+  /*
+    A4 — adjacent categories must not present identically. Three variants
+    alternate down the page (cards → rows → chips → cards → rows → chips).
+    Only layout changes: the markup, the data shown and the ARIA roles are
+    the same in every variant.
+  */
+  /* rows: one compact line per ingredient, numbers aligned in a column */
+  .cat[data-layout='rows'] .items { grid-template-columns: 1fr; gap: 0; }
+  .cat[data-layout='rows'] .item { border-bottom: 1px solid var(--line); }
+  .cat[data-layout='rows'] .item:last-child { border-bottom: 0; }
+  .cat[data-layout='rows'] .pick {
+    display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center;
+    gap: 0.5rem 1rem; min-height: 0; padding: 0.45rem 0.6rem;
+    border: 0; border-left: 3px solid transparent; border-radius: 0; box-shadow: none;
+  }
+  .cat[data-layout='rows'] .pick[aria-checked='true'] {
+    border-left-color: var(--cat); box-shadow: none; background: var(--accent-soft);
+  }
+  .cat[data-layout='rows'] .pick-meta { justify-content: flex-end; text-align: right; }
+  .cat[data-layout='rows'] .portions { margin: 0 0 0.4rem 0.6rem; max-width: 320px; }
+  @media (max-width: 620px) {
+    .cat[data-layout='rows'] .pick { grid-template-columns: 1fr; gap: 0.15rem; }
+    .cat[data-layout='rows'] .pick-meta { justify-content: flex-start; text-align: left; }
+  }
+
+  /* chips: dense auto-width buttons that wrap, stats inline */
+  .cat[data-layout='chips'] .items { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .cat[data-layout='chips'] .item { flex: 0 1 auto; max-width: 100%; }
+  .cat[data-layout='chips'] .pick {
+    /* 44px keeps the chip variant above the tap-target floor on touch */
+    min-height: 44px; padding: 0.45rem 0.8rem; border-radius: 999px;
+    border-left-width: 1px; display: flex; flex-wrap: wrap; align-items: baseline;
+    gap: 0.1rem 0.5rem;
+  }
+  .cat[data-layout='chips'] .pick[aria-checked='true'] { border-color: var(--cat); }
+  .cat[data-layout='chips'] .pick-name { font-size: 0.86rem; }
+  .cat[data-layout='chips'] .pick-meta { gap: 0.1rem 0.45rem; font-size: 0.71rem; }
+  .cat[data-layout='chips'] .portions { margin-top: 0.3rem; }
+  .cat-note { font-size: 0.83rem; color: var(--ink-3); margin: 0.15rem 0 0.7rem; max-width: 72ch; }
+
+  .format-row { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  @media (max-width: 620px) {
+    .format-row { flex-wrap: nowrap; overflow-x: auto; scroll-snap-type: x proximity; padding-bottom: 0.3rem; }
+    .fmt { flex: 0 0 auto !important; scroll-snap-align: start; }
+  }
+  .fmt {
+    flex: 1 1 120px; display: grid; gap: 1px; text-align: left; cursor: pointer;
+    padding: 0.5rem 0.65rem; border: 1px solid var(--line-2); border-radius: 9px;
+    background: #fff; font: inherit; color: var(--ink); transition: background 0.12s, border-color 0.12s;
+  }
+  .fmt:hover { border-color: var(--ink-3); background: #fdfbf8; box-shadow: inset 0 0 0 1px var(--line-2); }
+  .fmt[aria-checked='true'] { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .fmt-name { display: flex; align-items: center; gap: 0.35rem; font-weight: 650; font-size: 0.92rem; }
+  .fmt-name .icon { font-size: 1.1rem; color: var(--ink-3); }
+  .fmt:hover .fmt-name .icon { color: var(--accent); }
+  .fmt[aria-checked='true'] .fmt-name .icon { color: #fff; }
+  .fmt-sub { font-size: 0.72rem; opacity: 0.72; }
+
+  .preset-row {
+    display: flex; gap: 0.4rem; overflow-x: auto; scroll-snap-type: x proximity;
+    padding-bottom: 0.3rem; -webkit-overflow-scrolling: touch;
+  }
+  .preset {
+    flex: 0 0 244px; scroll-snap-align: start;
+    text-align: left; cursor: pointer; padding: 0.45rem 0.6rem; border: 1px dashed var(--line-2);
+    border-radius: 9px; background: #fffdfa; font: inherit; color: var(--ink); display: grid; gap: 1px;
+  }
+  .preset:hover { border-color: var(--accent); border-style: solid; background: var(--accent-soft); }
+  .preset-top { display: flex; align-items: center; gap: 0.4rem; justify-content: space-between; }
+  .preset-name { font-weight: 650; font-size: 0.87rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .preset-nums { font-size: 0.78rem; font-weight: 650; color: var(--accent-ink); font-variant-numeric: tabular-nums; }
+  /* Badges are computed from the totals, so each one names a real winner. */
+  .badge {
+    font-size: 0.63rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;
+    padding: 0.12rem 0.4rem; border-radius: 999px; white-space: nowrap; border: 1px solid;
+  }
+  .badge-protein { color: var(--cat-protein-ink); background: #fbeee6; border-color: #f0d7c6; }
+  .badge-light   { color: var(--down);            background: var(--down-soft); border-color: #cfe3d1; }
+  .badge-fiber   { color: var(--cat-beans-ink);   background: #eef1e4; border-color: #dbe1c8; }
+  .badge-sodium  { color: var(--macro-p);         background: #e8f1f5; border-color: #cfe2ea; }
+
+  /* scroll affordance: the row fades at the right edge while more cards remain */
+  .presets .preset-row {
+    -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 34px), transparent);
+    mask-image: linear-gradient(to right, #000 calc(100% - 34px), transparent);
+  }
+  .preset-desc {
+    font-size: 0.72rem; color: var(--ink-3); line-height: 1.3;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+
+  .items { display: grid; grid-template-columns: repeat(auto-fill, minmax(232px, 1fr)); gap: 0.4rem; }
+  .item { display: grid; gap: 0.3rem; }
+  .pick {
+    width: 100%; text-align: left; cursor: pointer; font: inherit; color: var(--ink);
+    background: #fff; border: 1px solid var(--line-2); border-radius: 9px;
+    padding: 0.5rem 0.65rem; display: grid; gap: 2px; min-height: 52px;
+    transition: border-color 0.12s, background 0.12s;
+  }
+  .pick:hover { border-color: var(--ink-3); }
+  .pick[aria-checked='true'] { border-color: var(--accent); background: var(--accent-soft); box-shadow: inset 0 0 0 1px var(--accent); }
+  .pick-name { display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap; font-weight: 620; font-size: 0.9rem; }
+  .pick-meta {
+    display: flex; flex-wrap: wrap; gap: 0.15rem 0.55rem;
+    font-size: 0.73rem; color: var(--ink-3); line-height: 1.35;
+    font-variant-numeric: tabular-nums;
+  }
+  .stat { display: inline-flex; align-items: center; gap: 0.2rem; white-space: nowrap; }
+  .stat .icon { font-size: 0.92rem; opacity: 0.75; }
+  .stat-serving { color: var(--ink-3); opacity: 0.8; }
+  /* genuine sodium outliers only — 500 mg and up in a single scoop */
+  .stat-high { color: var(--up); font-weight: 650; }
+  .stat-high .icon { opacity: 1; }
+  .pick[aria-checked='true'] .pick-meta { color: var(--accent-ink); }
+
+  /* Chipotle's published heat rating: dots plus the word, never colour alone */
+  .heat { display: inline-flex; align-items: center; gap: 0.25rem; }
+  .heat-dots { display: inline-flex; gap: 2px; }
+  .heat-dots .dot {
+    width: 5px; height: 5px; border-radius: 50%;
+    border: 1px solid var(--cat-salsa); background: transparent;
+  }
+  .heat-dots .dot.on { background: var(--cat-salsa); }
+  .heat-label {
+    font-size: 0.64rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.05em; color: var(--cat-salsa-ink);
+  }
+
+  .portions { display: flex; gap: 0; border: 1px solid var(--line-2); border-radius: 8px; overflow: hidden; }
+  /* display:flex would otherwise beat the [hidden] attribute's display:none */
+  .portions[hidden] { display: none; }
+  .portion {
+    flex: 1; cursor: pointer; font: inherit; font-size: 0.75rem; padding: 0.3rem 0.2rem;
+    background: #fff; border: 0; border-right: 1px solid var(--line); color: var(--ink-2);
+  }
+  .portion:last-child { border-right: 0; }
+  .portion[aria-pressed='true'] { background: var(--ink); color: #fff; font-weight: 650; }
+
+  .results { position: sticky; top: 64px; }
+  @media (max-width: 900px) { .results { position: static; } }
+  .results-inner {
+    border: 1px solid var(--line); border-radius: var(--radius); background: var(--panel);
+    box-shadow: var(--shadow); padding: 0.9rem 1rem 1rem;
+  }
+  .results-top { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; }
+  .results-top h2 { font-size: 1.05rem; }
+  .ghost {
+    background: none; border: 0; font: inherit; font-size: 0.8rem; color: var(--ink-3);
+    cursor: pointer; text-decoration: underline; padding: 0;
+  }
+  .ghost:hover { color: var(--accent); }
+
+  .cal-big { display: flex; align-items: baseline; gap: 0.4rem; margin: 0.5rem 0 0.1rem; }
+  /* the single most important live number on the page */
+  .cal-num {
+    font-size: 3.6rem; font-weight: 800; letter-spacing: -0.045em; line-height: 0.92;
+    font-variant-numeric: tabular-nums; color: var(--accent-ink);
+  }
+  .cal-unit { color: var(--ink-3); font-size: 0.9rem; font-weight: 600; }
+  .cal-context { font-size: 0.79rem; color: var(--ink-3); margin: 0 0 0.75rem; min-height: 2.4em; }
+
+  .metric-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; margin: 0; background: var(--line); border: 1px solid var(--line); border-radius: 9px; overflow: hidden; }
+  .metric { background: #fff; padding: 0.4rem 0.55rem; }
+  .metric:last-child { grid-column: 1 / -1; }
+  .metric dt {
+    display: flex; align-items: center; gap: 0.25rem;
+    font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-3);
+  }
+  .metric dt .icon { font-size: 0.92rem; }
+  .metric dd { margin: 0; font-weight: 680; font-size: 1.02rem; font-variant-numeric: tabular-nums; }
+
+  /* macro mix as a share of this meal's calories */
+  .macro-split { margin: 0 0 0.85rem; }
+  .split-bar {
+    display: flex; height: 9px; border-radius: 999px; overflow: hidden;
+    background: var(--line); border: 1px solid var(--line);
+  }
+  .seg { display: block; height: 100%; transition: width 0.18s ease-out; }
+  .seg-p { background: var(--macro-p); }
+  .seg-c { background: var(--macro-c); }
+  .seg-f { background: var(--macro-f); }
+  .split-key {
+    display: flex; flex-wrap: wrap; gap: 0.15rem 0.7rem;
+    margin: 0.35rem 0 0; font-size: 0.72rem; color: var(--ink-2);
+    font-variant-numeric: tabular-nums;
+  }
+  .key { display: inline-flex; align-items: center; gap: 0.28rem; }
+  .key::before { content: ''; width: 8px; height: 8px; border-radius: 2px; }
+  .key-p::before { background: var(--macro-p); }
+  .key-c::before { background: var(--macro-c); }
+  .key-f::before { background: var(--macro-f); }
+  .key b { font-weight: 700; }
+
+  .dv-line { font-size: 0.76rem; color: var(--ink-3); margin: 0.6rem 0 0.3rem; line-height: 1.45; }
+  .dv-bars { display: grid; gap: 4px; margin-bottom: 0.8rem; }
+  .dv-track {
+    display: block; height: 5px; border-radius: 999px;
+    background: var(--line); overflow: hidden;
+  }
+  .dv-fill { display: block; height: 100%; width: 0; transition: width 0.18s ease-out; }
+  .dv-na { background: var(--up); }
+  .dv-fib { background: var(--down); }
+  .build h3 { font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-3); margin-bottom: 0.35rem; }
+  .build-list { list-style: none; margin: 0; padding: 0; font-size: 0.83rem; max-height: 210px; overflow-y: auto; }
+  /* :global — these rows are re-rendered by script, so they carry no scope id */
+  .build-list :global(li) {
+    display: flex; justify-content: space-between; gap: 0.75rem;
+    padding: 0.22rem 0; border-bottom: 1px dotted var(--line);
+  }
+  .build-list :global(li:last-child) { border-bottom: 0; }
+  .build-list :global(.bl-cal) { color: var(--ink-3); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .build-list :global(.build-empty) { color: var(--ink-3); }
+  .build-list :global(em) { font-style: normal; color: var(--accent-ink); font-weight: 600; }
+
+  .results-actions { display: flex; gap: 0.4rem; margin-top: 0.9rem; }
+  .primary, .secondary {
+    flex: 1; cursor: pointer; font: inherit; font-size: 0.85rem; font-weight: 620;
+    padding: 0.55rem 0.5rem; border-radius: 9px; border: 1px solid var(--accent);
+    display: inline-flex; align-items: center; justify-content: center; gap: 0.35rem;
+  }
+  .primary .icon, .secondary .icon { font-size: 1rem; }
+  .primary { background: var(--accent); color: #fff; }
+  .primary:hover { background: var(--accent-ink); }
+  .secondary { background: #fff; color: var(--accent-ink); }
+  .secondary:hover { background: var(--accent-soft); }
+  .action-status { font-size: 0.78rem; color: var(--green); margin: 0.4rem 0 0; min-height: 1.2em; }
+
+  /* key-takeaways module: tinted so it reads apart from the ingredient grids */
+  .compare {
+    margin-top: 1.25rem; background: #f2ece2; border: 1px solid var(--line-2);
+    border-radius: var(--radius); padding: 0.9rem 1rem 1rem;
+  }
+  .compare-h { font-size: 1.05rem; margin-bottom: 0.6rem; }
+  .compare-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.5rem; }
+  .compare-grid li {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 10px;
+    padding: 0.6rem 0.7rem; display: grid; gap: 2px;
+    border-top: 3px solid var(--dir, var(--line-2));
+  }
+  .compare-grid li[data-dir='up'] { --dir: var(--up); }
+  .compare-grid li[data-dir='flat'] { --dir: var(--flat); }
+  .cmp-label { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-3); }
+  .cmp-delta {
+    display: flex; align-items: center; gap: 0.3rem;
+    font-size: 1.25rem; font-weight: 720; letter-spacing: -0.02em;
+    color: var(--dir, var(--accent-ink)); font-variant-numeric: tabular-nums;
+  }
+  .cmp-delta .icon { font-size: 1rem; }
+  .cmp-note { font-size: 0.78rem; color: var(--ink-2); line-height: 1.4; }
+
+  .mobile-bar { display: none; }
+  @media (max-width: 900px) {
+    .mobile-bar {
+      display: flex; align-items: center; gap: 0.6rem; position: fixed; left: 0; right: 0; bottom: 0;
+      z-index: 45; background: var(--ink); color: #fff; padding: 0.5rem 0.9rem;
+      padding-bottom: calc(0.5rem + env(safe-area-inset-bottom));
+      box-shadow: 0 -6px 20px -10px rgba(0, 0, 0, 0.5);
+    }
+    .mb-cal { font-size: 1.15rem; font-variant-numeric: tabular-nums; }
+    .mb-cal strong { font-size: 1.45rem; font-weight: 750; }
+    .mb-macros { display: flex; gap: 0.6rem; font-size: 0.74rem; opacity: 0.86; flex-wrap: wrap; flex: 1; font-variant-numeric: tabular-nums; }
+    .mb-jump { margin-left: auto; color: #fff; font-size: 0.78rem; border: 1px solid rgba(255,255,255,0.4); border-radius: 7px; padding: 0.25rem 0.55rem; text-decoration: none; }
+    body { padding-bottom: 60px; }
+    .items { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+    .pick { min-height: 60px; }
+  }
+</style>
+
+<script>
+  import { initCalculator } from "../scripts/calc.js";
+  initCalculator();
+</script>

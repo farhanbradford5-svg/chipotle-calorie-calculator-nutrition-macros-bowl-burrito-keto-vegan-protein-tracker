@@ -1,0 +1,160 @@
+---
+// Consent gate for Google Analytics 4.
+//
+// Google Consent Mode v2 defaults everything to "denied", and gtag.js is not
+// requested at all until the visitor accepts. That means no analytics cookies
+// and no request to googletagmanager.com before a choice is made, which is
+// both the stricter reading of the EU/UK rules and the reason first paint is
+// unaffected: adding GA4 unconditionally moved LCP from 876ms to 1700ms.
+//
+// The banner is fixed to the bottom of the viewport. Nothing is added above the
+// calculator, so the centerpiece rule still holds.
+export interface Props {
+  gaId: string;
+}
+const { gaId } = Astro.props;
+---
+
+<div id="consent" class="consent" role="dialog" aria-modal="false" aria-labelledby="consent-h" hidden>
+  <div class="consent-body">
+    <h2 id="consent-h">Analytics cookies</h2>
+    <p>
+      We use Google Analytics to count page views. It sets cookies that last up to two years.
+      Decline and nothing on this site changes &mdash; the calculator and every page work the same.
+      <a href="/privacy-policy">What we collect</a>.
+    </p>
+  </div>
+  <div class="consent-actions">
+    <button type="button" id="consent-accept" class="c-accept">Accept</button>
+    <button type="button" id="consent-decline" class="c-decline">Decline</button>
+  </div>
+</div>
+
+<script is:inline define:vars={{ gaId }}>
+  (function () {
+    var KEY = 'cm-analytics-consent';
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    window.gtag = gtag;
+
+    // Consent Mode v2: denied until the visitor says otherwise.
+    gtag('consent', 'default', {
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      analytics_storage: 'denied',
+    });
+
+    var loaded = false;
+    function loadGa() {
+      if (loaded) return;
+      loaded = true;
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=' + gaId;
+      document.head.appendChild(s);
+      gtag('js', new Date());
+      gtag('config', gaId, { anonymize_ip: true });
+    }
+
+    function grant() {
+      gtag('consent', 'update', { analytics_storage: 'granted' });
+      // Deferred so the tag never competes with first paint.
+      if (document.readyState === 'complete') loadGa();
+      else addEventListener('load', loadGa, { once: true });
+    }
+
+    function stored() {
+      try { return localStorage.getItem(KEY); } catch (e) { return null; }
+    }
+    function remember(v) {
+      try { localStorage.setItem(KEY, v); } catch (e) { /* private mode */ }
+    }
+
+    function showBanner() {
+      var el = document.getElementById('consent');
+      if (!el) return;
+      el.hidden = false;
+      document.body.classList.add('has-consent-banner');
+      el.querySelector('#consent-accept').addEventListener('click', function () {
+        remember('granted');
+        grant();
+        close();
+      });
+      el.querySelector('#consent-decline').addEventListener('click', function () {
+        remember('denied');
+        close();
+      });
+    }
+    function close() {
+      var el = document.getElementById('consent');
+      if (el) el.hidden = true;
+      document.body.classList.remove('has-consent-banner');
+    }
+
+    var choice = stored();
+    if (choice === 'granted') grant();
+    else if (choice !== 'denied') {
+      if (document.readyState !== 'loading') showBanner();
+      else addEventListener('DOMContentLoaded', showBanner, { once: true });
+    }
+
+    // Footer link reopens the choice.
+    addEventListener('DOMContentLoaded', function () {
+      var reopen = document.getElementById('cookie-settings');
+      if (reopen) {
+        reopen.addEventListener('click', function (e) {
+          e.preventDefault();
+          try { localStorage.removeItem(KEY); } catch (err) { /* ignore */ }
+          showBanner();
+        });
+      }
+    });
+  })();
+</script>
+
+<style>
+  .consent {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 60;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.6rem 1.25rem;
+    padding: 0.75rem 1.1rem;
+    padding-bottom: calc(0.75rem + env(safe-area-inset-bottom));
+    background: var(--panel);
+    border-top: 2px solid var(--accent);
+    box-shadow: 0 -8px 28px -14px rgba(29, 26, 23, 0.4);
+  }
+  .consent[hidden] { display: none; }
+  .consent-body { flex: 1 1 380px; min-width: 0; }
+  .consent h2 { font-size: 0.95rem; margin-bottom: 0.15rem; }
+  .consent p { font-size: 0.85rem; color: var(--ink-2); margin: 0; max-width: 78ch; }
+  .consent-actions { display: flex; gap: 0.5rem; flex: 0 0 auto; }
+  .c-accept, .c-decline {
+    cursor: pointer;
+    font: inherit;
+    font-size: 0.88rem;
+    font-weight: 620;
+    padding: 0.55rem 1.1rem;
+    min-height: 44px;
+    border-radius: 9px;
+    border: 1px solid var(--accent);
+  }
+  .c-accept { background: var(--accent); color: #fff; }
+  .c-accept:hover { background: var(--accent-ink); }
+  .c-decline { background: var(--panel); color: var(--accent-ink); }
+  .c-decline:hover { background: var(--accent-soft); }
+
+  /* Sit above the sticky results bar rather than covering it. */
+  @media (max-width: 900px) {
+    .consent { bottom: 53px; }
+    .consent-actions { width: 100%; }
+    .c-accept, .c-decline { flex: 1; }
+  }
+</style>

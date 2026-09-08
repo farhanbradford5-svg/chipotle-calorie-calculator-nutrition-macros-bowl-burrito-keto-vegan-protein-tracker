@@ -1,0 +1,58 @@
+---
+// Trust pages: about, methodology, sources, contact, privacy, terms.
+import Base from '../layouts/Base.astro';
+import { TRUST } from '../content/trust.js';
+
+export function getStaticPaths() {
+  return TRUST.map((page) => ({ params: { slug: page.slug }, props: { page } }));
+}
+
+const { page } = Astro.props;
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Chipotle Nutrition Calculator', item: 'https://chipotlemacros.com/' },
+      { '@type': 'ListItem', position: 2, name: page.h1, item: `https://chipotlemacros.com${page.path}` },
+    ],
+  },
+];
+---
+
+<Base title={page.title} description={page.description} path={page.path} schema={schema}>
+  <div class="wrap page">
+    <nav class="crumb" aria-label="Breadcrumb">
+      <a href="/">Calculator</a> <span aria-hidden="true">›</span> <span>{page.h1}</span>
+    </nav>
+
+    <h1>{page.h1}</h1>
+    <p class="lede" set:html={page.opening} />
+
+    {page.sections.map((s, i) => (
+      <section aria-labelledby={`s-${i}`}>
+        <h2 id={`s-${i}`}>{s.heading}</h2>
+        {s.body && <p set:html={s.body} />}
+        {s.bullets && (
+          <ul class="points">
+            {s.bullets.map((b) => (
+              <li set:html={b} />
+            ))}
+          </ul>
+        )}
+      </section>
+    ))}
+  </div>
+</Base>
+
+<style>
+  .page { padding: 1.6rem 0 2rem; max-width: 100%; }
+  .page h1 { font-size: clamp(1.5rem, 1.2rem + 1.4vw, 2.1rem); margin-bottom: 0.7rem; }
+  .page h2 { margin: 1.8rem 0 0.45rem; font-size: 1.2rem; }
+  .page p { max-width: 72ch; color: var(--ink-2); }
+  .lede { font-size: 1.05rem; color: var(--ink) !important; }
+  .crumb { font-size: 0.83rem; color: var(--ink-3); margin-bottom: 0.7rem; display: flex; gap: 0.35rem; }
+  ul.points { max-width: 74ch; font-size: 0.93rem; color: var(--ink-2); padding-left: 1.1rem; }
+  ul.points li { margin-bottom: 0.35rem; }
+</style>

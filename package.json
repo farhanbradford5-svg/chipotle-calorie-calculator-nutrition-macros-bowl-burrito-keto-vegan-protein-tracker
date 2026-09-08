@@ -1,16 +1,30 @@
 {
-  "name": "workspace",
-  "version": "0.0.0",
-  "license": "MIT",
-  "scripts": {
-    "preinstall": "sh -c 'rm -f package-lock.json yarn.lock; case \"$npm_config_user_agent\" in pnpm/*) ;; *) echo \"Use pnpm instead\" >&2; exit 1 ;; esac'",
-    "build": "pnpm run typecheck && pnpm -r --if-present run build",
-    "typecheck:libs": "tsc --build",
-    "typecheck": "pnpm run typecheck:libs && pnpm -r --filter \"./artifacts/**\" --filter \"./scripts\" --if-present run typecheck"
-  },
+  "name": "chipotlemacros",
+  "type": "module",
+  "version": "1.0.0",
   "private": true,
-  "devDependencies": {
-    "typescript": "~5.9.2",
-    "prettier": "^3.8.1"
+  "scripts": {
+    "dev": "astro dev",
+    "build": "node scripts/gen-crawl-files.mjs && astro build",
+    "preview": "astro preview",
+    "test:calc": "node scripts/test-calc.mjs",
+    "test:claims": "node scripts/verify-claims.mjs",
+    "test:seo": "node scripts/audit.mjs",
+    "test:visual": "node scripts/visual-check.mjs",
+    "verify": "npm run build && npm run test:calc && npm run test:claims && npm run test:seo && npm run test:batch && npm run test:audit && npm run test:faq && npm run test:emdash && npm run test:consent && npm run test:visual && npm run test:visual-all && npm run test:contrast && npm run test:perf",
+    "test:contrast": "node scripts/contrast.mjs",
+    "test:batch": "node scripts/batch-qa.mjs",
+    "prebuild": "node scripts/gen-crawl-files.mjs",
+    "test:audit": "node scripts/audit-full.mjs",
+    "test:faq": "node scripts/faq-report.mjs",
+    "test:visual-all": "node scripts/audit-visual-all.mjs",
+    "test:perf": "node scripts/audit-perf.mjs",
+    "test:emdash": "node scripts/emdash-review.mjs",
+    "test:consent": "node scripts/test-consent.mjs"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.4",
+    "astro": "^5.6.1",
+    "puppeteer-core": "^25.10.0"
   }
 }

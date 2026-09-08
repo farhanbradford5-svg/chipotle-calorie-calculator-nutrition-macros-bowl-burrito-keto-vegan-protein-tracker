@@ -1,0 +1,74 @@
+# 63 permanent redirects: previous URL structure -> current.
+# Generated from src/data/redirects.js by scripts/gen-crawl-files.mjs.
+# Do not edit by hand.
+#
+# Target host: Cloudflare Pages.
+#   - No force flag: Cloudflare Pages does not support Netlify's "!" syntax.
+#   - astro.config.mjs intentionally omits its own redirects option, so no
+#     static file exists at any source path to shadow these rules.
+#   - Cloudflare Pages allows up to 2,100 static redirects; this file uses
+#     63.
+
+/item/chicken-bowl-calories                          /menu/chicken-bowl             301
+/item/steak-bowl-calories                            /menu/steak-bowl               301
+/item/barbacoa-bowl-calories                         /menu/barbacoa-bowl            301
+/item/carnitas-bowl-calories                         /menu/carnitas-bowl            301
+/item/sofritas-bowl-calories                         /menu/sofritas-bowl            301
+/item/double-chicken-bowl-calories                   /menu/double-chicken-bowl      301
+/item/chicken-burrito-calories                       /menu/chicken-burrito          301
+/item/steak-burrito-calories                         /menu/steak-burrito            301
+/item/chicken-salad-calories                         /menu/chicken-salad            301
+/item/chicken-tacos-calories                         /menu/chicken-tacos            301
+/item/chicken-quesadilla-calories                    /menu/chicken-quesadilla       301
+/item/chipotle-white-rice-nutrition                  /menu/white-rice               301
+/item/chipotle-brown-rice-nutrition                  /menu/brown-rice               301
+/item/chipotle-black-beans-nutrition                 /menu/black-beans              301
+/item/chipotle-pinto-beans-nutrition                 /menu/pinto-beans              301
+/item/chipotle-guacamole-nutrition                   /menu/guacamole                301
+/item/chipotle-queso-nutrition                       /menu/queso                    301
+/item/chipotle-chips-nutrition                       /menu/chips                    301
+/item/chipotle-sour-cream-nutrition                  /menu/sour-cream               301
+/item/chipotle-cheese-nutrition                      /menu/cheese                   301
+/item/chipotle-lettuce-nutrition                     /menu/lettuce                  301
+/item/chipotle-fajita-veggies-nutrition              /menu/fajita-veggies           301
+/item/chipotle-salsa-verde-nutrition                 /menu/salsa-verde              301
+/item/chipotle-fresh-tomato-salsa-nutrition          /menu/fresh-tomato-salsa       301
+/item/chipotle-roasted-chili-corn-salsa-nutrition    /menu/roasted-chili-corn-salsa 301
+/item/chipotle-hot-salsa-nutrition                   /menu/hot-salsa                301
+/diet/keto-chipotle                                  /diet/keto                     301
+/diet/vegan-chipotle                                 /diet/vegan                    301
+/diet/vegetarian-chipotle                            /diet/vegetarian               301
+/diet/high-protein-chipotle                          /diet/high-protein             301
+/diet/low-calorie-chipotle                           /diet/low-calorie              301
+/diet/low-carb-chipotle                              /diet/low-carb                 301
+/diet/low-sodium-chipotle                            /diet/low-sodium               301
+/diet/whole30-chipotle                               /diet/whole30                  301
+/diet/gluten-free-chipotle                           /diet/gluten-free              301
+/diet/dairy-free-chipotle                            /diet/dairy-free               301
+/diet/paleo-chipotle                                 /diet/paleo                    301
+/guides/chipotle-sodium-guide                        /guides/sodium                 301
+/guides/chipotle-allergens-guide                     /guides/allergens              301
+/guides/chipotle-muscle-gain-guide                   /guides/muscle-gain            301
+/guides/chipotle-fiber-guide                         /guides/fiber                  301
+/guides/chipotle-cheap-meals                         /guides/cheap-meals            301
+/guides/chipotle-macros-guide                        /guides/macro-targeting        301
+/guides/chipotle-weight-loss-guide                   /guides/weight-loss            301
+/guides/chipotle-vs-other-fast-food                  /guides/vs-fast-food           301
+/guides/chipotle-meal-prep                           /guides/meal-prep              301
+/guides/chipotle-secret-menu                         /guides/secret-menu            301
+/faq                                                 /                              301
+/menu/burrito                                        /                              301
+/menu/burrito-bowl                                   /                              301
+/menu/salad                                          /                              301
+/menu/tacos                                          /                              301
+/menu/quesadilla                                     /                              301
+/menu/chips-sides                                    /menu                          301
+/menu/drinks                                         /menu                          301
+/menu/kids-meal                                      /menu                          301
+/editorial-policy                                    /sources                       301
+/changelog                                           /methodology                   301
+/cookie-policy                                       /privacy-policy                301
+/accessibility                                       /about                         301
+/dmca                                                /terms-of-service              301
+/disclaimer                                          /methodology                   301
+/sitemap                                             /                              301

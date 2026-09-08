@@ -1,0 +1,426 @@
+---
+import Base from '../layouts/Base.astro';
+import Calculator from '../components/Calculator.astro';
+import { CATEGORIES, FORMATS, METRICS } from '../data/nutrition.js';
+
+const catKey = {
+  Protein: 'protein', Rice: 'rice', Beans: 'beans',
+  Salsa: 'salsa', Toppings: 'toppings', 'Sides & Extras': 'sides',
+};
+const fmtIcon = {
+  bowl: 'i-bowl', burrito: 'i-burrito', salad: 'i-salad',
+  tacos: 'i-tacos', quesadilla: 'i-quesadilla', kids: 'i-kids',
+};
+// Calorie ranges parsed from the copy so the range bars stay in sync with it.
+const ranges = FORMATS.filter((f) => f.id !== 'kids').map((f) => {
+  const [lo, hi] = f.range.replace(/,/g, '').match(/\d+/g).map(Number);
+  return { ...f, lo, hi };
+});
+const scaleMin = Math.min(...ranges.map((r) => r.lo));
+const scaleMax = Math.max(...ranges.map((r) => r.hi));
+const pctOf = (v) => ((v - scaleMin) / (scaleMax - scaleMin)) * 100;
+
+const SODIUM_HIGH = 500;
+const CAL_HIGH = 300;
+
+const title = 'Chipotle Nutrition Calculator — Calories, Macros & Sodium';
+const description =
+  'Free nutrition calculator for Chipotle. Build your exact bowl or burrito and watch calories, protein, carbs and sodium update with every ingredient you pick.';
+
+const tableRows = CATEGORIES.flatMap((cat) =>
+  cat.items.filter((it) => it.cal > 0).map((it) => ({ ...it, group: cat.label }))
+);
+
+const faqs = [
+  {
+    q: 'How many calories are in a Chipotle bowl?',
+    a: 'Most bowls land between 500 and 1,100 calories. A chicken bowl with white rice, black beans, fresh tomato salsa and cheese comes to about 655. Adding guacamole and sour cream pushes the same bowl close to 1,000, and a side of chips would take it past 1,500.',
+  },
+  {
+    q: 'How many calories are in a Chipotle burrito?',
+    a: 'A burrito typically runs 800 to 1,400 calories. The same chicken, rice, beans, salsa and cheese build that makes a 655-calorie bowl becomes about 975 as a burrito. Burritos also tend to get larger scoops than bowls, so the real number often sits at the higher end.',
+  },
+  {
+    q: 'How many calories does the flour tortilla add to a burrito?',
+    a: 'The flour tortilla adds 320 calories to a burrito. It also brings 50 g of carbohydrate, 9 g of fat and 600 mg of sodium, which is roughly a quarter of the daily sodium limit before any filling goes in. Order the identical fillings in a bowl and all of that comes off, because the tortilla is the only difference between the two formats.',
+  },
+  {
+    q: 'Is a Chipotle bowl healthier than a burrito?',
+    a: 'Yes, for identical fillings a Chipotle bowl is lighter than a burrito. The bowl saves 320 calories, 50 g of carbohydrate and 600 mg of sodium, because the tortilla is the only thing separating the two. The gap disappears if the bowl format becomes licence to add queso and extra rice, so the advantage depends on what goes in it.',
+  },
+  {
+    q: 'What is the highest-protein thing to order at Chipotle?',
+    a: 'Double chicken is the highest-protein choice on the line — 64 g for 360 calories. Built into a bowl with white rice, black beans and fresh tomato salsa, that is 76 g of protein for about 725 calories. Single chicken at 32 g per 180 calories has the best protein-to-calorie ratio of any single scoop.',
+  },
+  {
+    q: 'What is the lowest-calorie protein at Chipotle?',
+    a: 'Three proteins tie for the lowest calorie count at Chipotle, at 150 calories per serving: steak, carne asada and sofritas. Steak and carne asada are the stronger pick of the three when protein matters, at 21 g each against 8 g for sofritas. Chicken costs 30 calories more and returns 32 g of protein, the best ratio on the line.',
+  },
+  {
+    q: 'Which Chipotle toppings have the most calories?',
+    a: 'Guacamole leads at 230 calories, followed closely by chipotle-honey vinaigrette at 220. Queso blanco is 120, and cheese and sour cream are 110 each. Stacking guac, queso and sour cream on one bowl adds 460 calories and 700 mg of sodium.',
+  },
+  {
+    q: 'How accurate is this Chipotle nutrition calculator?',
+    a: 'The per-ingredient figures come from Chipotle’s own published nutrition data for standard servings, so the arithmetic is exact but the inputs are averages. Real scoops are made by hand and vary meaningfully between locations and servers. Treat any total as a good estimate rather than a measured value, especially for sodium.',
+  },
+  {
+    q: 'Is Chipotle keto-friendly, gluten-free or vegan?',
+    a: 'Yes, Chipotle works for all three with the right build. A keto order skips rice, beans and the tortilla. A vegan order uses sofritas and skips cheese, queso and sour cream. Everything except the flour tortilla is made without gluten-containing ingredients, though shared prep surfaces matter for coeliac disease. Each order carries enough detail to need its own page, linked below.',
+  },
+  {
+    q: 'How much sodium is in a typical Chipotle order?',
+    a: 'A chicken bowl with white rice, black beans, fresh tomato salsa, cheese and sour cream carries about 1,640 mg of sodium — roughly 71% of the 2,300 mg daily limit. The same order as a burrito reaches about 2,240 mg. Fresh tomato salsa alone is 550 mg, more than the chicken.',
+  },
+];
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebApplication',
+    '@id': 'https://chipotlemacros.com/#calculator',
+    name: 'Chipotle Nutrition Calculator',
+    url: 'https://chipotlemacros.com/',
+    description:
+      'A free calculator that totals calories, protein, carbohydrate, fat, fiber, sodium, sugar and saturated fat for any Chipotle bowl, burrito, salad, taco set or quesadilla.',
+    applicationCategory: 'HealthApplication',
+    operatingSystem: 'Any modern web browser',
+    browserRequirements: 'Requires JavaScript for live totals',
+    isAccessibleForFree: true,
+    featureList: [
+      'Six meal formats: bowl, burrito, salad, tacos, quesadilla and kids meal',
+      'Every protein, rice, bean, salsa, topping and side on the menu',
+      'Light, normal, extra and double portion sizing for each ingredient',
+      'Live totals for calories, protein, carbs, fat, fiber, sodium, sugar and saturated fat',
+      'One-click Chipotle lifestyle bowl presets',
+      'Shareable link and copyable results for any meal you build',
+    ],
+    offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+    publisher: { '@id': 'https://chipotlemacros.com/#org' },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    '@id': 'https://chipotlemacros.com/#org',
+    name: 'ChipotleMacros',
+    url: 'https://chipotlemacros.com/',
+    description:
+      'An independent nutrition reference for Chipotle Mexican Grill menu items, not affiliated with Chipotle Mexican Grill, Inc.',
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Chipotle Nutrition Calculator', item: 'https://chipotlemacros.com/' },
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
+  },
+];
+---
+
+<Base title={title} description={description} path="/" schema={schema}>
+  <Calculator />
+
+  <div class="wrap prose">
+    <section class="intro" aria-labelledby="intro-h">
+      <h2 id="intro-h">What this calculator does</h2>
+      <p>
+        Pick a format, tap the ingredients you actually order, set each scoop to light, normal, extra
+        or double, and the panel totals eight numbers as you go: calories, protein, carbohydrate,
+        fat, fiber, sodium, sugar and saturated fat. Used as a plain Chipotle calorie counter, the
+        running total at the top of the panel is the only figure you need. Nothing is gated, nothing
+        needs an account, and the whole menu is covered rather than a sample of it.
+      </p>
+      <p>
+        Per-ingredient values come from Chipotle&rsquo;s published nutrition data at standard serving
+        sizes. This site is independent and has no connection to Chipotle Mexican Grill, Inc.
+      </p>
+      <ul class="metric-legend" aria-label="The eight values this calculator tracks">
+        {METRICS.map((m) => (
+          <li>
+            <svg class="icon" aria-hidden="true"><use href={`#i-${m.key}`} /></svg>
+            {m.label}
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <section aria-labelledby="ingredients-h">
+      <h2 id="ingredients-h">Chipotle nutrition by ingredient</h2>
+      <p>
+        Every item on the line at a standard serving. Use it to check one ingredient without
+        building a whole meal, or to see where the sodium in a Chipotle order actually comes from.
+      </p>
+      <div class="scroller">
+        <table class="data">
+          <caption>
+            Chipotle nutrition facts per standard serving. Values are estimates from published data;
+            hand-scooped portions vary.
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">Ingredient</th>
+              <th scope="col">Serving</th>
+              <th scope="col">Cal</th>
+              <th scope="col">Protein</th>
+              <th scope="col">Carbs</th>
+              <th scope="col">Fat</th>
+              <th scope="col">Fiber</th>
+              <th scope="col">Sodium</th>
+            </tr>
+          </thead>
+          <tbody>
+            {tableRows.map((r) => (
+              <tr data-cat={catKey[r.group]}>
+                <th scope="row"><span class="row-name">{r.name}</span><span class="row-group">{r.group}</span></th>
+                <td>{r.serving}</td>
+                <td class={r.cal >= CAL_HIGH ? 'num num-high' : 'num'}>
+                  {r.cal >= CAL_HIGH && <svg class="icon" aria-hidden="true"><use href="#i-up" /></svg>}
+                  {r.cal}
+                </td>
+                <td class="num">{r.p} g</td>
+                <td class="num">{r.c} g</td>
+                <td class="num">{r.f} g</td>
+                <td class="num">{r.fib} g</td>
+                <td class={r.na >= SODIUM_HIGH ? 'num num-high' : 'num'}>
+                  {r.na >= SODIUM_HIGH && <svg class="icon" aria-hidden="true"><use href="#i-up" /></svg>}
+                  {r.na} mg
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="small">
+        Looking for a single item rather than the whole line? The
+        <a href="/menu">full menu nutrition index</a> lists each one on its own.
+      </p>
+    </section>
+
+    <section aria-labelledby="formats-h">
+      <h2 id="formats-h">Chipotle calories by meal type</h2>
+      <p>
+        Format decides your starting point; the fillings decide the rest. Typical ranges below assume
+        one protein, a base and the usual salsa-and-topping combinations.
+      </p>
+      <div class="format-cards">
+        {ranges.map((f) => (
+          <article class="fcard">
+            <h3>
+              <svg class="icon" aria-hidden="true"><use href={`#${fmtIcon[f.id]}`} /></svg>
+              {f.label}
+            </h3>
+            <p class="frange">{f.range}</p>
+            <div
+              class="range-track"
+              aria-hidden="true"
+              style={`--lo:${pctOf(f.lo)}%; --w:${pctOf(f.hi) - pctOf(f.lo)}%`}
+            >
+              <span class="range-fill"></span>
+            </div>
+            <p class="range-scale" aria-hidden="true">
+              <span>{scaleMin.toLocaleString('en-US')}</span>
+              <span>{scaleMax.toLocaleString('en-US')} cal</span>
+            </p>
+            <p>{f.blurb}</p>
+            <p class="flever"><strong>Biggest lever:</strong> {f.lever}.</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section aria-labelledby="picks-h">
+      <h2 id="picks-h">What to order for protein, and what to order for calories</h2>
+      <div class="two-col">
+        <div class="col col-protein">
+          <h3>
+            <svg class="icon" aria-hidden="true"><use href="#i-p" /></svg>
+            Highest-protein options
+          </h3>
+          <ul class="pick-list">
+            <li><strong>Double chicken</strong> — 64 g protein, 360 cal. The most protein available in one order.</li>
+            <li><strong>Chicken</strong> — 32 g, 180 cal. Best protein-to-calorie ratio of any single scoop.</li>
+            <li><strong>Chicken al pastor</strong> — 31 g, 180 cal, with 540 mg sodium against chicken&rsquo;s 310.</li>
+            <li><strong>Barbacoa</strong> — 24 g, 170 cal, the leading beef option for protein density.</li>
+            <li><strong>Steak or carne asada</strong> — 21 g, 150 cal each.</li>
+            <li><strong>Black or pinto beans</strong> — 8 g for 130 cal, plus 7 to 8 g of fiber.</li>
+          </ul>
+          <p class="small">
+            A double-chicken bowl with white rice, black beans and fresh tomato salsa reaches 76 g of
+            protein at about 725 calories. Working from a target instead? The
+            <a href="/guides/macro-targeting">macro-targeting guide</a> works backwards from your numbers.
+          </p>
+        </div>
+        <div class="col col-light">
+          <h3>
+            <svg class="icon" aria-hidden="true"><use href="#i-leaf" /></svg>
+            Lowest-calorie options
+          </h3>
+          <ul class="pick-list">
+            <li><strong>Romaine lettuce</strong> — 5 cal. <strong>Supergreens</strong> — 10 cal.</li>
+            <li><strong>Tomatillo-green chili salsa</strong> — 15 cal, the lightest salsa.</li>
+            <li><strong>Fajita vegetables</strong> — 20 cal for 5 g of carbs.</li>
+            <li><strong>Fresh tomato salsa</strong> — 25 cal, though 550 mg of sodium.</li>
+            <li><strong>Cauliflower rice</strong> — 40 cal against white rice&rsquo;s 210.</li>
+            <li><strong>Steak, carne asada or sofritas</strong> — 150 cal, the lightest proteins.</li>
+          </ul>
+          <p class="small">
+            A salad with steak, green salsa and fajita veggies comes in near 195 calories with 23 g of
+            protein. If sodium is the constraint rather than calories, start with
+            <a href="/guides/sodium">the low-sodium ordering guide</a>.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="accuracy-h">
+      <h2 id="accuracy-h" class="h2-icon">
+        <svg class="icon icon-trust" aria-hidden="true"><use href="#i-shield" /></svg>
+        Is this calculator accurate?
+      </h2>
+      <p>
+        Every ingredient value here is transcribed from Chipotle&rsquo;s published nutrition
+        information for standard servings, and the totals are plain addition scaled by the portion
+        size you choose. We re-check the full ingredient set against the published data quarterly,
+        and within a week of any menu change we notice.
+      </p>
+      <p>
+        The limit is the source data, not the arithmetic. Chipotle serves by hand, so two chicken
+        bowls ordered the same way at the same store can differ by 50 to 100 calories. Sodium varies
+        the most. Read
+        <a href="/methodology">how these numbers are calculated</a> for the portion multipliers, or
+        <a href="/sources">where the underlying data comes from</a> for the source list and the last
+        verification date.
+      </p>
+    </section>
+
+    <section aria-labelledby="faq-h">
+      <h2 id="faq-h">Chipotle nutrition questions</h2>
+      <div class="faq">
+        {faqs.map((f, i) => (
+          <article class="qa" data-alt={i % 2 === 0 ? 'a' : 'b'}>
+            <h3>
+              <svg class="icon qa-icon" aria-hidden="true"><use href="#i-help" /></svg>
+              {f.q}
+            </h3>
+            <p>{f.a}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section aria-labelledby="more-h">
+      <h2 id="more-h">Keep going</h2>
+      <ul class="more-links">
+        <li><svg class="icon" aria-hidden="true"><use href="#i-grid" /></svg><span><a href="/menu">Browse nutrition facts for every menu item</a> — proteins, sides, drinks and kids items on one reference page.</span></li>
+        <li><svg class="icon" aria-hidden="true"><use href="#i-shield" /></svg><span><a href="/diet/keto">Ordering keto at Chipotle</a> — which bases and toppings keep net carbs under 15 g.</span></li>
+        <li><svg class="icon" aria-hidden="true"><use href="#i-na" /></svg><span><a href="/diet/low-sodium">Keeping a Chipotle order under 1,000 mg of sodium</a> — the three swaps that do most of the work.</span></li>
+        <li><svg class="icon" aria-hidden="true"><use href="#i-leaf" /></svg><span><a href="/diet/vegan">Vegan and vegetarian builds</a> — what sofritas and plant-based chorizo actually contain.</span></li>
+        <li><svg class="icon" aria-hidden="true"><use href="#i-shield" /></svg><span><a href="/diet/gluten-free">Gluten-free ordering</a> — including the shared-surface caveat for coeliac disease.</span></li>
+        <li><svg class="icon" aria-hidden="true"><use href="#i-gauge" /></svg><span><a href="/guides/macro-targeting">Hitting a macro target</a> — building to a set protein, carb and fat split.</span></li>
+        <li><svg class="icon" aria-hidden="true"><use href="#i-na" /></svg><span><a href="/guides/sodium">Why Chipotle sodium runs high</a> — and where it accumulates on the line.</span></li>
+      </ul>
+    </section>
+  </div>
+</Base>
+
+<style>
+  .prose { padding-top: 2.25rem; max-width: 1160px; }
+  .prose section { margin-bottom: 2.5rem; }
+  .prose h2 { margin-bottom: 0.6rem; }
+  .prose h3 { margin-bottom: 0.35rem; }
+  .prose p { max-width: 76ch; color: var(--ink-2); }
+  .intro p { color: var(--ink); font-size: 1.03rem; }
+  .small { font-size: 0.87rem; }
+  .h2-icon { display: flex; align-items: center; gap: 0.45rem; }
+  .icon-trust { color: var(--down); font-size: 1.1em; }
+
+  /* the eight values the calculator tracks, as a compact legend */
+  .metric-legend {
+    list-style: none; margin: 1rem 0 0; padding: 0.7rem 0.85rem;
+    display: flex; flex-wrap: wrap; gap: 0.4rem 1.1rem;
+    background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius);
+    font-size: 0.83rem; color: var(--ink-2); max-width: 76ch;
+  }
+  .metric-legend li { display: inline-flex; align-items: center; gap: 0.3rem; }
+  .metric-legend .icon { font-size: 1.05rem; color: var(--accent-ink); }
+
+  table.data { font-size: 0.87rem; background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+  table.data caption { caption-side: bottom; text-align: left; font-size: 0.79rem; color: var(--ink-3); padding-top: 0.5rem; max-width: 76ch; }
+  table.data th, table.data td { padding: 0.45rem 0.7rem; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+  table.data thead th { background: #f4f0ea; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-3); position: sticky; top: 0; }
+  table.data tbody th { font-weight: 620; white-space: nowrap; }
+  .row-name { display: block; }
+  .row-group { display: block; font-size: 0.71rem; font-weight: 400; color: var(--ink-3); }
+  table.data td.num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+  table.data tbody tr:last-child th, table.data tbody tr:last-child td { border-bottom: 0; }
+
+  /* category colour carried through as a left rule, so the table segments
+     into its six groups instead of reading as one long list */
+  table.data tbody th { border-left: 4px solid var(--cat, transparent); }
+  table.data tbody tr[data-cat='protein']  { --cat: var(--cat-protein); }
+  table.data tbody tr[data-cat='rice']     { --cat: var(--cat-rice); }
+  table.data tbody tr[data-cat='beans']    { --cat: var(--cat-beans); }
+  table.data tbody tr[data-cat='salsa']    { --cat: var(--cat-salsa); }
+  table.data tbody tr[data-cat='toppings'] { --cat: var(--cat-toppings); }
+  table.data tbody tr[data-cat='sides']    { --cat: var(--cat-sides); }
+  /* standouts only: an arrow carries the meaning, colour reinforces it */
+  table.data td.num-high { color: var(--up); font-weight: 650; }
+  table.data td.num-high .icon { font-size: 0.85em; vertical-align: -0.08em; }
+
+  .format-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(255px, 1fr)); gap: 0.7rem; }
+  .fcard { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 0.85rem 1rem; }
+  .fcard p { font-size: 0.88rem; margin-bottom: 0.6rem; }
+  .fcard h3 { display: flex; align-items: center; gap: 0.4rem; }
+  .fcard h3 .icon { font-size: 1.25rem; color: var(--accent-ink); }
+  .frange { font-weight: 700; color: var(--accent-ink); font-size: 0.95rem !important; margin-bottom: 0.4rem !important; }
+  .flever { color: var(--ink-3); margin-bottom: 0 !important; }
+
+  /* where this format's range sits against every other format */
+  .range-track {
+    position: relative; height: 7px; border-radius: 999px;
+    background: var(--line); margin-bottom: 0.25rem; overflow: hidden;
+  }
+  .range-fill {
+    position: absolute; top: 0; bottom: 0; left: var(--lo); width: var(--w);
+    background: linear-gradient(90deg, var(--cat-rice), var(--accent));
+    border-radius: 999px;
+  }
+  .range-scale {
+    display: flex; justify-content: space-between;
+    font-size: 0.68rem !important; color: var(--ink-3);
+    margin-bottom: 0.65rem !important; font-variant-numeric: tabular-nums;
+  }
+
+  .two-col { display: grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); gap: 1rem; }
+  .col { border-radius: var(--radius); padding: 0.9rem 1.05rem; border: 1px solid var(--line); }
+  .col h3 { display: flex; align-items: center; gap: 0.4rem; margin-bottom: 0.5rem; }
+  .col h3 .icon { font-size: 1.2rem; }
+  .col-protein { background: #fdf4ee; border-color: #f0dccd; }
+  .col-protein h3, .col-protein h3 .icon { color: var(--cat-protein-ink); }
+  .col-light { background: #f1f7f1; border-color: #d8e6d9; }
+  .col-light h3, .col-light h3 .icon { color: var(--cat-toppings-ink); }
+  .pick-list { margin: 0 0 0.9rem; padding-left: 1.1rem; font-size: 0.9rem; color: var(--ink-2); }
+  .pick-list li { margin-bottom: 0.3rem; }
+  .pick-list strong { color: var(--ink); }
+  .col p:last-child { margin-bottom: 0; }
+
+  .faq { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 0.7rem; }
+  .qa { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 0.85rem 1rem; }
+  .qa[data-alt='b'] { background: #fdfbf7; }
+  .qa h3 { display: flex; gap: 0.45rem; align-items: flex-start; font-size: 1rem; margin-bottom: 0.4rem; }
+  .qa-icon { font-size: 1.15rem; color: var(--accent); margin-top: 0.08em; }
+  .qa p { font-size: 0.89rem; margin: 0; }
+
+  .more-links { list-style: none; padding-left: 0; font-size: 0.92rem; color: var(--ink-2); max-width: 80ch; }
+  .more-links li { display: flex; gap: 0.5rem; align-items: flex-start; margin-bottom: 0.45rem; }
+  .more-links .icon { font-size: 1.1rem; color: var(--accent-ink); margin-top: 0.18em; }
+</style>

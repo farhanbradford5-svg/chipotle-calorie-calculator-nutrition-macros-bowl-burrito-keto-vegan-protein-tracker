@@ -1,0 +1,257 @@
+---
+export interface Props {
+  title: string;
+  description: string;
+  path: string;
+  schema?: unknown[];
+  noindex?: boolean;
+}
+import Icons from '../components/Icons.astro';
+import Consent from '../components/Consent.astro';
+
+const { title, description, path, schema = [], noindex = false } = Astro.props;
+
+// Carried over from the previous build so the existing Search Console
+// property and GA4 data stream continue without a re-verification gap.
+const GSC_TOKEN = 'mpxQ6kqhNKWPWfvFLaYubeKDVErU9yttAYfJkERt4Hg';
+const GA4_ID = 'G-0L2EFKL6PD';
+const site = 'https://chipotlemacros.com';
+const canonical = site + (path === '/' ? '/' : path);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Declares an intentional light design. Without this, browsers with
+         auto/forced dark mode algorithmically invert the page component by
+         component, painting cards as black rectangles over their own content. -->
+    <meta name="color-scheme" content="light" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="google-site-verification" content={GSC_TOKEN} />
+    <meta
+      name="robots"
+      content={noindex ? 'noindex, nofollow' : 'index, follow, max-snippet:-1, max-image-preview:large'}
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content="ChipotleMacros" />
+    <meta name="twitter:card" content="summary" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    {schema.map((block) => (
+      <script type="application/ld+json" set:html={JSON.stringify(block)} />
+    ))}
+
+  </head>
+  <body>
+    <Icons />
+    <a class="skip" href="#calculator">Skip to the calculator</a>
+    <header class="topbar">
+      <div class="wrap topbar-inner">
+        <a class="brand" href="/">
+          <svg class="icon brand-mark" aria-hidden="true"><use href="#i-logo" /></svg>
+          ChipotleMacros
+        </a>
+        <div class="topbar-right">
+          <p class="head-chip" id="head-chip" hidden>
+            <svg class="icon" aria-hidden="true"><use href="#i-cal" /></svg>
+            <span id="head-chip-cal">0</span> cal
+          </p>
+          <nav aria-label="Primary">
+            <a href="/menu"><svg class="icon" aria-hidden="true"><use href="#i-grid" /></svg><span class="nav-label">Menu nutrition</span></a>
+            <a href="/guides/macro-targeting"><svg class="icon" aria-hidden="true"><use href="#i-gauge" /></svg><span class="nav-label">Macro guide</span></a>
+            <a href="/methodology"><svg class="icon" aria-hidden="true"><use href="#i-shield" /></svg><span class="nav-label">Methodology</span></a>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <slot />
+    </main>
+
+    <footer class="site-foot">
+      <div class="wrap">
+        <p class="foot-brand">
+          <svg class="icon" aria-hidden="true"><use href="#i-logo" /></svg>
+          ChipotleMacros
+        </p>
+        <p class="foot-links">
+          <a href="/menu">Full menu nutrition index</a>
+          <a href="/methodology">How we calculate</a>
+          <a href="/sources">Data sources</a>
+          <a href="/guides/sodium">Cutting sodium at Chipotle</a>
+          <a href="/privacy-policy" id="cookie-settings">Cookie settings</a>
+        </p>
+        <p class="disclaimer">
+          ChipotleMacros is an independent project and is not affiliated with, endorsed by, or
+          sponsored by Chipotle Mexican Grill, Inc. Nutrition estimates are for planning and general
+          information only, not medical advice. All figures are estimates based on published
+          nutrition data; actual servings vary by location, by server, and over time. Check the
+          restaurant&rsquo;s own information if you have an allergy or a medical reason to need exact
+          numbers.
+        </p>
+        <p class="copy">&copy; 2026 ChipotleMacros</p>
+      </div>
+    </footer>
+
+    <Consent gaId={GA4_ID} />
+
+    <style is:global>
+      :root {
+        /* Pairs with the color-scheme meta tag: this design is light by
+           intent, so browsers must not auto-invert it. */
+        color-scheme: light;
+
+        /* Ingredient-category accents, drawn from the food itself. Each has a
+           bright tone for bars/icons and a darker -ink tone that clears WCAG AA
+           as text on white. Never used as full background fills. */
+        --cat-protein: #c2571f;   --cat-protein-ink: #8f3d13;
+        --cat-rice: #cf951b;      --cat-rice-ink: #7d5804;
+        --cat-beans: #6b8034;     --cat-beans-ink: #4a5a20;
+        --cat-salsa: #d6551f;     --cat-salsa-ink: #a13a10;
+        --cat-toppings: #4a9b5e;  --cat-toppings-ink: #2f6b3c;
+        --cat-sides: #a87b52;     --cat-sides-ink: #6b4a2f;
+
+        /* Semantic direction: warm = the number goes up, green = down/neutral.
+           Always paired with an arrow glyph so colour is never the only cue. */
+        --up: #a81612;   --up-soft: #fdeceb;
+        --down: #2f6b3c; --down-soft: #e9f2e9;
+        --flat: #55504a;
+
+        /* Macro mix — used only in the results panel, deliberately distinct
+           from the ingredient-category palette above. */
+        --macro-p: #2e6f8e;
+        --macro-c: #b8801a;
+        --macro-f: #7d55a0;
+
+        --bg: #fbf9f6;
+        --panel: #ffffff;
+        --ink: #1d1a17;
+        --ink-2: #55504a;
+        /* WCAG AA on every surface it appears on, footer (#ece5db) included:
+           the previous #837c74 measured 3.29:1 there and 4.12:1 on white. */
+        --ink-3: #6c655c;
+        --line: #e6e0d8;
+        --line-2: #d5cec4;
+        --accent: #a81612;
+        --accent-ink: #7d100d;
+        --accent-soft: #fdeceb;
+        --green: #2f6b3c;
+        --green-soft: #e9f2e9;
+        --radius: 12px;
+        --shadow: 0 1px 2px rgba(29, 26, 23, 0.05), 0 8px 24px -12px rgba(29, 26, 23, 0.18);
+        --mono: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;
+      }
+      * { box-sizing: border-box; }
+      html { -webkit-text-size-adjust: 100%; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      }
+      .wrap { width: min(1160px, 100% - 2.5rem); margin-inline: auto; }
+      @media (max-width: 640px) { .wrap { width: min(1160px, 100% - 1.75rem); } }
+
+      h1, h2, h3, h4 { line-height: 1.2; letter-spacing: -0.015em; margin: 0; }
+      h2 { font-size: clamp(1.4rem, 1.1rem + 1.1vw, 1.9rem); }
+      h3 { font-size: 1.12rem; }
+      p { margin: 0 0 1rem; }
+      a { color: var(--accent-ink); }
+      main a:hover { color: var(--accent); }
+
+      .skip {
+        position: absolute; left: -9999px; top: 0; background: var(--ink); color: #fff;
+        padding: 0.6rem 1rem; z-index: 60; border-radius: 0 0 8px 0;
+      }
+      .skip:focus { left: 0; }
+
+      .topbar {
+        background: var(--panel); border-bottom: 1px solid var(--line);
+        position: sticky; top: 0; z-index: 40;
+      }
+      .topbar-inner { display: flex; align-items: center; justify-content: space-between; height: 52px; gap: 1rem; }
+      .topbar-right { display: flex; align-items: center; gap: 1.25rem; }
+      .brand {
+        display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 700;
+        color: var(--ink); text-decoration: none; letter-spacing: -0.02em; font-size: 1.02rem;
+      }
+      .brand-mark { font-size: 1.25rem; color: var(--accent); }
+      .topbar nav { display: flex; gap: 1.1rem; font-size: 0.88rem; }
+      .topbar nav a {
+        display: inline-flex; align-items: center; gap: 0.35rem;
+        color: var(--ink-2); text-decoration: none;
+        border-bottom: 2px solid transparent; padding: 0.15rem 0;
+        transition: color 0.14s, border-color 0.14s;
+      }
+      .topbar nav a .icon { color: var(--ink-3); transition: color 0.14s; }
+      .topbar nav a:hover, .topbar nav a:focus-visible { color: var(--accent); border-bottom-color: var(--accent); }
+      .topbar nav a:hover .icon, .topbar nav a:focus-visible .icon { color: var(--accent); }
+      .topbar nav a { white-space: nowrap; }
+      /* Below the breakpoint the labels collapse to icons. The text stays in
+         the DOM so each link keeps its accessible name. */
+      @media (max-width: 760px) {
+        .topbar nav { gap: 0.6rem; }
+        .topbar nav a { padding: 0.3rem; border-bottom: 0; }
+        .topbar nav a .icon { font-size: 1.25rem; }
+        .nav-label {
+          position: absolute; width: 1px; height: 1px;
+          margin: -1px; padding: 0; overflow: hidden;
+          clip-path: inset(50%); white-space: nowrap; border: 0;
+        }
+      }
+
+      /* running total, revealed once the calculator scrolls out of view */
+      .head-chip {
+        display: inline-flex; align-items: center; gap: 0.32rem; margin: 0;
+        background: var(--accent-soft); color: var(--accent-ink);
+        border: 1px solid #f2cdcb; border-radius: 999px;
+        padding: 0.2rem 0.65rem; font-size: 0.83rem; font-weight: 650;
+        font-variant-numeric: tabular-nums; white-space: nowrap;
+        animation: chip-in 0.22s ease-out;
+      }
+      .head-chip[hidden] { display: none; }
+      /* Below 900px the sticky bottom bar already carries the running total,
+         so the header chip would just repeat it. */
+      @media (max-width: 900px) { .head-chip { display: none; } }
+      @keyframes chip-in { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+      @media (prefers-reduced-motion: reduce) { .head-chip { animation: none; } }
+
+      .site-foot {
+        border-top: 1px solid var(--line-2); background: #ece5db; margin-top: 3.5rem;
+        padding: 2rem 0 2.5rem; font-size: 0.86rem; color: var(--ink-2);
+      }
+      .foot-brand {
+        display: flex; align-items: center; gap: 0.45rem;
+        font-weight: 700; color: var(--ink); letter-spacing: -0.02em;
+        font-size: 0.98rem; margin-bottom: 0.7rem;
+      }
+      .foot-brand .icon { font-size: 1.2rem; color: var(--accent); }
+      .foot-links { display: flex; flex-wrap: wrap; gap: 0.4rem 1.5rem; }
+      .foot-links a { text-decoration-thickness: 1px; text-underline-offset: 2px; }
+      .disclaimer { max-width: 74ch; color: var(--ink-3); }
+      .copy { color: var(--ink-3); margin: 0; }
+
+      /*
+        Skip layout and paint for content below the first viewport until it is
+        scrolled near. This is a rendering hint only: the markup stays in the
+        DOM, so crawlers and JS-disabled readers see the full page. Intrinsic
+        sizes are supplied so the scrollbar does not jump (CLS stays at 0).
+      */
+      .prose > section { content-visibility: auto; contain-intrinsic-size: auto 640px; }
+      .cat[data-cat='salsa'],
+      .cat[data-cat='toppings'],
+      .cat[data-cat='sides'] { content-visibility: auto; contain-intrinsic-size: auto 460px; }
+      .site-foot { content-visibility: auto; contain-intrinsic-size: auto 320px; }
+
+      table { border-collapse: collapse; width: 100%; }
+      .scroller { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    </style>
+  </body>
+</html>

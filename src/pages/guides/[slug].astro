@@ -1,0 +1,150 @@
+---
+import Base from '../../layouts/Base.astro';
+import NutritionTable from '../../components/NutritionTable.astro';
+import { GUIDES } from '../../content/guides.js';
+
+export function getStaticPaths() {
+  return GUIDES.map((guide) => ({ params: { slug: guide.slug }, props: { guide } }));
+}
+
+const { guide } = Astro.props;
+const path = `/guides/${guide.slug}`;
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Chipotle Nutrition Calculator', item: 'https://chipotlemacros.com/' },
+      { '@type': 'ListItem', position: 2, name: 'Guides', item: 'https://chipotlemacros.com/menu' },
+      { '@type': 'ListItem', position: 3, name: guide.title, item: `https://chipotlemacros.com${path}` },
+    ],
+  },
+];
+---
+
+<Base title={guide.title} description={guide.description} path={path} schema={schema} noindex={guide.noindex}>
+  <div class="wrap page">
+    <nav class="crumb" aria-label="Breadcrumb">
+      <a href="/">Calculator</a> <span aria-hidden="true">›</span>
+      <a href="/menu">Menu nutrition</a> <span aria-hidden="true">›</span>
+      <span>{guide.h1 || guide.title.split(':')[0]}</span>
+    </nav>
+
+    <h1>{guide.h1 || guide.title.split(':')[0]}</h1>
+    {guide.draftNotice && (
+      <aside class="draft" aria-labelledby="draft-h">
+        <h2 id="draft-h">Unpublished draft</h2>
+        <p set:html={guide.draftNotice} />
+      </aside>
+    )}
+    {guide.byline && (
+      <p class="byline">
+        <svg class="icon" aria-hidden="true"><use href="#i-shield" /></svg>
+        <span set:html={guide.byline} />
+      </p>
+    )}
+    <p class="lede" set:html={guide.opening} />
+    {guide.officialSource && (
+      <p class="official" set:html={guide.officialSource} />
+    )}
+
+    {guide.sections.map((s, i) => (
+      <section aria-labelledby={`s-${i}`}>
+        <h2 id={`s-${i}`}>{s.heading}</h2>
+        {s.body && <p set:html={s.body} />}
+        {s.bullets && (
+          <ul class="points">
+            {s.bullets.map((b) => (
+              <li set:html={b} />
+            ))}
+          </ul>
+        )}
+        {s.table && <NutritionTable rows={s.table.rows} serving={s.table.serving} caption={s.table.caption} />}
+        {s.matrix && (
+          <div class="scroller">
+            <table class="plain">
+              <thead>
+                <tr><th scope="col">Ingredient</th><th scope="col">Contains</th><th scope="col">Notes</th></tr>
+              </thead>
+              <tbody>
+                {s.matrix.map(([a, b, c]) => (
+                  <tr><th scope="row">{a}</th><td>{b}</td><td>{c}</td></tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+        {s.compare && (
+          <div class="scroller">
+            <table class="plain">
+              <thead>
+                <tr><th scope="col">Item</th><th scope="col">Calories</th><th scope="col">Protein</th><th scope="col">Sodium</th></tr>
+              </thead>
+              <tbody>
+                {s.compare.map(([a, b, c, d]) => (
+                  <tr><th scope="row">{a}</th><td class="num">{b}</td><td class="num">{c}</td><td class="num">{d}</td></tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+        {s.note && <p class="note" set:html={s.note} />}
+      </section>
+    ))}
+    {guide.disclaimer && (
+      <aside class="ymyl" aria-labelledby="ymyl-h">
+        <h2 id="ymyl-h">Before you rely on this</h2>
+        <p set:html={guide.disclaimer} />
+      </aside>
+    )}
+  </div>
+</Base>
+
+<style>
+  .page { padding: 1.6rem 0 2rem; }
+  .page h1 { font-size: clamp(1.5rem, 1.2rem + 1.4vw, 2.1rem); margin-bottom: 0.7rem; }
+  .page h2 { margin: 1.9rem 0 0.5rem; }
+  .page p { max-width: 74ch; color: var(--ink-2); }
+  .lede { font-size: 1.05rem; color: var(--ink) !important; }
+  .note { font-size: 0.9rem; }
+  .byline {
+    display: flex; gap: 0.45rem; align-items: flex-start;
+    font-size: 0.84rem; color: var(--ink-3) !important; max-width: 76ch;
+    border-left: 3px solid var(--down); padding: 0.1rem 0 0.1rem 0.6rem; margin-bottom: 0.9rem;
+  }
+  .byline .icon { color: var(--down); font-size: 1rem; margin-top: 0.1em; }
+  .official {
+    background: var(--panel); border: 1px solid var(--line); border-left: 4px solid var(--accent);
+    border-radius: 10px; padding: 0.7rem 0.9rem; font-size: 0.9rem; margin-bottom: 1rem;
+  }
+  .ymyl {
+    margin-top: 2rem; background: #fdf6ec; border: 1px solid #eddcc2;
+    border-left: 4px solid var(--cat-rice); border-radius: 10px; padding: 0.9rem 1.05rem;
+  }
+  .ymyl h2 { margin: 0 0 0.35rem !important; font-size: 1rem; }
+  .ymyl p { font-size: 0.89rem; margin: 0; }
+  .draft {
+    background: var(--up-soft); border: 1px solid #f2cdcb; border-left: 4px solid var(--up);
+    border-radius: 10px; padding: 0.8rem 1rem; margin-bottom: 1rem;
+  }
+  .draft h2 { margin: 0 0 0.3rem !important; font-size: 0.95rem; color: var(--up); }
+  .draft p { font-size: 0.88rem; margin: 0; }
+  .crumb { font-size: 0.83rem; color: var(--ink-3); margin-bottom: 0.7rem; display: flex; flex-wrap: wrap; gap: 0.35rem; }
+  ul.points { max-width: 76ch; font-size: 0.93rem; color: var(--ink-2); padding-left: 1.1rem; }
+  ul.points li { margin-bottom: 0.35rem; }
+  table.plain {
+    font-size: 0.88rem; background: var(--panel); border: 1px solid var(--line);
+    border-radius: var(--radius); overflow: hidden; margin: 0.9rem 0 1.2rem;
+  }
+  table.plain th, table.plain td {
+    padding: 0.45rem 0.7rem; border-bottom: 1px solid var(--line); text-align: left;
+  }
+  table.plain thead th {
+    background: #f4f0ea; font-size: 0.72rem; text-transform: uppercase;
+    letter-spacing: 0.06em; color: var(--ink-3); white-space: nowrap;
+  }
+  table.plain tbody th { font-weight: 620; }
+  table.plain td.num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+  table.plain tbody tr:last-child th, table.plain tbody tr:last-child td { border-bottom: 0; }
+</style>

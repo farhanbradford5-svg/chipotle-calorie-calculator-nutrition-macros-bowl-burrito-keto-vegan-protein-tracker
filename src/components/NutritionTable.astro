@@ -1,0 +1,64 @@
+---
+// Shared macro table used by item and diet pages. Real <table> markup so the
+// figures are extractable without running any JavaScript.
+export interface Props {
+  rows: [string, Record<string, number>][];
+  caption?: string;
+  serving?: string;
+}
+const { rows, caption, serving } = Astro.props;
+const COLS = [
+  ['cal', 'Cal', ''],
+  ['p', 'Protein', ' g'],
+  ['c', 'Carbs', ' g'],
+  ['f', 'Fat', ' g'],
+  ['fib', 'Fiber', ' g'],
+  ['na', 'Sodium', ' mg'],
+  ['sug', 'Sugar', ' g'],
+  ['sat', 'Sat fat', ' g'],
+];
+---
+
+<div class="scroller">
+  <table class="data">
+    {caption && <caption>{caption}</caption>}
+    <thead>
+      <tr>
+        <th scope="col">{serving || 'Item'}</th>
+        {COLS.map(([, label]) => <th scope="col">{label}</th>)}
+      </tr>
+    </thead>
+    <tbody>
+      {rows.map(([label, t]) => (
+        <tr>
+          <th scope="row">{label}</th>
+          {COLS.map(([key, , unit]) => (
+            <td class="num">{key === 'na' || key === 'cal' ? t[key].toLocaleString('en-US') : t[key]}{unit}</td>
+          ))}
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
+<style>
+  table.data {
+    font-size: 0.87rem; background: var(--panel); border: 1px solid var(--line);
+    border-radius: var(--radius); overflow: hidden; margin: 0.9rem 0 1.2rem;
+  }
+  table.data caption {
+    caption-side: bottom; text-align: left; font-size: 0.79rem;
+    color: var(--ink-3); padding-top: 0.5rem; max-width: 76ch;
+  }
+  table.data th, table.data td {
+    padding: 0.45rem 0.7rem; border-bottom: 1px solid var(--line);
+    text-align: left; white-space: nowrap;
+  }
+  table.data thead th {
+    background: #f4f0ea; font-size: 0.72rem; text-transform: uppercase;
+    letter-spacing: 0.06em; color: var(--ink-3);
+  }
+  table.data tbody th { font-weight: 620; }
+  table.data td.num { font-variant-numeric: tabular-nums; }
+  table.data tbody tr:last-child th, table.data tbody tr:last-child td { border-bottom: 0; }
+</style>

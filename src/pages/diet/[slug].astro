@@ -1,0 +1,170 @@
+---
+import Base from '../../layouts/Base.astro';
+import NutritionTable from '../../components/NutritionTable.astro';
+import { DIETS } from '../../content/diets.js';
+import { titleCase } from '../../content/items.js';
+import { anchor } from '../../content/anchors.js';
+
+export function getStaticPaths() {
+  return DIETS.map((diet) => ({ params: { slug: diet.slug }, props: { diet } }));
+}
+
+const { diet } = Astro.props;
+const path = `/diet/${diet.slug}`;
+const h1 = titleCase(diet.keyword);
+const ex = diet.example;
+const pid = `diet:${diet.slug}`;
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Chipotle Nutrition Calculator', item: 'https://chipotlemacros.com/' },
+      { '@type': 'ListItem', position: 2, name: 'Diet guides', item: 'https://chipotlemacros.com/menu' },
+      { '@type': 'ListItem', position: 3, name: h1, item: `https://chipotlemacros.com${path}` },
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: diet.faq.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a.replace(/<[^>]+>/g, '') },
+    })),
+  },
+];
+---
+
+<Base title={diet.title} description={diet.description} path={path} schema={schema}>
+  <div class="wrap page">
+    <nav class="crumb" aria-label="Breadcrumb">
+      <a href="/">Calculator</a> <span aria-hidden="true">›</span>
+      <a href="/menu">Menu nutrition</a> <span aria-hidden="true">›</span>
+      <span>{h1}</span>
+    </nav>
+
+    <h1>{h1}</h1>
+    {diet.byline && (
+      <p class="byline">
+        <svg class="icon" aria-hidden="true"><use href="#i-shield" /></svg>
+        <span set:html={diet.byline} />
+      </p>
+    )}
+    <p class="verdict">
+      <svg class="icon" aria-hidden="true"><use href="#i-shield" /></svg>
+      <span>{diet.verdict}</span>
+    </p>
+    <p class="lede" set:html={diet.opening} />
+
+    <section aria-labelledby="order-h">
+      <h2 id="order-h">{diet.order.heading}</h2>
+      <p set:html={diet.order.body} />
+      <ul class="check">
+        {diet.order.bullets.map((b) => (
+          <li set:html={b} />
+        ))}
+      </ul>
+    </section>
+
+    <section aria-labelledby="avoid-h">
+      <h2 id="avoid-h">{diet.avoid.heading}</h2>
+      <p set:html={diet.avoid.body} />
+      <ul class="cross">
+        {diet.avoid.bullets.map((b) => (
+          <li set:html={b} />
+        ))}
+      </ul>
+    </section>
+
+    <section aria-labelledby="ex-h">
+      <h2 id="ex-h">{ex.heading}</h2>
+      <p set:html={ex.intro} />
+      <NutritionTable
+        rows={[[`${h1} example`, ex.totals]]}
+        serving="Worked example"
+        caption="Estimates from Chipotle's published nutrition data at standard serving sizes."
+      />
+      <p set:html={ex.note(ex.totals)} />
+      <p class="cta">
+        Prefer a different combination? <a href="/">{anchor('/', pid)}</a>.
+      </p>
+    </section>
+
+    {diet.disclaimer && (
+      <aside class="ymyl" aria-labelledby="ymyl-h">
+        <h2 id="ymyl-h">Before you rely on this</h2>
+        <p set:html={diet.disclaimer} />
+      </aside>
+    )}
+
+    <section aria-labelledby="faq-h">
+      <h2 id="faq-h">Questions about eating {diet.slug.replace(/-/g, ' ')} at Chipotle</h2>
+      <div class="qa-list">
+        {diet.faq.map((f) => (
+          <article class="qa">
+            <h3>
+              <svg class="icon qa-icon" aria-hidden="true"><use href="#i-help" /></svg>
+              {f.q}
+            </h3>
+            <p set:html={f.a} />
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <p class="back">
+      Per-ingredient figures sit on <a href="/menu">{anchor('/menu', pid)}</a>, and
+      <a href="/methodology">{anchor('/methodology', pid)}</a> explains how portion sizes are handled.
+    </p>
+  </div>
+</Base>
+
+<style>
+  .page { padding: 1.6rem 0 1rem; }
+  .page h1 { font-size: clamp(1.5rem, 1.2rem + 1.4vw, 2.1rem); margin-bottom: 0.6rem; }
+  .page h2 { margin: 1.9rem 0 0.5rem; }
+  .page p { max-width: 74ch; color: var(--ink-2); }
+  .lede { font-size: 1.05rem; color: var(--ink) !important; }
+  .crumb { font-size: 0.83rem; color: var(--ink-3); margin-bottom: 0.7rem; display: flex; flex-wrap: wrap; gap: 0.35rem; }
+  .verdict {
+    display: flex; gap: 0.5rem; align-items: flex-start;
+    background: var(--down-soft); border: 1px solid #cfe3d1; border-left: 4px solid var(--down);
+    border-radius: 10px; padding: 0.6rem 0.85rem; font-weight: 620;
+    color: var(--down) !important; max-width: 74ch;
+  }
+  .verdict .icon { font-size: 1.15rem; margin-top: 0.1em; }
+
+  ul.check, ul.cross { list-style: none; padding: 0; margin: 0.6rem 0 0; max-width: 76ch; display: grid; gap: 0.35rem; }
+  ul.check li, ul.cross li {
+    position: relative; padding-left: 1.6rem; font-size: 0.92rem; color: var(--ink-2);
+  }
+  ul.check li::before {
+    content: '✓'; position: absolute; left: 0; top: 0;
+    color: var(--down); font-weight: 700;
+  }
+  ul.cross li::before {
+    content: '✕'; position: absolute; left: 0; top: 0;
+    color: var(--up); font-weight: 700;
+  }
+  .cta { font-size: 0.92rem; }
+  .byline {
+    display: flex; gap: 0.45rem; align-items: flex-start;
+    font-size: 0.84rem; color: var(--ink-3) !important; max-width: 76ch;
+    border-left: 3px solid var(--down); padding: 0.1rem 0 0.1rem 0.6rem; margin-bottom: 0.9rem;
+  }
+  .byline .icon { color: var(--down); font-size: 1rem; margin-top: 0.1em; }
+  .ymyl {
+    margin-top: 1.6rem; background: #fdf6ec; border: 1px solid #eddcc2;
+    border-left: 4px solid var(--cat-rice); border-radius: 10px; padding: 0.9rem 1.05rem;
+  }
+  .ymyl h2 { margin: 0 0 0.35rem !important; font-size: 1rem; }
+  .ymyl p { font-size: 0.89rem; margin: 0; }
+  .qa-list { display: grid; gap: 0.6rem; max-width: 80ch; }
+  .qa { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 0.8rem 1rem; }
+  .qa h3 { display: flex; gap: 0.45rem; align-items: flex-start; font-size: 1rem; margin-bottom: 0.35rem; }
+  .qa-icon { font-size: 1.1rem; color: var(--accent); margin-top: 0.08em; }
+  .qa p { font-size: 0.9rem; margin: 0; }
+  .back { margin-top: 2rem; font-size: 0.92rem; border-top: 1px solid var(--line); padding-top: 1rem; }
+</style>

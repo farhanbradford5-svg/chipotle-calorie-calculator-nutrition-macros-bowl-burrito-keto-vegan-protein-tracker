@@ -1,0 +1,23 @@
+# ChipotleMacros
+
+> Independent Chipotle nutrition calculator. Not affiliated with, endorsed by, or
+> sponsored by Chipotle Mexican Grill, Inc. All figures are estimates based on published
+> nutrition data; see /methodology for sourcing and update cadence.
+
+## Primary tool
+- [Chipotle Nutrition Calculator](/): interactive calculator covering every bowl, burrito, salad, taco, and quesadilla combination, with calories, protein, carbs, fat, fiber, sodium, sugar, and saturated fat per build.
+
+## Reference
+- [Full menu nutrition index](/menu): every ingredient and item in one table.
+- [How we calculate](/methodology): data source, portion-multiplier logic, rounding rules, update cadence, and stated limitations.
+- [Data sources](/sources): provenance and last-verified dates.
+
+## Dietary guidance
+- [Keto](/diet/keto), [Vegan](/diet/vegan), [Vegetarian](/diet/vegetarian), [High Protein](/diet/high-protein), [Low Calorie](/diet/low-calorie), [Low Carb](/diet/low-carb), [Low Sodium](/diet/low-sodium), [Whole30](/diet/whole30), [Gluten Free](/diet/gluten-free), [Dairy Free](/diet/dairy-free), [Paleo](/diet/paleo)
+
+## Guides
+- [Sodium](/guides/sodium), [Allergens](/guides/allergens), [Muscle gain](/guides/muscle-gain), [Fiber](/guides/fiber), [Macro targeting](/guides/macro-targeting), [Weight loss](/guides/weight-loss), [Cheap meals](/guides/cheap-meals), [Meal prep](/guides/meal-prep), [Secret menu](/guides/secret-menu)
+
+## About
+- [About this site](/about): who maintains it and the independence statement.
+- [Contact](/contact): how to report a wrong figure.

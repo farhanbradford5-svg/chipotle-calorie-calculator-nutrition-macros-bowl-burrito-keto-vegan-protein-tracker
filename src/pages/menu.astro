@@ -1,0 +1,250 @@
+---
+import Base from '../layouts/Base.astro';
+import { CATEGORIES } from '../data/nutrition.js';
+import { item, fmt, N } from '../data/builds.js';
+import { ITEMS, ITEM_GROUP, PAGE_FOR_INGREDIENT } from '../content/items.js';
+import { DIETS } from '../content/diets.js';
+
+const title = 'Chipotle Menu Nutrition Facts — Every Item in One Table';
+const description =
+  'Chipotle menu nutrition facts for every protein, base, salsa, topping and side in a single sortable table: calories, protein, carbs, fat, fiber and sodium.';
+
+const rows = CATEGORIES.flatMap((cat) =>
+  cat.items.filter((i) => i.cal > 0).map((i) => ({ ...i, group: cat.label, page: PAGE_FOR_INGREDIENT[i.id] }))
+);
+
+const catKey = {
+  Protein: 'protein', Rice: 'rice', Beans: 'beans',
+  Salsa: 'salsa', Toppings: 'toppings', 'Sides & Extras': 'sides',
+};
+
+const ing = (id) => item(id);
+const salsaSpread = ['green-salsa', 'corn-salsa', 'red-salsa', 'mild-salsa'].map(ing);
+
+// Item pages grouped for the index block at the foot of the page.
+const groups = [...new Set(Object.values(ITEM_GROUP))];
+const inGroup = (g) => ITEMS.filter((i) => ITEM_GROUP[i.slug] === g);
+
+const notes = [
+  {
+    id: 'proteins',
+    heading: 'Proteins',
+    body: `The spread is narrower than it looks: every protein sits between ${ing('steak').cal} and ${ing('carnitas').cal} calories a scoop. Where they genuinely differ is sodium, from chicken at ${ing('chicken').na} mg to sofritas at ${ing('sofritas').na} mg, and protein returned per calorie, where chicken leads at ${Math.round((ing('chicken').p / ing('chicken').cal) * 100 * 10) / 10} g per 100 calories.`,
+  },
+  {
+    id: 'bases',
+    heading: 'Rice and beans',
+    body: `White and brown rice are the same ${ing('white-rice').cal} calories; the honest difference is ${ing('white-rice').na - ing('brown-rice').na} mg of sodium and one gram of fiber. Beans are the most efficient scoop on the line — ${ing('black-beans').cal} calories for ${ing('black-beans').p} g of protein and ${ing('black-beans').fib} g of fiber — and skipping them is what quietly strips the fiber out of a low-carb order.`,
+  },
+  {
+    id: 'salsas',
+    heading: 'Salsas',
+    body: `These are not interchangeable. Sodium runs from ${salsaSpread[0].na} mg for tomatillo-green chili to ${salsaSpread[3].na} mg for fresh tomato — a ${salsaSpread[3].na - salsaSpread[0].na} mg spread that outweighs the difference between any two proteins. Roasted chili-corn is the outlier on carbohydrate at ${ing('corn-salsa').c} g against ${ing('mild-salsa').c} g for the rest.`,
+  },
+  {
+    id: 'toppings',
+    heading: 'Toppings',
+    body: `Guacamole is the heaviest at ${ing('guac').cal} calories, though its fat is largely unsaturated — only ${ing('guac').sat} g of the ${ing('guac').f} g. Queso is lighter overall at ${ing('queso').cal} calories but carries ${ing('queso').sat} g of saturated fat. The chipotle-honey vinaigrette is the one people miss: ${ing('vinaigrette').cal} calories and ${ing('vinaigrette').na} mg of sodium, the highest sodium figure of any single item here.`,
+  },
+  {
+    id: 'sides',
+    heading: 'Sides',
+    body: `A bag of chips is ${ing('chips').cal} calories, more than the rice and beans in a bowl combined (${ing('white-rice').cal + ing('black-beans').cal}). Ordered with guacamole the side reaches roughly ${fmt(ing('chips-guac').cal)}. Nothing else you can add to an order moves the total this far in one decision.`,
+  },
+];
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Chipotle Nutrition Calculator', item: 'https://chipotlemacros.com/' },
+      { '@type': 'ListItem', position: 2, name: 'Menu nutrition', item: 'https://chipotlemacros.com/menu' },
+    ],
+  },
+];
+---
+
+<Base title={title} description={description} path="/menu" schema={schema}>
+  <div class="wrap page">
+    <nav class="crumb" aria-label="Breadcrumb">
+      <a href="/">Calculator</a> <span aria-hidden="true">›</span> <span>Menu nutrition</span>
+    </nav>
+
+    <h1>Chipotle Menu Nutrition Facts</h1>
+    <p class="lede">
+      These are the Chipotle menu nutrition facts for every item on the line, one row each, at
+      standard serving size. The <a href="/">meal builder</a> exists for adding a specific order up;
+      this page exists for scanning the whole menu at once — comparing every protein on sodium, or
+      finding which topping costs the most, without assembling anything.
+    </p>
+
+    <section aria-labelledby="table-h">
+      <h2 id="table-h">Every item, one row each</h2>
+      <p class="note">
+        Sortable by any column. Values are per standard serving —
+        <a href="/methodology">the note on how portions are read</a> explains the portion multipliers behind
+        light, extra and double.
+      </p>
+      <div class="scroller">
+        <table class="data" id="menu-table">
+          <caption>
+            Chipotle nutrition per standard serving. Estimates from published data; portions are
+            scooped by hand and vary.
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col" data-sort="name" aria-sort="none"><button type="button">Item</button></th>
+              <th scope="col">Serving</th>
+              <th scope="col" data-sort="cal" aria-sort="none"><button type="button">Cal</button></th>
+              <th scope="col" data-sort="p" aria-sort="none"><button type="button">Protein</button></th>
+              <th scope="col">Carbs</th>
+              <th scope="col">Fat</th>
+              <th scope="col">Fiber</th>
+              <th scope="col" data-sort="na" aria-sort="none"><button type="button">Sodium</button></th>
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((r) => (
+              <tr data-cat={catKey[r.group]} data-name={r.name} data-cal={r.cal} data-p={r.p} data-na={r.na}>
+                <th scope="row">
+                  <span class="row-name">{r.page ? <a href={`/menu/${r.page}`}>{r.name}</a> : r.name}</span>
+                  <span class="row-group">{r.group}</span>
+                </th>
+                <td>{r.serving}</td>
+                <td class="num">{r.cal}</td>
+                <td class="num">{r.p} g</td>
+                <td class="num">{r.c} g</td>
+                <td class="num">{r.f} g</td>
+                <td class="num">{r.fib} g</td>
+                <td class="num">{fmt(r.na)} mg</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section aria-labelledby="cats-h">
+      <h2 id="cats-h">What to notice in each section</h2>
+      <div class="cat-notes">
+        {notes.map((n) => (
+          <article class="cat-note" data-cat={n.id}>
+            <h3>{n.heading}</h3>
+            <p set:html={n.body} />
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section aria-labelledby="items-h">
+      <h2 id="items-h">Nutrition pages for individual items</h2>
+      <p class="note">
+        Each page carries the full macro breakdown, a specific comparison and the questions people
+        actually ask about that item.
+      </p>
+      {groups.map((g) => (
+        <div class="link-group">
+          <h3>{g}</h3>
+          <ul class="link-list">
+            {inGroup(g).map((i) => (
+              <li><a href={`/menu/${i.slug}`}>{i.name}</a></li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </section>
+
+    <section aria-labelledby="diets-h">
+      <h2 id="diets-h">Ordering for a specific diet</h2>
+      <p class="note">
+        These guides start from a requirement rather than an ingredient — what to order, what to
+        avoid, and a worked example with the macros attached.
+      </p>
+      <ul class="link-list wide">
+        {DIETS.map((d) => (
+          <li><a href={`/diet/${d.slug}`}>{d.linkLabel}</a></li>
+        ))}
+      </ul>
+    </section>
+
+    <p class="back">
+      Building one specific order instead? <a href="/">The calculator totals it as you go</a>.
+    </p>
+  </div>
+</Base>
+
+<script>
+  // Progressive enhancement only: the table is fully readable and complete
+  // before this runs, sorting just reorders rows already in the DOM.
+  const table = document.getElementById('menu-table');
+  if (table) {
+    const tbody = table.querySelector('tbody');
+    const rows = () => Array.from(tbody.querySelectorAll('tr'));
+    table.querySelectorAll('th[data-sort]').forEach((th) => {
+      th.querySelector('button').addEventListener('click', () => {
+        const key = th.dataset.sort;
+        const asc = th.getAttribute('aria-sort') !== 'ascending';
+        table.querySelectorAll('th[data-sort]').forEach((o) => o.setAttribute('aria-sort', 'none'));
+        th.setAttribute('aria-sort', asc ? 'ascending' : 'descending');
+        const sorted = rows().sort((a, b) => {
+          const av = key === 'name' ? a.dataset.name : Number(a.dataset[key]);
+          const bv = key === 'name' ? b.dataset.name : Number(b.dataset[key]);
+          if (typeof av === 'string') return asc ? av.localeCompare(bv) : bv.localeCompare(av);
+          return asc ? av - bv : bv - av;
+        });
+        sorted.forEach((r) => tbody.appendChild(r));
+      });
+    });
+  }
+</script>
+
+<style>
+  .page { padding: 1.6rem 0 1rem; }
+  .page h1 { font-size: clamp(1.6rem, 1.2rem + 1.6vw, 2.3rem); margin-bottom: 0.7rem; }
+  .page h2 { margin: 2rem 0 0.5rem; }
+  .page h3 { margin-bottom: 0.3rem; }
+  .page p { max-width: 76ch; color: var(--ink-2); }
+  .lede { font-size: 1.05rem; color: var(--ink) !important; }
+  .note { font-size: 0.9rem; }
+  .crumb { font-size: 0.83rem; color: var(--ink-3); margin-bottom: 0.7rem; display: flex; gap: 0.35rem; }
+
+  table.data { font-size: 0.87rem; background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+  table.data caption { caption-side: bottom; text-align: left; font-size: 0.79rem; color: var(--ink-3); padding-top: 0.5rem; max-width: 76ch; }
+  table.data th, table.data td { padding: 0.45rem 0.7rem; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+  table.data thead th { background: #f4f0ea; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-3); white-space: nowrap; }
+  table.data thead th button {
+    background: none; border: 0; font: inherit; color: inherit; cursor: pointer;
+    padding: 0; text-transform: inherit; letter-spacing: inherit;
+  }
+  table.data thead th button::after { content: ' ↕'; opacity: 0.5; }
+  table.data thead th[aria-sort='ascending'] button::after { content: ' ↑'; opacity: 1; }
+  table.data thead th[aria-sort='descending'] button::after { content: ' ↓'; opacity: 1; }
+  table.data tbody th { font-weight: 620; white-space: nowrap; border-left: 4px solid var(--cat, transparent); }
+  table.data tbody tr[data-cat='protein']  { --cat: var(--cat-protein); }
+  table.data tbody tr[data-cat='rice']     { --cat: var(--cat-rice); }
+  table.data tbody tr[data-cat='beans']    { --cat: var(--cat-beans); }
+  table.data tbody tr[data-cat='salsa']    { --cat: var(--cat-salsa); }
+  table.data tbody tr[data-cat='toppings'] { --cat: var(--cat-toppings); }
+  table.data tbody tr[data-cat='sides']    { --cat: var(--cat-sides); }
+  .row-name { display: block; }
+  .row-group { display: block; font-size: 0.71rem; font-weight: 400; color: var(--ink-3); }
+  table.data td.num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+  .cat-notes { display: grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); gap: 0.7rem; }
+  .cat-note {
+    background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 0.8rem 1rem; border-top: 3px solid var(--cat, var(--line-2));
+  }
+  .cat-note p { font-size: 0.89rem; margin: 0; }
+  .cat-note[data-cat='proteins'] { --cat: var(--cat-protein); }
+  .cat-note[data-cat='bases']    { --cat: var(--cat-rice); }
+  .cat-note[data-cat='salsas']   { --cat: var(--cat-salsa); }
+  .cat-note[data-cat='toppings'] { --cat: var(--cat-toppings); }
+  .cat-note[data-cat='sides']    { --cat: var(--cat-sides); }
+
+  .link-group { margin-bottom: 1rem; }
+  .link-list { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 0.4rem 0.9rem; font-size: 0.92rem; }
+  .link-list.wide { flex-direction: column; gap: 0.4rem; }
+  .back { margin-top: 2rem; font-size: 0.92rem; border-top: 1px solid var(--line); padding-top: 1rem; }
+</style>
