@@ -110,17 +110,10 @@ function render() {
     syncChip();
   }
 
-  const list = $('#build-list');
-  if (!lines.length) {
-    list.innerHTML = '<li class="build-empty">Nothing selected yet.</li>';
-  } else {
-    list.innerHTML = lines
-      .map((l) => {
-        const name = l.portion ? `${l.name} <em>(${l.portion})</em>` : l.name;
-        return `<li><span>${name}</span><span class="bl-cal">${l.cal} cal</span></li>`;
-      })
-      .join('');
-  }
+  // Reuse the existing <li> nodes and only write the text that changed.
+  // Rebuilding this list with innerHTML on every click reparsed the markup and
+  // dominated the interaction path.
+  renderBuildList(lines);
 
   const mb = CACHE.mobile;
   if (mb.cal) {
@@ -186,6 +179,45 @@ function buildCache() {
       na: document.getElementById('m-na'),
     },
   };
+}
+
+function renderBuildList(lines) {
+  const list = $('#build-list');
+  if (!list) return;
+  const rows = list.children;
+
+  if (!lines.length) {
+    if (rows.length !== 1 || !rows[0].classList.contains('build-empty')) {
+      list.textContent = '';
+      const li = document.createElement('li');
+      li.className = 'build-empty';
+      li.textContent = 'Nothing selected yet.';
+      list.appendChild(li);
+    }
+    return;
+  }
+
+  // Drop the empty-state row, and any surplus rows from a longer build.
+  if (rows.length && rows[0].classList.contains('build-empty')) list.textContent = '';
+  while (rows.length > lines.length) list.removeChild(list.lastChild);
+
+  for (let i = 0; i < lines.length; i++) {
+    let li = rows[i];
+    if (!li) {
+      li = document.createElement('li');
+      li.appendChild(document.createElement('span'));
+      const cal = document.createElement('span');
+      cal.className = 'bl-cal';
+      li.appendChild(cal);
+      list.appendChild(li);
+    }
+    const l = lines[i];
+    const nameEl = li.firstChild;
+    const label = l.portion ? `${l.name} (${l.portion})` : l.name;
+    if (nameEl.textContent !== label) nameEl.textContent = label;
+    const calText = `${l.cal} cal`;
+    if (li.lastChild.textContent !== calText) li.lastChild.textContent = calText;
+  }
 }
 
 function syncButtons() {

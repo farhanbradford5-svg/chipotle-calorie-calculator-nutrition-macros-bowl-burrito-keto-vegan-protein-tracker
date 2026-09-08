@@ -47,8 +47,11 @@ const COLS = [
     border-radius: var(--radius); overflow: hidden; margin: 0.9rem 0 1.2rem;
   }
   table.data caption {
-    caption-side: bottom; text-align: left; font-size: 0.79rem;
-    color: var(--ink-3); padding-top: 0.5rem; max-width: 76ch;
+    /* Top, not bottom: a bottom caption is positioned from the table’s total
+       height, so it jumps once the last row lands. Reading the sourcing note
+       before the numbers is also the better order. */
+    caption-side: top; text-align: left; font-size: 0.79rem;
+    color: var(--ink-3); padding-bottom: 0.5rem; max-width: 76ch;
   }
   table.data th, table.data td {
     padding: 0.45rem 0.7rem; border-bottom: 1px solid var(--line);

@@ -7,11 +7,10 @@ const TYPES = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/cs
 const server = createServer((req, res) => {
   let p = join('dist', decodeURIComponent(req.url.split('?')[0]));
   try { if (statSync(p).isDirectory()) p = join(p, 'index.html'); } catch { p = join('dist', 'index.html'); }
-  try {
-    const body = readFileSync(p);
-    res.writeHead(200, { 'Content-Type': TYPES[extname(p)] || 'application/octet-stream' });
-    res.end(body);
-  } catch { res.writeHead(404); res.end('nope'); }
+  let body;
+  try { body = readFileSync(p); } catch { res.writeHead(404); return res.end('not found'); }
+  res.writeHead(200, { 'Content-Type': TYPES[extname(p)] || 'application/octet-stream' });
+  res.end(body);
 });
 // ephemeral port so a running `npm run dev` can't collide with the test server
 await new Promise((r) => server.listen(0, r));

@@ -7,10 +7,10 @@ const TYPES = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/cs
 const server = createServer((req, res) => {
   let p = join('dist', decodeURIComponent(req.url.split('?')[0]));
   try { if (statSync(p).isDirectory()) p = join(p, 'index.html'); } catch { p = join('dist', 'index.html'); }
-  try {
-    res.writeHead(200, { 'Content-Type': TYPES[extname(p)] || 'application/octet-stream' });
-    res.end(readFileSync(p));
-  } catch { res.writeHead(404); res.end('nope'); }
+  let body;
+  try { body = readFileSync(p); } catch { res.writeHead(404); return res.end('not found'); }
+  res.writeHead(200, { 'Content-Type': TYPES[extname(p)] || 'application/octet-stream' });
+  res.end(body);
 });
 await new Promise((r) => server.listen(0, r));
 const PORT = server.address().port;

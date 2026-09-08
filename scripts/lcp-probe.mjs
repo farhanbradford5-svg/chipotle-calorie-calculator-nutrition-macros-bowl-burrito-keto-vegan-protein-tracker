@@ -7,8 +7,10 @@ const T = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', 
 const srv = createServer((q, r) => {
   let p = join('dist', decodeURIComponent(q.url.split('?')[0]));
   try { if (statSync(p).isDirectory()) p = join(p, 'index.html'); } catch { p = join('dist', 'index.html'); }
-  try { r.writeHead(200, { 'Content-Type': T[extname(p)] || 'application/octet-stream' }); r.end(readFileSync(p)); }
-  catch { r.writeHead(404); r.end(); }
+  let body;
+  try { body = readFileSync(p); } catch { r.writeHead(404); return r.end('not found'); }
+  r.writeHead(200, { 'Content-Type': T[extname(p)] || 'application/octet-stream' });
+  r.end(body);
 });
 await new Promise((r) => srv.listen(0, r));
 const PORT = srv.address().port;

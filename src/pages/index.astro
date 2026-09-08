@@ -354,7 +354,10 @@ const schema = [
   .metric-legend .icon { font-size: 1.05rem; color: var(--accent-ink); }
 
   table.data { font-size: 0.87rem; background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
-  table.data caption { caption-side: bottom; text-align: left; font-size: 0.79rem; color: var(--ink-3); padding-top: 0.5rem; max-width: 76ch; }
+  table.data caption { /* Top, not bottom: a bottom caption is positioned from the table’s total
+       height, so it jumps once the last row lands. Reading the sourcing note
+       before the numbers is also the better order. */
+    caption-side: top; text-align: left; font-size: 0.79rem; color: var(--ink-3); padding-bottom: 0.5rem; max-width: 76ch; }
   table.data th, table.data td { padding: 0.45rem 0.7rem; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
   table.data thead th { background: #f4f0ea; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-3); position: sticky; top: 0; }
   table.data tbody th { font-weight: 620; white-space: nowrap; }
